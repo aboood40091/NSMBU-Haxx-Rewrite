@@ -1,8 +1,6 @@
 TextAddr = 0x0F800000;
 DataAddr = 0x10400000;
 
-.platform Emulator
-
 02000000 - 0267FDC4: + 0;
 0267FDC8 - 029CBBB4: - 4;
 029CBDF8 - 029CCB5C: - 0x84;
@@ -16,7 +14,7 @@ DataAddr = 0x10400000;
 1018B858 - 101B5700: - 8;
 101B5700 - 1FAFDE00: + 0;
 
-.platform Console=CafeLoader extends Emulator
+.platform Console=CafeLoader
 
 02000000 - 03440000: + 0x0CBC0000;
 10000000 - 1FAFDE00: + 0x00502200;
