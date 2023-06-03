@@ -14,7 +14,8 @@ Old version can be found [here](https://github.com/aboood40091/NSMBU-haxx).
 * Actor Spawner sprite (Added as sprite 724.)  
 * Flip Block sprite (Added as sprite 725. Currently uses the Snake Block model.)  
 * Magic Platform sprite (Added as sprite 726.)  
-* Effect Viewer (Added as sprite 727. Check `EffectPlayer.cpp` for controls.)
+* Effect Viewer (Added as sprite 727. Check `EffectPlayer.cpp` for controls.)  
+* Fixed Rolling Hill with Pipe (sprite 355) Resource List  
 
 ## Libraries:
 * [SEAD](https://github.com/aboood40091/sead) - Nintendo EAD Standard Library (sead), agl, NintendoWareForCafe (NW4F) Eft.  
