@@ -1,6 +1,6 @@
 NSMBU Haxx Miyamoto! Game Patch
 Created: December 26th, 2020
-Last Edited: May 10th, 2021
+Last Edited: March 26th, 2023
 ---------------------------------
 
 For use with Miyamoto!.
