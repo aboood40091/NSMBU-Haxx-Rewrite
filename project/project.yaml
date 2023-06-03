@@ -16,6 +16,7 @@ IncludeDirs:
   - "$GAME_LIB_DIR/nw/G3d/include"
   - "$GAME_LIB_DIR/nw/Snd/include"
   - "$GAME_LIB_DIR/sead/engine/library/include"
+  - "$GAME_LIB_DIR/sead/engine/library/modules/include"
   - "$GAME_LIB_DIR/sead/packages/agl/include"
   - "$GAME_LIB_DIR/sead/packages/nw_ptcl/library/include"
   - "$GAME_LIB_DIR/sead/packages/nw_ptcl/library/addins/Eft/include"
