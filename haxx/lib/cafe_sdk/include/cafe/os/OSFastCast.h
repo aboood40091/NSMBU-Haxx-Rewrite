@@ -7,14 +7,14 @@ extern "C" {
 #include <ppc_ghs.h>
 #include <ppc_ps.h>
 
-#define UGQR0	              896
-#define UGQR1	              897
-#define UGQR2	              898
-#define UGQR3	              899
-#define UGQR4	              900
-#define UGQR5	              901
-#define UGQR6	              902
-#define UGQR7	              903
+#define UGQR0                 896
+#define UGQR1                 897
+#define UGQR2                 898
+#define UGQR3                 899
+#define UGQR4                 900
+#define UGQR5                 901
+#define UGQR6                 902
+#define UGQR7                 903
 
 #define OS_GQR_F32 0x0000
 #define OS_GQR_U8  0x0004
@@ -105,8 +105,8 @@ static inline void OSSetGQR7(u32 type, u32 scale) {
 //! int to float
 //!-----------------------------------------------------------------------------------------------------------------------
 static inline f32 OSu8tof32Value(const u8* in) {
-	f32x2 f = __PSQ_L(in, 1, OS_FASTCAST_U8);
-	return f[0];
+    f32x2 f = __PSQ_L(in, 1, OS_FASTCAST_U8);
+    return f[0];
 }
 
 static inline void OSu8tof32(const u8* in, volatile f32* out) {
@@ -114,8 +114,8 @@ static inline void OSu8tof32(const u8* in, volatile f32* out) {
 }
 
 static inline f32 OSu16tof32Value(const u16 * in) {
-	f32x2 f = __PSQ_L(in, 1, OS_FASTCAST_U16);
-	return f[0];
+    f32x2 f = __PSQ_L(in, 1, OS_FASTCAST_U16);
+    return f[0];
 }
 
 static inline void OSu16tof32(const u16* in, volatile f32* out) {
@@ -123,8 +123,8 @@ static inline void OSu16tof32(const u16* in, volatile f32* out) {
 }
 
 static inline f32 OSs8tof32Value(const s8 * in) {
-	f32x2 f = __PSQ_L(in, 1, OS_FASTCAST_S8);
-	return f[0];
+    f32x2 f = __PSQ_L(in, 1, OS_FASTCAST_S8);
+    return f[0];
 }
 
 static inline void OSs8tof32(const s8* in, volatile f32* out) {
@@ -132,8 +132,8 @@ static inline void OSs8tof32(const s8* in, volatile f32* out) {
 }
 
 static inline f32 OSs16tof32Value(const s16 * in) {
-	f32x2 f = __PSQ_L(in, 1, OS_FASTCAST_S16);
-	return f[0];
+    f32x2 f = __PSQ_L(in, 1, OS_FASTCAST_S16);
+    return f[0];
 }
 
 static inline void OSs16tof32(const s16* in, volatile f32* out) {
@@ -145,50 +145,50 @@ static inline void OSs16tof32(const s16* in, volatile f32* out) {
 //!-----------------------------------------------------------------------------------------------------------------------
 
 static inline void OSf32tou8(const f32* in, volatile u8* out) {
-	f32x2 f = {*in};
-	__PSQ_ST((void *) out, f, 1, OS_FASTCAST_U8);
+    f32x2 f = {*in};
+    __PSQ_ST((void *) out, f, 1, OS_FASTCAST_U8);
 }
 
 static inline u8 __OSf32tou8Value(const f32 in) {
     u8 value;
-	f32x2 f = {in};
-	__PSQ_ST((void *) &value, f, 1, OS_FASTCAST_U8);
+    f32x2 f = {in};
+    __PSQ_ST((void *) &value, f, 1, OS_FASTCAST_U8);
     return value;
 }
 
 static inline void OSf32tou16(const f32* in, volatile u16* out) {
-	f32x2 f = {*in};
-	__PSQ_ST((void *) out, f, 1, OS_FASTCAST_U16);
+    f32x2 f = {*in};
+    __PSQ_ST((void *) out, f, 1, OS_FASTCAST_U16);
 }
 
 static inline u16 __OSf32tou16Value(const f32 in) {
     u16 value;
-	f32x2 f = {in};
-	__PSQ_ST((void *) &value, f, 1, OS_FASTCAST_U16);
+    f32x2 f = {in};
+    __PSQ_ST((void *) &value, f, 1, OS_FASTCAST_U16);
     return value;
 }
 
 static inline void OSf32tos8(const f32* in, volatile s8* out) {
-	f32x2 f = {*in};
-	__PSQ_ST((void *) out, f, 1, OS_FASTCAST_S8);
+    f32x2 f = {*in};
+    __PSQ_ST((void *) out, f, 1, OS_FASTCAST_S8);
 }
 
 static inline s8 __OSf32tos8Value(const f32 in) {
     s8 value;
-	f32x2 f = {in};
-	__PSQ_ST((void *) &value, f, 1, OS_FASTCAST_S8);
+    f32x2 f = {in};
+    __PSQ_ST((void *) &value, f, 1, OS_FASTCAST_S8);
     return value;
 }
 
 static inline void OSf32tos16(const f32* in, volatile s16* out) {
-	f32x2 f = {*in};
-	__PSQ_ST((void *) out, f, 1, OS_FASTCAST_S16);
+    f32x2 f = {*in};
+    __PSQ_ST((void *) out, f, 1, OS_FASTCAST_S16);
 }
 
 static inline s16 __OSf32tos16Value(const f32 in) {
     s16 value;
-	f32x2 f = {in};
-	__PSQ_ST((void *) &value, f, 1, OS_FASTCAST_S16);
+    f32x2 f = {in};
+    __PSQ_ST((void *) &value, f, 1, OS_FASTCAST_S16);
     return value;
 }
 
