@@ -95,7 +95,7 @@
 			<entry value="11">Water</entry>
 			<entry value="12">Beanstalk Leaf</entry>
 		</list>
-		<checkbox nybble="10" title="Use Surface Type" comment="If checked, the &quot;Surface Type&quot; option will override the surface type set by the &quot;Type&quot; option."/>
+		<checkbox nybble="6" title="Use Surface Type" comment="If checked, the &quot;Surface Type&quot; option will override the surface type set by the &quot;Type&quot; option."/>
 		<list nybble="20" title="Movement Type">
 			<entry value="0">None</entry>
 			<entry value="1">Sway Or Spin (68, 69, 116, 118)</entry>
