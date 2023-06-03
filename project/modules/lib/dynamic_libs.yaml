@@ -1,0 +1,8 @@
+---
+Files:
+  C++:
+    - "$HAXX_LIB_DIR/cafe_sdk/src/cafe/gfd/gfdInterface.cpp"
+    - "$HAXX_LIB_DIR/dynamic_libs/src/gx2_functions.cpp"
+    - "$HAXX_LIB_DIR/dynamic_libs/src/os_functions.cpp"
+    - "$HAXX_LIB_DIR/dynamic_libs/src/zlib_functions.cpp"
+Hooks: ~

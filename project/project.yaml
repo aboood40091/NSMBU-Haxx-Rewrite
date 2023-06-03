@@ -1,0 +1,70 @@
+---
+Name: NSMBU Haxx
+WUAPPSVersion: "3.0"
+SourcesBaseDir: "."
+# ModulesBaseDir: "." <-- This already is the default
+Variables:
+  GAME_DIR: "../game"
+  GAME_LIB_DIR: "../game/lib"
+  HAXX_DIR: "../haxx"
+  HAXX_LIB_DIR: "../haxx/lib"
+  MODULES_DIR: "./modules"
+  GAME_MODULES_DIR: "./modules/game"
+  LIB_MODULES_DIR: "./modules/lib"
+IncludeDirs:
+  - "$GAME_DIR/include"
+  - "$GAME_LIB_DIR/nw/G3d/include"
+  - "$GAME_LIB_DIR/nw/Snd/include"
+  - "$GAME_LIB_DIR/sead/engine/library/include"
+  - "$GAME_LIB_DIR/sead/packages/agl/include"
+  - "$GAME_LIB_DIR/sead/packages/nw_ptcl/library/include"
+  - "$GAME_LIB_DIR/sead/packages/nw_ptcl/library/addins/Eft/include"
+  - "$GAME_LIB_DIR/zlib/include"
+  - "$HAXX_DIR/include"
+  - "$HAXX_LIB_DIR/cafe_sdk/include"
+  - "$HAXX_LIB_DIR/dynamic_libs/include"
+Modules:
+  - "$GAME_MODULES_DIR/aa"
+  - "$GAME_MODULES_DIR/actor"
+  - "$GAME_MODULES_DIR/collision_stub"
+  - "$GAME_MODULES_DIR/ctors"
+  - "$GAME_MODULES_DIR/distant_view"
+  - "$GAME_MODULES_DIR/game"
+  - "$GAME_MODULES_DIR/map_obj"
+  - "$GAME_MODULES_DIR/sound"
+  - "$LIB_MODULES_DIR/agl"
+  - "$LIB_MODULES_DIR/dynamic_libs"
+  - "$LIB_MODULES_DIR/sead"
+BuildOptions:
+  - "--implicit_typename"
+  - "--diag_suppress 1931,1974,1822"
+  - "--diag_suppress 381"
+  - "-DEPPC"
+  - "-DNW_RELEASE"
+MinAlign:
+  .text: 0x20
+  .rodata: 0x100
+  .data: 0x20
+  .bss: 0x100
+Targets:
+  CollisionDraw:
+    Abstract: true
+    Remove/Modules:
+      - "$GAME_MODULES_DIR/collision_stub"
+    Add/Modules:
+      - "$GAME_MODULES_DIR/collision"
+    Add/BuildOptions:
+      - "-DENABLE_COLLISION_DRAW=true"
+
+  NSMBU_US_v1.3.0: ~
+  NSMBU_EU_v1.3.0: ~
+  NSMBU_JP_v1.3.0: ~
+
+  NSMBU_US_v1.3.0_CollisionDraw:
+    Extends: ["CollisionDraw", "NSMBU_US_v1.3.0"]
+
+  NSMBU_EU_v1.3.0_CollisionDraw:
+    Extends: ["CollisionDraw", "NSMBU_EU_v1.3.0"]
+
+  NSMBU_JP_v1.3.0_CollisionDraw:
+    Extends: ["CollisionDraw", "NSMBU_JP_v1.3.0"]

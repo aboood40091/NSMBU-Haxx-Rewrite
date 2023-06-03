@@ -1,0 +1,24 @@
+---
+Files:
+  C++:
+    - "$HAXX_LIB_DIR/sead/packages/agl/src/layer/aglRenderer.cpp"
+  Assembly:
+    - "$HAXX_LIB_DIR/sead/packages/agl/src/layer/aglRenderer_S.s"
+Hooks:
+  # agl::lyr::Renderer::draw hack (Clear framebuffer to black)
+  ## TV
+  - type: branch
+    instr: bl
+    addr: 0x024E1114
+    func: drawTV___Q3_3agl3lyr12RendererHaxxCFQ3_3agl3lyr11DisplayType
+  ## DRC
+  - type: branch
+    instr: bl
+    addr: 0x024E11A8
+    func: drawDRC___Q3_3agl3lyr12RendererHaxxCFQ3_3agl3lyr11DisplayType
+
+  # agl::lyr::Renderer::initLayer_ hack (Restore layer name)
+  - type: branch
+    instr: b
+    addr: 0x02A3AEE8
+    func: initLayer___Q3_3agl3lyr12RendererHaxxFPQ3_3agl3lyr9LayerHaxxiRCQ2_4sead23SafeStringBase__tm__2_cQ3_3agl3lyr11DisplayTypePQ2_4sead4Heap

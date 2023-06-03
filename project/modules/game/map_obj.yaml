@@ -1,0 +1,8 @@
+---
+Files:
+  C++:
+    - "$HAXX_DIR/src/map_obj/ActorSpawner.cpp"
+    - "$HAXX_DIR/src/map_obj/EffectPlayer.cpp"
+    - "$HAXX_DIR/src/map_obj/FlipBlock.cpp"
+    - "$HAXX_DIR/src/map_obj/MagicPlatform.cpp"
+Hooks: ~

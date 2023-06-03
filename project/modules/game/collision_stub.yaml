@@ -1,0 +1,4 @@
+---
+Files:
+  C++: ["$HAXX_DIR/src/collision_stub/CollisionRenderer.cpp"]
+Hooks: ~

@@ -1,0 +1,25 @@
+---
+Files:
+  C++:
+    - "$HAXX_LIB_DIR/sead/engine/library/modules/src/resource/seadSZSDecompressor.cpp"
+    - "$HAXX_LIB_DIR/sead/engine/library/modules/src/gfx/seadPrimitiveRenderer.cpp"
+    - "$HAXX_LIB_DIR/sead/engine/library/modules/src/gfx/cafe/seadPrimitiveRendererCafe.cpp"
+Hooks:
+  # sead::SZSDecompressor::tryDecompFromDevice hack (ZLib loader)
+  - type: funcptr
+    addr: 0x101A3D7C
+    func: tryDecompFromDevice__Q2_4sead15SZSDecompressorFRCQ3_4sead11ResourceMgr7LoadArgPQ2_4sead8ResourcePUiT3Pb
+
+  # Restoration of sead::PrimitiveRendererCafe's deleted drawBoxImpl, drawLineImpl, drawCircle16Impl and drawCircle32Impl
+  - type: funcptr
+    addr: 0x10190F44
+    func: drawBoxImpl__Q2_4sead21PrimitiveRendererCafeFRCQ2_4sead17Matrix34__tm__2_fRCQ2_4sead7Color4fT2
+  - type: funcptr
+    addr: 0x10190F5C
+    func: drawLineImpl__Q2_4sead21PrimitiveRendererCafeFRCQ2_4sead17Matrix34__tm__2_fRCQ2_4sead7Color4fT2
+  - type: funcptr
+    addr: 0x10190F84
+    func: drawCircle16Impl__Q2_4sead21PrimitiveRendererCafeFRCQ2_4sead17Matrix34__tm__2_fRCQ2_4sead7Color4f
+  - type: funcptr
+    addr: 0x10190F8C
+    func: drawCircle32Impl__Q2_4sead21PrimitiveRendererCafeFRCQ2_4sead17Matrix34__tm__2_fRCQ2_4sead7Color4f

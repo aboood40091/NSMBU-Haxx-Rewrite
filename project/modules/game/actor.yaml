@@ -1,0 +1,105 @@
+---
+Files:
+  C++:
+    - "$HAXX_DIR/src/actor/MapActor.cpp"
+    - "$HAXX_DIR/src/actor/Profile.cpp"
+    - "$HAXX_DIR/src/actor/ProfileEx.cpp"
+  Assembly:
+    - "$HAXX_DIR/src/actor/Profile_S.s"
+Hooks:
+  - type: branch
+    instr: b
+    addr: 0x02019554
+    func: __ct__7ProfileFPFRC12ActorInitArg_P9ActorBaseUiRCQ2_4sead23SafeStringBase__tm__2_cPC15ActorCreateInfoT2
+
+  - type: branch
+    instr: b
+    addr: 0x02019774
+    func: get__7ProfileSFUi
+
+  - type: branch
+    instr: b
+    addr: 0x02019988
+    func: getPriority__7ProfileSFUi
+
+  - type: branch
+    instr: b
+    addr: 0x020199A8
+    func: getResLoadAt__7ProfileSFUi
+
+  - type: branch
+    instr: b
+    addr: 0x020199CC
+    func: getResNum__7ProfileSFUi
+
+  - type: branch
+    instr: b
+    addr: 0x020199EC
+    func: getResList__7ProfileSFUi
+
+  - type: patch
+    addr:
+      - 0x0200501A
+      - 0x02007C62
+      - 0x0200806E
+      - 0x02008262
+      - 0x0200844E
+      - 0x0200457A
+    datatype: u16
+    data: 0xFFFF
+
+  - type: return
+    addr: 0x02017388
+
+  - type: branch
+    instr: bl
+    addr: 0x0200A89C
+    func: loadNumProfiles_r29
+
+  - type: branch
+    instr: bl
+    addr: 0x0200A950
+    func: loadNumProfiles_r30
+
+  - type: branch
+    instr: bl
+    addr: 0x02004DA8
+    func: SpriteToProfileList_r3
+
+  - type: branch
+    instr: bl
+    addr: 0x02004948
+    func: SpriteToProfileList_r3_2
+
+  - type: branch
+    instr: bl
+    addr: 0x02004FF8
+    func: SpriteToProfileList_r19
+
+  - type: branch
+    instr: bl
+    addr: 0x02004570
+    func: SpriteToProfileList_r22
+
+  - type: branch
+    instr: bl
+    addr:
+      - 0x02007C50
+      - 0x02008064
+      - 0x02008258
+    func: SpriteToProfileList_r24
+
+  - type: branch
+    instr: bl
+    addr: 0x02008440
+    func: SpriteToProfileList_r26
+
+  - type: branch
+    instr: bl
+    addr: 0x0200A7EC
+    func: SpriteToProfileList_r30
+
+  - type: branch
+    instr: bl
+    addr: 0x02008678
+    func: SpriteToProfileList_r31

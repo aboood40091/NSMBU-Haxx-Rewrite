@@ -1,0 +1,25 @@
+---
+Files:
+  C++:
+    - "$HAXX_DIR/src/sound/SndBgmMgr.cpp"
+    - "$HAXX_DIR/src/sound/FxReverb.cpp"
+Hooks:
+  - type: branch
+    instr: bl
+    addr: 0x029B85FC
+    func: isGameBgm__9SndBgmMgrFi
+
+  - type: branch
+    instr: bl
+    addr: 0x029B862C
+    func: getGameBgmID__9SndBgmMgrFi
+
+  - type: branch
+    instr: bl
+    addr: 0x029B863C
+    func: getGameControlBgmID__9SndBgmMgrFi
+
+  - type: branch
+    instr: b
+    addr: 0x029C3B7C
+    func: SetFxReverbHiAndDelay__FPvUi

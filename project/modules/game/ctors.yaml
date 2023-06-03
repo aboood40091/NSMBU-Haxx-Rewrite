@@ -1,0 +1,8 @@
+---
+Files:
+  C++: ["$HAXX_DIR/src/ctors.cpp"]
+Hooks:
+  - type: branch
+    instr: b
+    addr: 0x02AFA050
+    func: callCtors__Fv

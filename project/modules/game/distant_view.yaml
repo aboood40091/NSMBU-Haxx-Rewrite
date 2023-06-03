@@ -1,0 +1,8 @@
+---
+Files:
+  Assembly: ["$HAXX_DIR/src/distant_view/DistantViewMgr_S.s"]
+Hooks:
+  - type: branch
+    instr: bl
+    addr: 0x022A7FD4
+    func: DistantViewMgr_AddBGOffset

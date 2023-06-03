@@ -1,0 +1,17 @@
+---
+Files:
+  C++:
+    - "$HAXX_DIR/src/collision/ActorBgCollisionCheckMgr.cpp"
+    - "$HAXX_DIR/src/collision/CollisionRenderer.cpp"
+  Assembly:
+    - "$HAXX_DIR/src/collision/ActorBgCollisionCheckMgr_S.s"
+Hooks:
+  - type: branch
+    instr: b
+    addr: 0x0218B3B4
+    func: ActorBgCollisionCheck_entry
+
+  - type: branch
+    instr: b
+    addr: 0x021924DC
+    func: ActorBgCollisionCheckMgr_createInstance
