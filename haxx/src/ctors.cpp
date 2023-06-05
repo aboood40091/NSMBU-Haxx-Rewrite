@@ -1,9 +1,10 @@
-#include "dynamic_libs/gx2_functions.h"
-#include "dynamic_libs/os_functions.h"
-#include "dynamic_libs/zlib_functions.h"
-#include "types.h"
+#include <basis/seadTypes.h>
 
-#include "log.h"
+#include <dynamic_libs/gx2_functions.h>
+#include <dynamic_libs/os_functions.h>
+#include <dynamic_libs/zlib_functions.h>
+
+#include <log.h>
 
 typedef void (*InitFunc)();
 extern "C" InitFunc _ctors[];
@@ -18,6 +19,23 @@ extern u32 BOSDynLoad_FindExport;
 
 }
 
+static inline uintptr_t AddrExtractFromInst(const u32* p_instruction)
+{
+    uintptr_t ret = *p_instruction & 0x03FFFFFCu;
+
+    if (!(*p_instruction & 2))
+    {
+        // sign extend offset
+        if (ret & 0x02000000u)
+           ret |= 0xFE000000u;
+
+        // make relative
+        ret += (uintptr_t)p_instruction;
+    }
+
+    return ret;
+}
+
 void callCtors()
 {
     static bool initialized = false;
@@ -30,13 +48,8 @@ void callCtors()
 
     // Time to set addr_OSDynLoad_Acquire
     // and addr_OSDynLoad_FindExport
-    OS_SPECIFICS->addr_OSDynLoad_Acquire    = (u32)(BLOSDynLoad_Acquire   & 0x03FFFFFC);
-    OS_SPECIFICS->addr_OSDynLoad_FindExport = (u32)(BOSDynLoad_FindExport & 0x03FFFFFC);
-
-    if (!(BLOSDynLoad_Acquire   & 2))
-        OS_SPECIFICS->addr_OSDynLoad_Acquire    += (u32)&BLOSDynLoad_Acquire;
-    if (!(BOSDynLoad_FindExport & 2))
-        OS_SPECIFICS->addr_OSDynLoad_FindExport += (u32)&BOSDynLoad_FindExport;
+    OS_SPECIFICS->addr_OSDynLoad_Acquire    = AddrExtractFromInst(&BLOSDynLoad_Acquire);
+    OS_SPECIFICS->addr_OSDynLoad_FindExport = AddrExtractFromInst(&BOSDynLoad_FindExport);
 
     // Init the libraries you need here
     InitOSFunctionPointers();
