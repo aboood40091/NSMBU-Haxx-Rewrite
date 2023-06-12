@@ -1,0 +1,732 @@
+/* Forward definitions */
+__deleted_virtual_called = 0x02AFA5E8;
+
+/* Actor */
+removeCollisionCheck__5ActorFv = 0x020002CC;
+reviveCollisionCheck__5ActorFv = 0x02000328;
+distanceToPlayer__5ActorFR4Vec2 = 0x020005A4;
+directionToPlayerH__5ActorFRC4Vec3 = 0x020005EC;
+deleteActorWhenOutOfView__5ActorFUi = 0x020007A0;
+splashLavaWave__5ActorFPQ2_4sead16Vector3__tm__2_f = 0x02000960;
+__ct__5ActorFRC12ActorInitArg = 0x02000AC8;
+__dt__5ActorFv = 0x02000F18;
+postCreate__5ActorFQ2_9ActorBase9MainState = 0x02000FB8;
+preExecute__5ActorFv = 0x02000FE8;
+postExecute__5ActorFQ2_9ActorBase9MainState = 0x020010BC;
+preDraw__5ActorFv = 0x020011A0;
+isOffScreen__5ActorFv = 0x02001254;
+checkDerivedRuntimeTypeInfo__5ActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x02002A38;
+killAtGoal__5ActorFv = 0x02002AD8;
+splashWater__5ActorFPQ2_4sead16Vector3__tm__2_f = 0x02002ADC;
+splashLava__5ActorFPQ2_4sead16Vector3__tm__2_f = 0x02002AE0;
+splashPoison__5ActorFPQ2_4sead16Vector3__tm__2_f = 0x02002AE4;
+directionToActorH__5ActorFRC5Actor = 0x0200C800;
+__vtbl__5Actor = 0x10000268;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__5ActorSFv = 0x101E9CBC;
+typeInfo__L0__getRuntimeTypeInfoStatic__5ActorSFv = 0x101E9CC0;
+getRuntimeTypeInfo__5ActorCFv = __deleted_virtual_called;
+
+/* ActorBase */
+getProfileID__9ActorBaseCFv = 0x02002C80;
+postDraw__9ActorBaseFQ2_9ActorBase9MainState = 0x02002F38;
+postDelete__9ActorBaseFQ2_9ActorBase9MainState = 0x02002F3C;
+preCreate__9ActorBaseFv = 0x02002F7C;
+onExecute__9ActorBaseFv = 0x02002F8C;
+finalUpdate__9ActorBaseFv = 0x02002F94;
+draw__9ActorBaseFv = 0x02002FA0;
+preDelete__9ActorBaseFv = 0x02002FA8;
+doDelete__9ActorBaseFv = 0x02002FB0;
+__vtbl__9ActorBase = 0x100006C0;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__9ActorBaseSFv = 0x101E9CC4;
+typeInfo__L0__getRuntimeTypeInfoStatic__9ActorBaseSFv = 0x101E9CC8;
+
+/* ActorCollision */
+postCreate__14ActorCollisionFQ2_9ActorBase9MainState = 0x0200354C;
+preExecute__14ActorCollisionFv = 0x020035FC;
+postExecute__14ActorCollisionFQ2_9ActorBase9MainState = 0x020036D8;
+doDelete__14ActorCollisionFv = 0x02003724;
+vf144__14ActorCollisionFb = 0x0200375C;
+vf14C__14ActorCollisionFP5Actor = 0x02003760;
+handleGravity__14ActorCollisionFv = 0x020039AC;
+handleSpeed__14ActorCollisionFv = 0x02003AE4;
+vf13C__14ActorCollisionFv = 0x02004008;
+__vtbl__14ActorCollision = 0x1000084C;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__14ActorCollisionSFv = 0x101E9CD4;
+typeInfo__L0__getRuntimeTypeInfoStatic__14ActorCollisionSFv = 0x101E9CD8;
+vf114__14ActorCollisionFv = __deleted_virtual_called;
+vf134__14ActorCollisionFv = __deleted_virtual_called;
+
+/* ActorMgr */
+create__8ActorMgrFRC12ActorInitArgQ2_8ActorMgr9Lifecycle = 0x02009A58;
+sInstance__8ActorMgr = 0x101C30C8;
+
+/* ActorState */
+__vtbl__10ActorState = 0x10000EC8;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__10ActorStateSFv = 0x101E9CDC;
+typeInfo__L0__getRuntimeTypeInfoStatic__10ActorStateSFv = 0x101E9CE0;
+
+/* ActorMultiState */
+__ct__15ActorMultiStateFPC14ActorBuildInfo = 0x0200AA8C;
+checkDerivedRuntimeTypeInfo__15ActorMultiStateCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x0200AF94;
+__vtbl__15ActorMultiState = 0x10001048;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__15ActorMultiStateSFv = 0x101E9CE4;
+typeInfo__L0__getRuntimeTypeInfoStatic__15ActorMultiStateSFv = 0x101E9CE8;
+
+/* ActorCreateInfo */
+cDefault__15ActorCreateInfo = 0x100018F4;
+
+/* Profile */
+cPriority__7Profile = 0x10001940;
+cResLoadAt__7Profile = 0x10002064;
+cResNum__7Profile = 0x100023F8;
+cResList__7Profile = 0x101C321C;
+sProfile__7Profile = 0x101ED8DC;
+
+/* ProfileID */
+cFloorHoleDokan__9ProfileID = 0x1000409C;
+
+/* ActorBgCollisionCheck */
+__dt__21ActorBgCollisionCheckFv = 0x0218ADFC;
+__CPR72__setSensor__21ActorBgCollisionCheckFPCQ2_J11J6SensorUc = 0x0218AEFC;
+init__21ActorBgCollisionCheckFP5ActorPCQ2_21ActorBgCollisionCheck6SensorN22 = 0x0218AF6C;
+getSensor__21ActorBgCollisionCheckCFUc = 0x0218CE74;
+process__21ActorBgCollisionCheckFv = 0x0218D954;
+/* __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__21ActorBgCollisionCheckSFv */
+/* typeInfo__L0__getRuntimeTypeInfoStatic__21ActorBgCollisionCheckSFv */
+
+/* ActorBgCollisionMgr */
+entry__19ActorBgCollisionMgrFRC11BgCollision = 0x0219269C;
+release__19ActorBgCollisionMgrFRC11BgCollision = 0x0219282C;
+sInstance__19ActorBgCollisionMgr = 0x101C9360;
+
+/* ActorBgCollisionObjCheck */
+/* __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__24ActorBgCollisionObjCheckSFv */
+/* typeInfo__L0__getRuntimeTypeInfoStatic__24ActorBgCollisionObjCheckSFv */
+
+/* ActorCircleBgCollision */
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__22ActorCircleBgCollisionSFv = 0x101E9F88;
+typeInfo__L0__getRuntimeTypeInfoStatic__22ActorCircleBgCollisionSFv = 0x101EA398;
+
+/* ActorCollisionCheck */
+__ct__19ActorCollisionCheckFv = 0x0219A960;
+__dt__19ActorCollisionCheckFv = 0x0219AB90;
+__CPR85__set__19ActorCollisionCheckFP5ActorRCQ2_J5J4InfoP17CollisionCallback = 0x0219AF1C;
+getTopPos__19ActorCollisionCheckCFv = 0x0219B434;
+getUnderPos__19ActorCollisionCheckCFv = 0x0219B450;
+getCenterPosY__19ActorCollisionCheckCFv = 0x0219B46C;
+getRightPos__19ActorCollisionCheckCFv = 0x0219B480;
+getLeftPos__19ActorCollisionCheckCFv = 0x0219B49C;
+getCenterPosX__19ActorCollisionCheckCFv = 0x0219B4B8;
+cDefault__Q2_19ActorCollisionCheck4Info = 0x10041BC0;
+
+/* ActorCollisionCheckMgr */
+sInstance__22ActorCollisionCheckMgr = 0x101C95D8;
+
+/* CollisionCallback */
+ccCallback0__17CollisionCallbackFP5ActorP19ActorCollisionCheckRCQ2_4sead16Vector2__tm__2_f = 0x0219E7E8;
+ccCallback2__17CollisionCallbackFP5ActorP19ActorCollisionCheckRCQ2_4sead16Vector2__tm__2_f = 0x0219E8A4;
+bcCallback0__17CollisionCallbackFP5ActorP11BgCollisionRCQ2_4sead16Vector2__tm__2_f = 0x0219E8B8;
+
+/* ActorEllipseBgCollision */
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__23ActorEllipseBgCollisionSFv = 0x101EA39C;
+typeInfo__L0__getRuntimeTypeInfoStatic__23ActorEllipseBgCollisionSFv = 0x101EA3A0;
+
+/* BasicRideLine */
+__ct__13BasicRideLineFv = 0x021A1ACC;
+
+/* BasicRideLineBgCollision */
+__ct__24BasicRideLineBgCollisionFv = 0x021A1D38;
+__dt__24BasicRideLineBgCollisionFv = 0x021A1F18;
+set__24BasicRideLineBgCollisionFP5ActorRCQ2_11BgCollision7InitArgiPQ2_4sead4Heap = 0x021A2378;
+execute__24BasicRideLineBgCollisionFv = 0x021A2E0C;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__24BasicRideLineBgCollisionSFv = 0x101E9D48;
+typeInfo__L0__getRuntimeTypeInfoStatic__24BasicRideLineBgCollisionSFv = 0x101E9FA8;
+
+/* BgCollision */
+setType__11BgCollisionFQ2_11BgCollision4Type = 0x021A5A70;
+setSolidType__11BgCollisionFQ2_15BgCheckUnitInfo9SolidType = 0x021A5A90;
+setSurfaceType__11BgCollisionFQ2_15BgCheckUnitInfo11SurfaceType = 0x021A5AD0;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__11BgCollisionSFv = 0x101E9D2C;
+typeInfo__L0__getRuntimeTypeInfoStatic__11BgCollisionSFv = 0x101E9FA4;
+
+/* LoopRideLineBgCollision */
+__ct__23LoopRideLineBgCollisionFiPQ2_4sead16Vector2__tm__2_fP13BasicRideLineT3 = 0x021A7904;
+__dt__23LoopRideLineBgCollisionFv = 0x021A7A04;
+execute__23LoopRideLineBgCollisionFv = 0x021A871C;
+setRect__23LoopRideLineBgCollisionFP4Vec2T1 = 0x021AD25C;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__23LoopRideLineBgCollisionSFv = 0x101E9D30;
+typeInfo__L0__getRuntimeTypeInfoStatic__23LoopRideLineBgCollisionSFv = 0x101E9FB4;
+
+/* LoopRideLineBgCollisionUtil */
+set__27LoopRideLineBgCollisionUtilSFP23LoopRideLineBgCollisionP5ActorRCQ2_11BgCollision13SquareInitArg = 0x021AD3BC;
+
+/* PoleRopeBgCollision */
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__19PoleRopeBgCollisionSFv = 0x101EA380;
+typeInfo__L0__getRuntimeTypeInfoStatic__19PoleRopeBgCollisionSFv = 0x101EA384;
+
+/* SquareBgCollision */
+__vtbl__17SquareBgCollision = 0x100FB820;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__17SquareBgCollisionSFv = 0x101E9D38;
+typeInfo__L0__getRuntimeTypeInfoStatic__17SquareBgCollisionSFv = 0x101E9FBC;
+
+/* CourseSelectTask::Layer2D */
+__vtbl__Q2_16CourseSelectTask7Layer2D = 0x10047018;
+
+/* PtclMgr */
+getEmitterSetGroupID__7PtclMgrCFiUi = 0x022ACE58;
+sInstance__7PtclMgr = 0x101CD3A8;
+
+/* AreaTask */
+drawLayer3D__8AreaTaskFRCQ3_3agl3lyr10RenderInfo = 0x024B84A8;
+
+/* Info */
+sInstance__4Info = 0x101D18EC;
+
+/* BasicModel */
+__ct__10BasicModelFP7ModelNWUiN42 = 0x024D4798;
+__CPR93__init__10BasicModelFP13ModelResourcePCQ2_4sead32PtrArray__tm__16_J20JPQ2_J40J4Heap = 0x024D49A0;
+updateAnimations__10BasicModelFv = 0x024D4D20;
+updateModel__10BasicModelFv = 0x024D4E84;
+
+/* Model */
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__5ModelSFv = 0x101E9D08;
+typeInfo__L0__getRuntimeTypeInfoStatic__5ModelSFv = 0x101E9F9C;
+
+/* Model??? */
+createNW__5ModelSFRC13ModelResourceRCQ2_4sead23SafeStringBase__tm__2_ciN43Q2_5Model12BoundingModePQ2_4sead4Heap = 0x024EE440;
+
+/* ModelNW */
+__vtbl__7ModelNW = 0x100BCF30;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__7ModelNWSFv = 0x101E9F78;
+typeInfo__L0__getRuntimeTypeInfoStatic__7ModelNWSFv = 0x101E9FA0;
+
+/* ModelResourceMgr */
+getResource__16ModelResourceMgrCFRCQ2_4sead23SafeStringBase__tm__2_c = 0x024F60EC;
+sInstance__16ModelResourceMgr = 0x101D2D50;
+
+/* Layer */
+__ct__5LayerFv = 0x024F9290;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__5LayerSFv = 0x101E9E5C;
+typeInfo__L0__getRuntimeTypeInfoStatic__5LayerSFv = 0x101EA070;
+
+/* Renderer */
+setTargetLayer__8RendererFP18RenderObjLayerBaseUi = 0x024FAA50;
+resetTargetLayer__8RendererFv = 0x024FAB4C;
+drawModel__8RendererFP5Model = 0x024FAB58;
+drawModel__8RendererFP10BasicModel = 0x024FAC98;
+drawUnit__8RendererFUsRCQ2_4sead16Vector3__tm__2_fRCUiT2 = 0x024FAD28;
+sInstance__8Renderer = 0x101D2D88;
+
+/* RenderMgr */
+__ct__9RenderMgrFRCQ2_4sead23SafeStringBase__tm__2_c = 0x024FAF58;
+init__9RenderMgrFUiN31PQ2_4sead4Heap = 0x024FB128;
+
+/* RenderObjBase */
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__13RenderObjBaseSFv = 0x101E9D00;
+typeInfo__L0__getRuntimeTypeInfoStatic__13RenderObjBaseSFv = 0x101E9F94;
+
+/* RenderObj */
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__9RenderObjSFv = 0x101E9D04;
+typeInfo__L0__getRuntimeTypeInfoStatic__9RenderObjSFv = 0x101E9F98;
+
+/* RenderObjLayerBase */
+setRenderMgr__18RenderObjLayerBaseFP9RenderMgr = 0x024FCA24;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__18RenderObjLayerBaseSFv = 0x101E9E60;
+typeInfo__L0__getRuntimeTypeInfoStatic__18RenderObjLayerBaseSFv = 0x101EA074;
+
+/* RenderObjLayer */
+__ct__14RenderObjLayerFv = 0x024FCA6C;
+
+/* SeadControllerWrapper */
+__dt__21SeadControllerWrapperFv = 0x025140E8;
+__ct__21SeadControllerWrapperFv = 0x02514150;
+registerWith__21SeadControllerWrapperFQ2_14SeadController2Id = 0x025141B0;
+
+/* Bg */
+getUnitCurrentCdCile__2BgSFUsT1UcPi = 0x02685000;
+getBgCheckData__2BgFUsT1Ucb = 0x02685148;
+sInstance__2Bg = 0x101DAB94;
+
+/* CourseDataFile */
+getMapActor__14CourseDataFileFUiPv = 0x02699C08;
+getLocation__14CourseDataFileCFPQ2_4sead18BoundBox2__tm__2_fUc = 0x0269A020;
+getRailInfo__14CourseDataFileFUc = 0x0269A0A8;
+getRailPoint__14CourseDataFileFUi = 0x0269A0F4;
+
+/* CourseData */
+getFile__10CourseDataFi = 0x0269A2DC;
+sInstance__10CourseData = 0x101DB048;
+
+/* PSwitchMgr */
+sInstance__10PSwitchMgr = 0x101DB06C;
+
+/* ActorBlockBase */
+__ct__14ActorBlockBaseFRC12ActorInitArg = 0x0269E614;
+execute__14ActorBlockBaseFv = 0x0269E6C4;
+onDraw__14ActorBlockBaseFv = 0x0269E77C;
+spawnItemUp__14ActorBlockBaseFv = 0x0269EBC0;
+spawnItemDown__14ActorBlockBaseFv = 0x0269EBC4;
+vf1CC__14ActorBlockBaseFv = 0x0269EC04;
+isActive__14ActorBlockBaseFv = 0x0269EC1C;
+vf2EC__14ActorBlockBaseFv = 0x0269EFE4;
+executeBlock__14ActorBlockBaseFv = 0x0269F078;
+destroy__14ActorBlockBaseFv = 0x0269F25C;
+destroy2__14ActorBlockBaseFv = 0x0269F33C;
+setBelowSensor__14ActorBlockBaseFv = 0x0269F400;
+vf2C4__14ActorBlockBaseFv = 0x0269F410;
+vf1EC__14ActorBlockBaseFv = 0x0269F674;
+init__14ActorBlockBaseFbT1 = 0x0269F6C8;
+initMover__14ActorBlockBaseFv = 0x0269FB30;
+executeState_Wait__14ActorBlockBaseFv = 0x026A0068;
+executeState_HitWait__14ActorBlockBaseFv = 0x026A0074;
+vf2DC__14ActorBlockBaseFv = 0x026A0404;
+getContent__14ActorBlockBaseFv = 0x026A0408;
+vf2F4__14ActorBlockBaseFPv = 0x026A0418;
+vf314__14ActorBlockBaseFv = 0x026A0434;
+vf31C__14ActorBlockBaseFv = 0x026A0438;
+vf324__14ActorBlockBaseFv = 0x026A043C;
+vf32C__14ActorBlockBaseFv = 0x026A0440;
+checkDerivedRuntimeTypeInfo__14ActorBlockBaseCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x026A0460;
+initializeState_Wait__14ActorBlockBaseFv = 0x026A061C;
+finalizeState_Wait__14ActorBlockBaseFv = 0x026A0620;
+initializeState_HitWait__14ActorBlockBaseFv = 0x026A0624;
+finalizeState_HitWait__14ActorBlockBaseFv = 0x026A0628;
+__vtbl__14ActorBlockBase = 0x100E6960;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__14ActorBlockBaseSFv = 0x101E9CF4;
+typeInfo__L0__getRuntimeTypeInfoStatic__14ActorBlockBaseSFv = 0x101E9CF8;
+StateID_Wait__14ActorBlockBase = 0x1021E8E0;
+StateID_HitWait__14ActorBlockBase = 0x1021E904;
+getRuntimeTypeInfo__14ActorBlockBaseCFv = __deleted_virtual_called;
+
+/* BlockCoinBase */
+vf1D4__13BlockCoinBaseFb = 0x02704868;
+spawnCoinShower__13BlockCoinBaseFv = 0x027048E4;
+callbackFoot__13BlockCoinBaseSFP11BgCollisionP21ActorBgCollisionCheck = 0x02704ECC;
+callbackFoot_Hit__13BlockCoinBaseSFP11BgCollisionP21ActorBgCollisionCheck = 0x027050F0;
+callbackHead__13BlockCoinBaseSFP11BgCollisionP21ActorBgCollisionCheck = 0x02705528;
+callbackHead_Hit__13BlockCoinBaseSFP11BgCollisionP21ActorBgCollisionCheck = 0x0270595C;
+callBackWall__13BlockCoinBaseSFP11BgCollisionP21ActorBgCollisionCheckUc = 0x02705EFC;
+callBackWall_Hit__13BlockCoinBaseSFP11BgCollisionP21ActorBgCollisionCheckUc = 0x027060C0;
+spawnVine__13BlockCoinBaseFv = 0x027062A8;
+spawnPortableSpring__13BlockCoinBaseFv = 0x02706430;
+spawnYoshiEgg__13BlockCoinBaseFb = 0x02706BA4;
+spawnPowerup__13BlockCoinBaseFP4Vec3UiT2b = 0x02706D1C;
+spawnMultiPowerup__13BlockCoinBaseFP4Vec3UiT2b = 0x02706FF4;
+initializeState_UpMove__13BlockCoinBaseFv = 0x02707CB4;
+executeState_UpMove__13BlockCoinBaseFv = 0x02707CF0;
+initializeState_UpMoveEnd__13BlockCoinBaseFv = 0x02707D94;
+executeState_UpMoveEnd__13BlockCoinBaseFv = 0x02707DA0;
+initializeState_DownMove__13BlockCoinBaseFv = 0x02707DB8;
+executeState_DownMove__13BlockCoinBaseFv = 0x02707DFC;
+initializeState_DownMoveEnd__13BlockCoinBaseFv = 0x02707E9C;
+executeState_DownMoveEnd__13BlockCoinBaseFv = 0x02707EA8;
+initializeState_UpMove_Diff__13BlockCoinBaseFv = 0x02707ED0;
+executeState_UpMove_Diff__13BlockCoinBaseFv = 0x02707F58;
+initializeState_DownMove_Diff__13BlockCoinBaseFv = 0x0270812C;
+executeState_DownMove_Diff__13BlockCoinBaseFv = 0x02708198;
+initializeState_DownMove_DiffEnd__13BlockCoinBaseFv = 0x0270828C;
+executeState_DownMove_DiffEnd__13BlockCoinBaseFv = 0x02708298;
+checkDerivedRuntimeTypeInfo__13BlockCoinBaseCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x02708DC0;
+vf18C__13BlockCoinBaseFv = 0x02708EFC;
+vf194__13BlockCoinBaseFv = 0x02708F00;
+setFootSensor__13BlockCoinBaseFv = 0x02708F04;
+vf1A4__13BlockCoinBaseFv = 0x02708F08;
+spawnItemUp__13BlockCoinBaseFv = 0x02708F0C;
+vf1B4__13BlockCoinBaseFv = 0x02708F10;
+vf1BC__13BlockCoinBaseFv = 0x02708F14;
+spawnItemDown__13BlockCoinBaseFv = 0x02708F18;
+vf1CC__13BlockCoinBaseFv = 0x02708F1C;
+vf1DC__13BlockCoinBaseFv = 0x02708F20;
+vf1EC__13BlockCoinBaseFv = 0x02708F28;
+finalizeState_UpMove__13BlockCoinBaseFv = 0x02708F2C;
+finalizeState_UpMoveEnd__13BlockCoinBaseFv = 0x02708F30;
+finalizeState_DownMove__13BlockCoinBaseFv = 0x02708F34;
+finalizeState_DownMoveEnd__13BlockCoinBaseFv = 0x02708F38;
+finalizeState_UpMove_Diff__13BlockCoinBaseFv = 0x02708F3C;
+finalizeState_DownMove_Diff__13BlockCoinBaseFv = 0x02708F40;
+finalizeState_DownMove_DiffEnd__13BlockCoinBaseFv = 0x02708F44;
+__vtbl__13BlockCoinBase = 0x10101A80;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__13BlockCoinBaseSFv = 0x101E9CA4;
+typeInfo__L0__getRuntimeTypeInfoStatic__13BlockCoinBaseSFv = 0x101E9CA8;
+StateID_UpMove_Diff__13BlockCoinBase = 0x1022051C;
+StateID_DownMove_DiffEnd__13BlockCoinBase = 0x10220564;
+
+/* ChangeBlockCoinBase */
+setTileFlag__19ChangeBlockCoinBaseFv = 0x027265BC;
+spawnItemUp__19ChangeBlockCoinBaseFv = 0x02726610;
+spawnItemDown__19ChangeBlockCoinBaseFv = 0x02726634;
+vf1DC__19ChangeBlockCoinBaseFv = 0x02726644;
+vf2CC__19ChangeBlockCoinBaseFv = 0x02726654;
+registerColliderActiveInfo__19ChangeBlockCoinBaseFv = 0x02726760;
+vf1EC__19ChangeBlockCoinBaseFv = 0x02727980;
+vf29C__19ChangeBlockCoinBaseFv = 0x02727984;
+vf2AC__19ChangeBlockCoinBaseFv = 0x02727988;
+vf2B4__19ChangeBlockCoinBaseFv = 0x02727990;
+vf2BC__19ChangeBlockCoinBaseFv = 0x02727994;
+vf2C4__19ChangeBlockCoinBaseFv = 0x02727998;
+checkDerivedRuntimeTypeInfo__19ChangeBlockCoinBaseCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x02727A08;
+__vtbl__19ChangeBlockCoinBase = 0x101075AC;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__19ChangeBlockCoinBaseSFv = 0x101E9CEC;
+typeInfo__L0__getRuntimeTypeInfoStatic__19ChangeBlockCoinBaseSFv = 0x101E9CF0;
+
+/* PairObjChild */
+checkRevFoot__12PairObjChildSFP5ActorT1 = 0x0283FBAC;
+checkRevHead__12PairObjChildSFP5ActorT1 = 0x0283FBE0;
+checkRevWall__12PairObjChildSFP5ActorT1Uc = 0x0283FC14;
+
+/* PairObjChildBaseCB */
+bcCallback2__18PairObjChildBaseCBFP5ActorP11BgCollisionRCQ2_4sead16Vector2__tm__2_f = 0x0284184C;
+
+/* ParentMovementMgr */
+__ct__17ParentMovementMgrFv = 0x02849C40;
+getTypeMask__17ParentMovementMgrF18ParentMovementType = 0x0284A37C;
+link__17ParentMovementMgrFRCQ2_4sead16Vector3__tm__2_fUiUc = 0x0284B6F4;
+execute__17ParentMovementMgrFv = 0x0284B8C4;
+
+/* PlayerKey */
+isUpHeld__9PlayerKeyCFv = 0x02915F78;
+isDownHeld__9PlayerKeyCFv = 0x02915F84;
+isLeftHeld__9PlayerKeyCFv = 0x02915F90;
+isRightHeld__9PlayerKeyCFv = 0x02915F9C;
+isUpPressed__9PlayerKeyCFv = 0x02916108;
+isDownPressed__9PlayerKeyCFv = 0x02916114;
+isOnlyDownHeld__9PlayerKeyCFv = 0x0291644C;
+
+/* PlayerMgr */
+sInstance__9PlayerMgr = 0x101E6994;
+
+/* BgScrollMgr */
+sInstance__11BgScrollMgr = 0x101E7C54;
+
+/* AudAudioMgr */
+getFxSocket__11AudAudioMgrFv = 0x029B1AA4;
+
+/* AudFxSocket */
+getReverbHiParam__11AudFxSocketFv = 0x029B2FD8;
+getDelayParam__11AudFxSocketFv = 0x029B2FE0;
+
+/* SndAudioMgr */
+sInstance__11SndAudioMgr = 0x101E7C84;
+
+/* SndBgmMgr */
+shouldHurryUp__9SndBgmMgrFv = 0x029B83D8;
+
+/* IStateID */
+__LSG__s_number_memo__L0____ct__8IStateIDFv = 0x101E9E9C;
+s_number_memo__L0____ct__8IStateIDFv = 0x101E9F04;
+
+/* StateMethod */
+execute__11StateMethodFv = 0x029C4A80;
+changeStateMethod__11StateMethodFRC8IStateID = 0x029C4AF0;
+cNullStateID__11StateMethod = 0x1022D390;
+
+/* new/delete */
+__nw__FUi = 0x029F1594;
+__nwa__FUi = 0x029F1630;
+__dl__FPv = 0x029F1748;
+__dla__FPv = 0x029F17D0;
+__nw__FUiPQ2_4sead4Heapi = 0x029F1858;
+__nwa__FUiPQ2_4sead4Heapi = 0x029F18DC;
+
+/* sead::FileDevice */
+__CPR122__tryOpen__Q2_4sead10FileDeviceFPQ2_J12J10FileHandleRCQ2_J12J23SafeStringBase__tm__2_cQ3_J12JJ17J12FileOpenFlagUi = 0x029F7804;
+tryClose__Q2_4sead10FileDeviceFPQ2_4sead10FileHandle = 0x029F78C0;
+
+/* sead::FileHandle */
+read__Q2_4sead10FileHandleFPUcUi = 0x029F81D0;
+tryRead__Q2_4sead10FileHandleFPUiPUcUi = 0x029F8230;
+getFileSize__Q2_4sead10FileHandleFv = 0x029F8368;
+
+/* sead::FileDeviceMgr */
+tryOpen__Q2_4sead13FileDeviceMgrFPQ2_4sead10FileHandleRCQ2_4sead23SafeStringBase__tm__2_cQ3_4sead10FileDevice12FileOpenFlagUi = 0x029F8B0C;
+tryLoad__Q2_4sead13FileDeviceMgrFRQ3_4sead10FileDevice7LoadArg = 0x029F8BBC;
+sInstance__Q2_4sead13FileDeviceMgr = 0x101E7F18;
+
+/* sead::CalculateTask */
+__dt__Q2_4sead13CalculateTaskFv = 0x029FC2F0;
+attachCalcImpl__Q2_4sead13CalculateTaskFv = 0x029FC384;
+detachCalcImpl__Q2_4sead13CalculateTaskFv = 0x029FC43C;
+pauseCalc__Q2_4sead13CalculateTaskFb = 0x029FC444;
+getMethodTreeNode__Q2_4sead13CalculateTaskFi = 0x029FC4F0;
+__ct__Q2_4sead13CalculateTaskFRCQ2_4sead16TaskConstructArgPCc = 0x029FC508;
+attachDrawImpl__Q2_4sead13CalculateTaskFv = 0x029FC854;
+detachDrawImpl__Q2_4sead13CalculateTaskFv = 0x029FC858;
+pauseDraw__Q2_4sead13CalculateTaskFb = 0x029FC85C;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead13CalculateTaskSFv = 0x101E9A9C;
+typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead13CalculateTaskSFv = 0x101EA764;
+pauseCalcRec__Q2_4sead13CalculateTaskFb = __deleted_virtual_called;
+pauseDrawRec__Q2_4sead13CalculateTaskFb = __deleted_virtual_called;
+pauseCalcChild__Q2_4sead13CalculateTaskFb = __deleted_virtual_called;
+pauseDrawChild__Q2_4sead13CalculateTaskFb = __deleted_virtual_called;
+getCorrespondingMethodTreeMgrTypeInfo__Q2_4sead13CalculateTaskCFv = __deleted_virtual_called;
+
+/* sead::MethodTreeNode */
+/* __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead14MethodTreeNodeSFv */
+/* typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead14MethodTreeNodeSFv */
+
+/* sead::TaskBase */
+enterCommon__Q2_4sead8TaskBaseFv = 0x029FF818;
+onEvent__Q2_4sead8TaskBaseFRCQ2_4sead9TaskEvent = 0x029FFF78;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead8TaskBaseSFv = 0x101E9A98;
+typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead8TaskBaseSFv = 0x101EA768;
+onDestroy__Q2_4sead8TaskBaseFv = __deleted_virtual_called;
+doneDestroy__Q2_4sead8TaskBaseFv = __deleted_virtual_called;
+
+/* sead::TaskMgr */
+destroyTaskSync__Q2_4sead7TaskMgrFPQ2_4sead8TaskBase = 0x02A00D98;
+
+/* sead::Camera */
+__vtbl__Q2_4sead6Camera = 0x10190824;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead6CameraSFv = 0x101E9B88;
+typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead6CameraSFv = 0x101EBC10;
+
+/* sead::LookAtCamera */
+__dt__Q2_4sead12LookAtCameraFv = 0x02A04B94;
+doUpdateMatrix__Q2_4sead12LookAtCameraCFPQ2_4sead17Matrix34__tm__2_f = 0x02A04BE8;
+__vtbl__Q2_4sead12LookAtCamera = 0x1019084C;
+
+/* sead::Color4f */
+cBlack__Q2_4sead7Color4f = 0x105EA080;
+cGray__Q2_4sead7Color4f = 0x105EA090;
+cWhite__Q2_4sead7Color4f = 0x105EA0A0;
+cRed__Q2_4sead7Color4f = 0x105EA0B0;
+cGreen__Q2_4sead7Color4f = 0x105EA0C0;
+cBlue__Q2_4sead7Color4f = 0x105EA0D0;
+cYellow__Q2_4sead7Color4f = 0x105EA0E0;
+cMagenta__Q2_4sead7Color4f = 0x105EA0F0;
+cCyan__Q2_4sead7Color4f = 0x105EA100;
+
+/* sead::FrameBuffer */
+bind__Q2_4sead11FrameBufferCFv = 0x02A058F0;
+
+/* sead::Projection */
+getDeviceProjectionMatrix__Q2_4sead10ProjectionCFv = 0x02A05A9C;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead10ProjectionSFv = 0x101E9B74;
+typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead10ProjectionSFv = 0x101EA808;
+
+/* sead::PerspectiveProjection */
+__ct__Q2_4sead21PerspectiveProjectionFv = 0x02A06108;
+__dt__Q2_4sead21PerspectiveProjectionFv = 0x02A06298;
+set__Q2_4sead21PerspectiveProjectionFfN31 = 0x02A062EC;
+
+/* sead::Viewport */
+__ct__Q2_4sead8ViewportFRCQ2_4sead18LogicalFrameBuffer = 0x02A074C8;
+apply__Q2_4sead8ViewportCFRCQ2_4sead18LogicalFrameBuffer = 0x02A0783C;
+
+/* sead::GraphicsContext */
+__ct__Q2_4sead15GraphicsContextFv = 0x02A07BBC;
+apply__Q2_4sead15GraphicsContextCFv = 0x02A07CB0;
+
+/* sead::PrimitiveRenderer */
+setCamera__Q2_4sead17PrimitiveRendererFRCQ2_4sead6Camera = 0x02A083D0;
+setProjection__Q2_4sead17PrimitiveRendererFRCQ2_4sead10Projection = 0x02A083E4;
+setModelMatrix__Q2_4sead17PrimitiveRendererFRCQ2_4sead17Matrix34__tm__2_f = 0x02A083F8;
+begin__Q2_4sead17PrimitiveRendererFv = 0x02A08408;
+end__Q2_4sead17PrimitiveRendererFv = 0x02A0841C;
+__CPR75__drawQuad__Q2_4sead17PrimitiveRendererFRCQ3_J13JJ18J7QuadArg = 0x02A08430;
+sInstance__Q2_4sead17PrimitiveRenderer = 0x101E8010;
+
+/* sead::PrimitiveRenderer::QuadArg */
+setColor__Q3_4sead17PrimitiveRenderer7QuadArgFRCQ2_4sead7Color4fT1 = 0x02A08628;
+
+/* sead::IDisposer */
+__ct__Q2_4sead9IDisposerFv = 0x02A0A2FC;
+__dt__Q2_4sead9IDisposerFv = 0x02A0A384;
+__vtbl__Q2_4sead9IDisposer = 0x10190FA8;
+
+/* sead::Heap */
+/* __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead4HeapSFv */
+/* typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead4HeapSFv */
+
+/* sead::HeapMgr */
+getCurrentHeap__Q2_4sead7HeapMgrCFv = 0x02A0D554;
+sInstancePtr__Q2_4sead7HeapMgr = 0x101E8040;
+
+/* sead::UnitHeap */
+/* __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead8UnitHeapSFv */
+/* typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead8UnitHeapSFv */
+
+/* sead::MathCalcCommon<f32> */
+atanIdx___S__Q2_4sead23MathCalcCommon__tm__2_fSFZ1Z_Ui = 0x02A0E124;
+cSinCosTbl__S__Q2_4sead23MathCalcCommon__tm__2_f = 0x10191538;
+
+/* sead::Matrix34<f32> */
+ident__S__Q2_4sead17Matrix34__tm__2_f = 0x105EA258;
+
+/* sead::Matrix34CalcCommon<f32> */
+__CPR161__makeRTIdx__Q2_4sead27Matrix34CalcCommon__tm__2_fSFRQ3_J14J19Policies__tm__4_Z1Z9Mtx34BaseRCQ2_J14J17Vector3__tm__3_UiRCQ3_J14JJ59J8Vec3Base_v = 0x0203C1C8;
+__CPR131__setBase__Q2_4sead27Matrix34CalcCommon__tm__2_fSFRQ3_J12J19Policies__tm__4_Z1Z9Mtx34BaseiRCQ3_J12JJ57J8Vec3Base_v = 0x02046150;
+__CPR137__setTranslation__Q2_4sead27Matrix34CalcCommon__tm__2_fSFRQ3_J19J19Policies__tm__4_Z1Z9Mtx34BaseRCQ3_J19JJ64J8Vec3Base_v = 0x02046174;
+__CPR128__makeQ__Q2_4sead27Matrix34CalcCommon__tm__2_fSFRQ3_J10J19Policies__tm__4_Z1Z9Mtx34BaseRCQ3_J10JJ55J8QuatBase_v = 0x0205A79C;
+__CPR131__makeST__Q2_4sead27Matrix34CalcCommon__tm__2_fSFRQ3_J11J19Policies__tm__4_Z1Z9Mtx34BaseRCQ3_J11JJ56J8Vec3BaseT2_v = 0x02222A88;
+__CPR133__makeSRT__Q2_4sead27Matrix34CalcCommon__tm__2_fSFRQ3_J12J19Policies__tm__4_Z1Z9Mtx34BaseRCQ3_J12JJ57J8Vec3BaseN22_v = 0x02508424;
+
+/* sead::Quat<f32> */
+unit__S__Q2_4sead13Quat__tm__2_f = 0x105EA598;
+
+/* sead::QuatCalcCommon<f32> */
+__CPR138__makeVectorRotation__Q2_4sead23QuatCalcCommon__tm__2_fSFRQ3_J23J19Policies__tm__4_Z1Z8QuatBaseRCQ3_J23JJ64J8Vec3BaseT2_b = 0x0205A660;
+
+/* sead::Vector3<f32> */
+zero__S__Q2_4sead16Vector3__tm__2_f = 0x105EA760;
+ones__S__Q2_4sead16Vector3__tm__2_f = 0x105EA790;
+
+/* sead::Vector4<f32> */
+zero__S__Q2_4sead16Vector4__tm__2_f = 0x105EA79C;
+
+/* sead::Vector3CalcCommon<f32> */
+normalize__Q2_4sead26Vector3CalcCommon__tm__2_fSFRQ3_4sead19Policies__tm__4_Z1Z8Vec3Base_Z1Z = 0x0205A5F4;
+
+/* sead::Endian */
+cConvFuncTable__Q2_4sead6Endian = 0x101929A8;
+cHostEndian__Q2_4sead6Endian = 0x105EAA78;
+
+/* sead::SafeStringBase<char> */
+cNullChar__S__Q2_4sead23SafeStringBase__tm__2_c = 0x10000044;
+
+/* sead::Resource */
+__vtbl__Q2_4sead8Resource = 0x101A3A50;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead8ResourceSFv = 0x101E9BB4;
+typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead8ResourceSFv = 0x101E9F14;
+
+/* sead::DirectResource */
+__vtbl__Q2_4sead14DirectResource = 0x101A3A78;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead14DirectResourceSFv = 0x101E9BB8;
+typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead14DirectResourceSFv = 0x101E9F18;
+
+/* sead::ResourceMgr */
+unregisterDecompressor__Q2_4sead11ResourceMgrFPQ2_4sead12Decompressor = 0x02A13FA8;
+sInstance__Q2_4sead11ResourceMgr = 0x101E8074;
+
+/* sead::SZSDecompressor */
+getDecompSize__Q2_4sead15SZSDecompressorSFPCv = 0x02A154CC;
+decomp__Q2_4sead15SZSDecompressorSFPvUiPCvT2 = 0x02A15654;
+__CPR87__streamDecomp__Q2_4sead15SZSDecompressorSFPQ3_J17JJ22J13DecompContextPCvUi = 0x02A157FC;
+getDecompAlignment__Q2_4sead15SZSDecompressorSFPCv = 0x02A15AA0;
+__dt__Q2_4sead15SZSDecompressorFv = 0x02A15FA8;
+__vtbl__Q2_4sead15SZSDecompressor = 0x101A3D68;
+__vtbl__42Q2_4sead9IDisposer__Q2_4sead12Decompressor__Q2_4sead15SZSDecompressor = 0x101A3D80;
+
+/* sead::SZSDecompressor::DecompContext */
+__ct__Q3_4sead15SZSDecompressor13DecompContextFPv = 0x02A15AF4;
+
+/* agl::TextureData */
+__ct__Q2_3agl11TextureDataFv = 0x02A249A0;
+invalidateGPUCache__Q2_3agl11TextureDataFv = 0x02A24A64;
+__dt__Q2_3agl11TextureDataFv = __deleted_virtual_called;
+
+/* agl::TextureDataInitializerGTX */
+initialize__Q2_3agl25TextureDataInitializerGTXSFPQ2_3agl11TextureDataPvUi = 0x02A24F38;
+
+/* agl::TextureSampler */
+__ct__Q2_3agl14TextureSamplerFv = 0x02A2587C;
+applyTextureData___Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x02A25990;
+__dt__Q2_3agl14TextureSamplerFv = 0x02A25C60;
+activate__Q2_3agl14TextureSamplerCFRCQ2_3agl15SamplerLocationi = 0x02A25F18;
+
+/* agl::lyr::DrawMethod */
+__dt__Q3_3agl3lyr10DrawMethodFv = 0x02A3760C;
+__vtbl__Q3_3agl3lyr10DrawMethod = 0x101A8054;
+
+/* agl::lyr::Layer */
+pushBackDrawMethod__Q3_3agl3lyr5LayerFUiPQ3_3agl3lyr10DrawMethod = 0x02A376B8;
+pushBackDrawMethod__Q3_3agl3lyr5LayerFPQ3_3agl3lyr10DrawMethod = 0x02A37710;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__Q3_3agl3lyr5LayerSFv = 0x101E9D20;
+typeInfo__L0__getRuntimeTypeInfoStatic__Q3_3agl3lyr5LayerSFv = 0x101EA06C;
+
+/* agl::lyr::Renderer */
+draw__Q3_3agl3lyr8RendererCFQ3_3agl3lyr11DisplayType = 0x02A3AB90;
+initLayer_4___Q3_3agl3lyr8RendererFPQ3_3agl3lyr5LayeriRCQ2_4sead23SafeStringBase__tm__2_cQ3_3agl3lyr11DisplayTypePQ2_4sead4Heap = 0x02A3AEEC;
+sInstance__Q3_3agl3lyr8Renderer = 0x101E8A2C;
+
+/* agl::lyr::Renderer::createLayer<T> */
+createLayer__tm__30_Q2_16CourseSelectTask7Layer2D__Q3_3agl3lyr8RendererFiRCQ2_4sead23SafeStringBase__tm__2_cQ3_3agl3lyr11DisplayTypePQ2_4sead4Heap_PZ1Z = 0x021EF0F0;
+createLayer__tm__17_14RenderObjLayer__Q3_3agl3lyr8RendererFiRCQ2_4sead23SafeStringBase__tm__2_cQ3_3agl3lyr11DisplayTypePQ2_4sead4Heap_PZ1Z = 0x021EF180;
+
+/* nw::eft::EmitterSet */
+SetMtx__Q3_2nw3eft10EmitterSetFRCQ3_2nw4math5MTX34 = 0x02A6AD00;
+
+/* nw::eft::Random */
+__LSG__a__L0__Init__Q3_2nw3eft6RandomFUi = 0x101E9C88;
+a__L0__Init__Q3_2nw3eft6RandomFUi = 0x101EBC7C;
+
+/* nw::eft::System */
+Initialize__Q3_2nw3eft6SystemFPQ3_2nw3eft4HeapRCQ3_2nw3eft6Config = 0x02A76F94;
+CreateEmitterSetID__Q3_2nw3eft6SystemFPQ3_2nw3eft6HandleRCQ3_2nw4math5MTX34iT3UcUi = 0x02A7F57C;
+__vtbl__Q3_2nw3eft6System = 0x101B1A78;
+
+/* nw::math */
+F_PI__Q2_2nw4math = 0x101B60FC;
+I_HALF_ROUND_IDX__Q2_2nw4math = 0x101B6100;
+
+/* nw::math::MTX34 */
+__LSG__identity__L0__Identity__Q3_2nw4math5MTX34SFv = 0x101E9808;
+identity__L0__Identity__Q3_2nw4math5MTX34SFv = 0x101EA7D8;
+
+/* nw::math::MTX44 */
+__LSG__identity__L0__Identity__Q3_2nw4math5MTX44SFv = 0x101E980C;
+identity__L0__Identity__Q3_2nw4math5MTX44SFv = 0x101EBCD0;
+
+/* nw::math::internal */
+gSinCosTbl__Q3_2nw4math8internal = 0x101B610C;
+
+/* nw::math::VEC2 */
+__LSG__zero__L0__Zero__Q3_2nw4math4VEC2SFv = 0x101E97EC;
+zero__L0__Zero__Q3_2nw4math4VEC2SFv = 0x101EBC74;
+
+/* nw::math::VEC3 */
+__LSG__zero__L0__Zero__Q3_2nw4math4VEC3SFv = 0x101E97F0;
+zero__L0__Zero__Q3_2nw4math4VEC3SFv = 0x101EAF04;
+
+/* GFD */
+_GFDCheckHeaderVersions = 0x02AF8A18;
+_GFDCheckBlockHeaderMagicVersions = 0x02AF8ABC;
+GFDGetVertexShaderCount = 0x02AF8C04;
+GFDGetPixelShaderCount = 0x02AF8C10;
+GFDGetVertexShaderHeaderSize = 0x02AF8D00;
+GFDGetPixelShaderHeaderSize = 0x02AF8D10;
+GFDGetVertexShaderProgramSize = 0x02AF8D30;
+GFDGetPixelShaderProgramSize = 0x02AF8D40;
+_GFDRelocateBlock = 0x02AF8E04;
+GFDGetVertexShader = 0x02AF8E3C;
+GFDGetPixelShader = 0x02AF8FC0;
+
+/* MTX Library */
+ASM_VECCrossProduct = 0x02AF9660;
+ASM_VECMag = 0x02AF96C4;
+ASM_MTXConcat = 0x02AF98A0;
+ASM_MTXTrans = 0x02AF9AD4;
+ASM_MTXScale = 0x02AF9B64;
+
+/* GHS C++ FUNCTIONS */
+__vec_new = 0x02AFA350;
+__pure_virtual_called = 0x02AFA554;
+__deleted_virtual_called = __deleted_virtual_called;
+
+/* GHS C FUNCTIONS */
+__memzero = 0x02AFA55C;
+__gh_float_printf = 0x02AFABA8;
+_f_ftoll = 0x02AFEBFC;
+
+/* Math */
+floorf = 0x02AFDA5C;
+ceilf = 0x02AFDAF8;
+sqrtf = 0x02AFDCCC; // <-- Do not use this. Use sead::Mathf::sqrt. (and sead::Mathf::rsqrt in place of 1/sqrt)
+sinf = 0x02AFDD40;   // <-- If applicable, use sead::Mathf::sinIdx. (or sead::Mathf::sinCosIdx)
+powf = 0x02AFDEA8;
+cosf = 0x02AFE528;   // <-- If applicable, use sead::Mathf::cosIdx. (or sead::Mathf::sinCosIdx)
+atan2f = 0x02AFE670; // <-- If applicable, use sead::Mathf::atan2Idx.
+
+/* Misc */
+BLOSDynLoad_Acquire = 0x02A9EF58;
+BOSDynLoad_FindExport = 0x02A9F418;
+PlayerJumpMax = 0x10166E68;
+PlayerDescentRate = 0x10166E74;
+PlayerJumpArc = 0x1016A800;
+MiniPlayerJumpArc = 0x1016A848;
+SFXReverb_0 = 0x101E7D14;
+SFXReverb_1 = 0x101E7D18;
+SFXReverbPlyJump_0 = 0x101E7D1C;
+SFXReverbPlyJump_1 = 0x101E7D20;
+DefaultReverbHiParam = 0x1022D328;
+DefaultDelayParam = 0x1022D354;
