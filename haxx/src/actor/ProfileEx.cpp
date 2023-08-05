@@ -1,4 +1,4 @@
-#include <actor/Profile.h>
+#include <actor/Profile_Haxx.h>
 
 s16 Profile::getDrawPriority(u32 id)
 {

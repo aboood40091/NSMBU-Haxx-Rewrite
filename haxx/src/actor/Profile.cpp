@@ -1,5 +1,5 @@
 #include <actor/ActorBase.h>
-#include <actor/Profile.h>
+#include <actor/Profile_Haxx.h>
 
 sead::SafeArray<Profile*, ProfileHaxx::cNumCustom> ProfileHaxx::sProfileCustom;
 

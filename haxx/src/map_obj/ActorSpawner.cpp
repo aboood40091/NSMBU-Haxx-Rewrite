@@ -1,7 +1,7 @@
 #include <actor/Actor.h>
 #include <actor/ActorMgr.h>
 #include <actor/MapActor.h>
-#include <actor/Profile.h>
+#include <actor/Profile_Haxx.h>
 #include <map/PSwitchMgr.h>
 
 class ActorSpawner : public Actor

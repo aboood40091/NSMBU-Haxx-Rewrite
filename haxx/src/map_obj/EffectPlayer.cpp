@@ -1,4 +1,4 @@
-#include <actor/Profile.h>
+#include <actor/Profile_Haxx.h>
 #include <effect/PtclMgr.h>
 #include <graphics/BasicModel.h>
 #include <player/PlayerMgr.h>

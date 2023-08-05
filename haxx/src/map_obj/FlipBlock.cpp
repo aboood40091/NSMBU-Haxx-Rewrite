@@ -1,4 +1,4 @@
-#include <actor/Profile.h>
+#include <actor/Profile_Haxx.h>
 #include <collision/ActorBgCollisionMgr.h>
 #include <graphics/BasicModel.h>
 #include <graphics/ModelNW.h>

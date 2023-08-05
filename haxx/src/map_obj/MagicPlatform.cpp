@@ -1,5 +1,5 @@
 #include <actor/Actor.h>
-#include <actor/Profile.h>
+#include <actor/Profile_Haxx.h>
 #include <collision/ActorBgCollisionMgr.h>
 #include <collision/BasicRideLineBgCollision.h>
 #include <collision/SquareBgCollision.h>
