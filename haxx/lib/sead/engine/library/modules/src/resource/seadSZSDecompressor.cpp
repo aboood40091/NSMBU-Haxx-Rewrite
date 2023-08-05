@@ -5,8 +5,8 @@
 #include <prim/seadEndian.h>
 #include <resource/seadSZSDecompressor.h>
 
-#include "dynamic_libs/zlib_functions.h"
-#include "log.h"
+#include <dynamic_libs/zlib_functions.h>
+#include <log.h>
 
 namespace sead {
 
@@ -115,7 +115,7 @@ SZSDecompressor::tryDecompFromDevice(
         //SEAD_ASSERT_MSG(decomp_alignment == 0 || ((uintptr_t)dst & decomp_alignment - 1u) == 0, "load_data_buffer is not aligned with decomp_alignment[%d]", decomp_alignment);
     }
 
-    if (Endian::toHost(Endian::cBig, *(u32*)work) == 0x5A6C6962) // Zlib
+    if (Endian::toHostU32(Endian::cBig, *(u32*)work) == 0x5A6C6962) // Zlib
     {
         z_stream strm;
 
