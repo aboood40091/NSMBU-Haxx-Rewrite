@@ -486,6 +486,8 @@ doUpdateMatrix__Q2_4sead12LookAtCameraCFPQ2_4sead17Matrix34__tm__2_f = 0x02A04BE
 __vtbl__Q2_4sead12LookAtCamera = 0x1019084C;
 
 /* sead::Color4f */
+cElementMax__Q2_4sead7Color4f = 0x101908E4;
+cElementMin__Q2_4sead7Color4f = 0x101908E8;
 cBlack__Q2_4sead7Color4f = 0x105EA080;
 cGray__Q2_4sead7Color4f = 0x105EA090;
 cWhite__Q2_4sead7Color4f = 0x105EA0A0;
@@ -498,6 +500,9 @@ cCyan__Q2_4sead7Color4f = 0x105EA100;
 
 /* sead::FrameBuffer */
 bind__Q2_4sead11FrameBufferCFv = 0x02A058F0;
+
+/* sead::GraphicsContextMRT */
+__ct__Q2_4sead18GraphicsContextMRTFv = 0x02A07E70;
 
 /* sead::Projection */
 getDeviceProjectionMatrix__Q2_4sead10ProjectionCFv = 0x02A05A9C;
@@ -539,6 +544,7 @@ __vtbl__Q2_4sead9IDisposer = 0x10190FA8;
 /* typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead4HeapSFv */
 
 /* sead::HeapMgr */
+findContainHeap__Q2_4sead7HeapMgrCFPCv = 0x02A0D45C;
 getCurrentHeap__Q2_4sead7HeapMgrCFv = 0x02A0D554;
 sInstancePtr__Q2_4sead7HeapMgr = 0x101E8040;
 
@@ -566,6 +572,10 @@ unit__S__Q2_4sead13Quat__tm__2_f = 0x105EA598;
 
 /* sead::QuatCalcCommon<f32> */
 __CPR138__makeVectorRotation__Q2_4sead23QuatCalcCommon__tm__2_fSFRQ3_J23J19Policies__tm__4_Z1Z8QuatBaseRCQ3_J23JJ64J8Vec3BaseT2_b = 0x0205A660;
+
+/* sead::Vector2<f32> */
+zero__S__Q2_4sead16Vector2__tm__2_f = 0x105EA740;
+ones__S__Q2_4sead16Vector2__tm__2_f = 0x105EA758;
 
 /* sead::Vector3<f32> */
 zero__S__Q2_4sead16Vector3__tm__2_f = 0x105EA760;
@@ -610,6 +620,43 @@ __vtbl__42Q2_4sead9IDisposer__Q2_4sead12Decompressor__Q2_4sead15SZSDecompressor 
 /* sead::SZSDecompressor::DecompContext */
 __ct__Q3_4sead15SZSDecompressor13DecompContextFPv = 0x02A15AF4;
 
+/* agl::IndexStream */
+__ct__Q2_3agl11IndexStreamFv = 0x02A1E230;
+__dt__Q2_3agl11IndexStreamFv = 0x02A1E2A0;
+setUpStream___Q2_3agl11IndexStreamFPCvQ2_3agl17IndexStreamFormatUi = 0x02A1E2E0;
+
+/* agl::RenderBuffer */
+__ct__Q2_3agl12RenderBufferFv = 0x02A1E9DC;
+__dt__Q2_3agl12RenderBufferFv = 0x02A1E33C;
+setRenderTargetColorNullAll__Q2_3agl12RenderBufferFv = 0x02A1E974;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__Q2_3agl12RenderBufferSFv = 0x101E9CFC;
+typeInfo__L0__getRuntimeTypeInfoStatic__Q2_3agl12RenderBufferSFv = 0x101EADEC;
+
+/* agl::RenderTarget<agl::RenderTargetColor> */
+applyTextureData__Q2_3agl47RenderTarget__tm__27_Q2_3agl17RenderTargetColorFRCQ2_3agl11TextureData_v = 0x024D6070;
+applyTextureData__Q2_3agl47RenderTarget__tm__27_Q2_3agl17RenderTargetColorFRCQ2_3agl11TextureDataUiT2_v = 0x024D5F90;
+applyTextureData___Q2_3agl47RenderTarget__tm__27_Q2_3agl17RenderTargetColorFRCQ2_3agl11TextureDataUiT2_v = 0x024D5EEC;
+
+/* agl::RenderTarget<agl::RenderTargetDepth> */
+applyTextureData__Q2_3agl47RenderTarget__tm__27_Q2_3agl17RenderTargetDepthFRCQ2_3agl11TextureData_v = 0x024D6200;
+applyTextureData__Q2_3agl47RenderTarget__tm__27_Q2_3agl17RenderTargetDepthFRCQ2_3agl11TextureDataUiT2_v = 0x024D6120;
+applyTextureData___Q2_3agl47RenderTarget__tm__27_Q2_3agl17RenderTargetDepthFRCQ2_3agl11TextureDataUiT2_v = 0x024D607C;
+
+/* agl::RenderTargetColor */
+__ct__Q2_3agl17RenderTargetColorFv = 0x02A1EFDC;
+onApplyTextureData___Q2_3agl17RenderTargetColorFv = 0x02A1EF84;
+invalidateGPUCache__Q2_3agl17RenderTargetColorCFv = 0x02A1F088;
+
+/* agl::RenderTargetDepth */
+onApplyTextureData___Q2_3agl17RenderTargetDepthFv = 0x02A1F134;
+
+/* agl::ShaderProgram */
+validate___Q2_3agl13ShaderProgramCFv = 0x02A213C8;
+activate__Q2_3agl13ShaderProgramCFQ2_3agl10ShaderModeb = 0x02A213E8;
+getVariation__Q2_3agl13ShaderProgramFi = 0x02A22314;
+getVariation__Q2_3agl13ShaderProgramCFi = 0x02A22358;
+getVariationMacroValueVariationNum__Q2_3agl13ShaderProgramCFi = 0x02A224B4;
+
 /* agl::TextureData */
 __ct__Q2_3agl11TextureDataFv = 0x02A249A0;
 invalidateGPUCache__Q2_3agl11TextureDataFv = 0x02A24A64;
@@ -623,6 +670,26 @@ __ct__Q2_3agl14TextureSamplerFv = 0x02A2587C;
 applyTextureData___Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x02A25990;
 __dt__Q2_3agl14TextureSamplerFv = 0x02A25C60;
 activate__Q2_3agl14TextureSamplerCFRCQ2_3agl15SamplerLocationi = 0x02A25F18;
+
+/* agl::VertexAttribute */
+__ct__Q2_3agl15VertexAttributeFv = 0x02A26654;
+__dt__Q2_3agl15VertexAttributeFv = 0x02A267A0;
+create__Q2_3agl15VertexAttributeFUiPQ2_4sead4Heap = 0x02A26880;
+setVertexStream__Q2_3agl15VertexAttributeFsPCQ2_3agl12VertexBufferUi = 0x02A26A80;
+setUp__Q2_3agl15VertexAttributeFv = 0x02A26B94;
+activate__Q2_3agl15VertexAttributeCFv = 0x02A26D20;
+
+/* agl::VertexBuffer */
+__ct__Q2_3agl12VertexBufferFv = 0x02A26E00;
+__dt__Q2_3agl12VertexBufferFv = 0x02A26EE4;
+setUpBuffer__Q2_3agl12VertexBufferFPCvUiT2 = 0x02A26F24;
+setUpStream__Q2_3agl12VertexBufferFiQ2_3agl18VertexStreamFormatUi = 0x02A26F88;
+
+/* agl::detail::RootNode */
+setNodeMeta__Q3_3agl6detail8RootNodeSFPQ3_4sead6hostio4NodeRCQ2_4sead23SafeStringBase__tm__2_c = 0x02A28D64;
+
+/* agl::detail::ShaderHolder */
+sInstance__Q3_3agl6detail12ShaderHolder = 0x101E88E8;
 
 /* agl::lyr::DrawMethod */
 __dt__Q3_3agl3lyr10DrawMethodFv = 0x02A3760C;
@@ -642,6 +709,59 @@ sInstance__Q3_3agl3lyr8Renderer = 0x101E8A2C;
 /* agl::lyr::Renderer::createLayer<T> */
 createLayer__tm__30_Q2_16CourseSelectTask7Layer2D__Q3_3agl3lyr8RendererFiRCQ2_4sead23SafeStringBase__tm__2_cQ3_3agl3lyr11DisplayTypePQ2_4sead4Heap_PZ1Z = 0x021EF0F0;
 createLayer__tm__17_14RenderObjLayer__Q3_3agl3lyr8RendererFiRCQ2_4sead23SafeStringBase__tm__2_cQ3_3agl3lyr11DisplayTypePQ2_4sead4Heap_PZ1Z = 0x021EF180;
+
+/* agl::lyr::RenderStep */
+draw__Q3_3agl3lyr10RenderStepCFRCQ3_3agl3lyr10RenderInfo = 0x02A3B558;
+
+/* agl::utl::DebugTexturePage */
+__ct__Q3_3agl3utl16DebugTexturePageFv = 0x02A50420;
+setUp__Q3_3agl3utl16DebugTexturePageFUiRCQ2_4sead23SafeStringBase__tm__2_cPQ2_4sead4Heap = 0x02A5069C;
+cleanUp__Q3_3agl3utl16DebugTexturePageFv = 0x02A509F8;
+
+/* agl::pfx::DepthOfField */
+freeBuffer__Q3_3agl3pfx12DepthOfFieldCFi = 0x02A3F34C;
+allocBuffer__Q3_3agl3pfx12DepthOfFieldCFiRCQ2_3agl12RenderBuffer = 0x02A40AA0;
+bindRenderBuffer___Q3_3agl3pfx12DepthOfFieldCFRQ2_3agl12RenderBufferiT2 = 0x02A40AD4;
+__CPR73__drawKick___Q3_3agl3pfx12DepthOfFieldCFRCQ4_3agl3pfxJ22J7DrawArg = 0x02A40CBC;
+__CPR99__drawColorMipMap___Q3_3agl3pfx12DepthOfFieldCFRCQ4_3agl3pfxJ29J7DrawArgQ2_3agl10ShaderMode = 0x02A40E9C;
+__CPR99__drawDepthMipMap___Q3_3agl3pfx12DepthOfFieldCFRCQ4_3agl3pfxJ29J7DrawArgQ2_3agl10ShaderMode = 0x02A41488;
+uniformComposeParam___Q3_3agl3pfx12DepthOfFieldCFRCQ4_3agl3pfx12DepthOfField7DrawArgPCQ2_3agl13ShaderProgram = 0x02A419C8;
+uniformVignettingParam___Q3_3agl3pfx12DepthOfFieldCFRCQ4_3agl3pfx12DepthOfField7DrawArgPCQ2_3agl13ShaderProgram = __deleted_virtual_called;
+__CPR95__drawCompose___Q3_3agl3pfx12DepthOfFieldCFRCQ4_3agl3pfxJ25J7DrawArgQ2_3agl10ShaderMode = 0x02A425AC;
+__CPR98__drawVignetting___Q3_3agl3pfx12DepthOfFieldCFRCQ4_3agl3pfxJ28J7DrawArgQ2_3agl10ShaderMode = 0x02A4280C;
+
+/* agl::utl::DynamicTextureAllocator */
+__CPR160__alloc__Q3_3agl3utl23DynamicTextureAllocatorFRCQ2_4sead23SafeStringBase__tm__2_cQ2_3agl13TextureFormatUiN23PPvQ4_3agl3utlJ18J12AllocateTypeb = 0x02A52830;
+free__Q3_3agl3utl23DynamicTextureAllocatorFPCQ2_3agl11TextureData = 0x02A52B38;
+sInstance__Q3_3agl3utl23DynamicTextureAllocator = 0x101E8A50;
+
+/* agl::utl::ImageFilter2D */
+drawTextureQuadTriangle__Q3_3agl3utl13ImageFilter2DSFRCQ2_3agl14TextureSamplerQ2_3agl10ShaderMode = 0x02A53828;
+
+/* agl::utl::ParameterBase */
+__ct__Q3_3agl3utl13ParameterBaseFv = 0x02A551A8;
+initializeListNode__Q3_3agl3utl13ParameterBaseFRCQ2_4sead23SafeStringBase__tm__2_cN21PQ3_3agl3utl13IParameterObj = 0x02A55154;
+__CPR61__copy__Q3_3agl3utl13ParameterBaseFRCQ3_3agl3utlJ17J = __deleted_virtual_called;
+__CPR67__copyUnsafe__Q3_3agl3utl13ParameterBaseFRCQ3_3agl3utlJ23J = __deleted_virtual_called;
+__CPR68__copyLerp__Q3_3agl3utl13ParameterBaseFRCQ3_3agl3utlJ21JT1f = __deleted_virtual_called;
+
+/* agl::utl::IParameterIO */
+__ct__Q3_3agl3utl12IParameterIOFRCQ2_4sead23SafeStringBase__tm__2_cUi = 0x02A56010;
+applyResParameterArchive__Q3_3agl3utl12IParameterIOFQ3_3agl3utl19ResParameterArchive = 0x02A56298;
+save__Q3_3agl3utl12IParameterIOCFRCQ2_4sead23SafeStringBase__tm__2_cUi = __deleted_virtual_called;
+applyResParameterArchiveLerp__Q3_3agl3utl12IParameterIOFQ3_3agl3utl19ResParameterArchiveT1f = __deleted_virtual_called;
+
+/* agl::utl::IParameterList */
+addObj__Q3_3agl3utl14IParameterListFPQ3_3agl3utl13IParameterObjRCQ2_4sead23SafeStringBase__tm__2_c = 0x02A56708;
+
+/* agl::utl::IParameterObj */
+__ct__Q3_3agl3utl13IParameterObjFv = 0x02A55AE8;
+
+/* agl::utl::PrimitiveShape */
+sInstance__Q3_3agl3utl14PrimitiveShape = 0x101E8A64;
+
+/* agl::utl::VertexAttributeHolder */
+sInstance__Q3_3agl3utl21VertexAttributeHolder = 0x101E8A7C;
 
 /* nw::eft::EmitterSet */
 SetMtx__Q3_2nw3eft10EmitterSetFRCQ3_2nw4math5MTX34 = 0x02A6AD00;
@@ -700,6 +820,7 @@ ASM_MTXScale = 0x02AF9B64;
 
 /* GHS C++ FUNCTIONS */
 __vec_new = 0x02AFA350;
+__vec_delete = 0x02AFA490;
 __pure_virtual_called = 0x02AFA554;
 __deleted_virtual_called = __deleted_virtual_called;
 
