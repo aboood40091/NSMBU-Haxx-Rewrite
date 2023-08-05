@@ -1,8 +1,5 @@
 #pragma once
 
-#include <types.h>
+#include <cafe/os.h>
 
 #include <dynamic_libs/gx2_functions.h>
-
-#include <ppc_ghs.h>
-#include <ppc_ps.h>

@@ -284,8 +284,11 @@ typedef enum _GX2AttribFormat
 //!-----------------------------------------------------------------------------------------------------------------------
 //! GX2 attribute index types
 //!-----------------------------------------------------------------------------------------------------------------------
-#define GX2_ATTRIB_INDEX_PER_VERTEX                     0
-#define GX2_ATTRIB_INDEX_PER_INSTANCE                   1
+typedef enum _GX2AttribIndexType
+{
+    GX2_ATTRIB_INDEX_VERTEX_ID      = 0,
+    GX2_ATTRIB_INDEX_INSTANCE_ID    = 1
+} GX2AttribIndexType;
 
 //!-----------------------------------------------------------------------------------------------------------------------
 //! GX2 shader modes
@@ -373,6 +376,7 @@ typedef enum _GX2PrimitiveType
 //!-----------------------------------------------------------------------------------------------------------------------
 typedef enum _GX2SurfaceFormat
 {
+    GX2_SURFACE_FORMAT_INVALID                  = 0x00000000,
     GX2_SURFACE_FORMAT_TC_R8_UNORM              = 0x00000001,
     GX2_SURFACE_FORMAT_T_R4_G4_UNORM            = 0x00000002,
     GX2_SURFACE_FORMAT_TCD_R16_UNORM            = 0x00000005,
@@ -593,9 +597,12 @@ typedef enum _GX2TexAnisoRatio
 //!-----------------------------------------------------------------------------------------------------------------------
 //! GX2 scan targets
 //!-----------------------------------------------------------------------------------------------------------------------
-#define GX2_SCAN_TARGET_TV                              0x00000001
-#define GX2_SCAN_TARGET_DRC_FIRST                       0x00000004
-#define GX2_SCAN_TARGET_DRC_SECOND                      0x00000008
+typedef enum _GX2ScanTarget
+{
+    GX2_SCAN_TARGET_TV          = 0x00000001,
+    GX2_SCAN_TARGET_DRC_FIRST   = 0x00000004,
+    GX2_SCAN_TARGET_DRC_SECOND  = 0x00000008
+} GX2ScanTarget;
 
 //!-----------------------------------------------------------------------------------------------------------------------
 //! GX2 invalidate types
@@ -615,7 +622,10 @@ typedef enum _GX2TexAnisoRatio
 //!-----------------------------------------------------------------------------------------------------------------------
 //! GX2 swap modes
 //!-----------------------------------------------------------------------------------------------------------------------
-#define GX2_ENDIANSWAP_DEFAULT                          0x00000003
+typedef enum _GX2EndianSwapMode
+{
+    GX2_ENDIANSWAP_DEFAULT  = 0x00000003
+} GX2EndianSwapMode;
 
 //!-----------------------------------------------------------------------------------------------------------------------
 //! GX2 tessellation modes
@@ -697,34 +707,34 @@ typedef struct _GX2Surface {
 
 typedef struct _GX2ColorBuffer {
     GX2Surface surface;
-    u32 view_mip;
-    u32 view_first_slice;
-    u32 view_slices_count;
-    void *aux_data;
-    u32  aux_size;
+    u32 viewMip;
+    u32 viewFirstSlice;
+    u32 viewNumSlices;
+    void *auxPtr;
+    u32  auxSize;
     u32 regs[5];
 } GX2ColorBuffer;
 
 typedef struct _GX2DepthBuffer {
     GX2Surface surface;
-    u32 view_mip;
-    u32 view_first_slice;
-    u32 view_slices_count;
-    void *hiZ_data;
-    u32  hiZ_size;
-    f32 clear_depth;
-    u32 clear_stencil;
+    u32 viewMip;
+    u32 viewFirstSlice;
+    u32 viewNumSlices;
+    void *hiZPtr;
+    u32  hiZSize;
+    f32 clearDepth;
+    u32 clearStencil;
     u32 regs[7];
 } GX2DepthBuffer;
 
 
 typedef struct _GX2Texture {
     GX2Surface surface;
-    u32 view_first_mip;
-    u32 view_mips_count;
-    u32 view_first_slice;
-    u32 view_slices_count;
-    u32 component_selector;
+    u32 viewFirstMip;
+    u32 viewNumMips;
+    u32 viewFirstSlice;
+    u32 viewNumSlices;
+    u32 compSel;
     u32 regs[5];
 } GX2Texture;
 
@@ -738,10 +748,10 @@ typedef struct _GX2AttribStream {
     u32 buffer;
     u32 offset;
     s32 format;
-    s32 index_type;
-    u32 divisor;
-    u32 destination_selector;
-    s32 endian_swap;
+    s32 indexType;
+    u32 aluDivisor;
+    u32 destSel;
+    s32 endianSwap;
 } GX2AttribStream;
 
 typedef struct _GX2FetchShader {
@@ -912,6 +922,8 @@ typedef struct _GX2ColorF32 {
 
 typedef void* (* GX2RAllocFunction) (u32, u32, u32);
 typedef void (* GX2RFreeFunction) (u32, void *);
+
+typedef u32 GX2CompSel;
 
 #ifdef __cplusplus
 }

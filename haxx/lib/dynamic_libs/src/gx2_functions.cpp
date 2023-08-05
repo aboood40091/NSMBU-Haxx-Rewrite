@@ -95,6 +95,7 @@ EXPORT_DECL(void, GX2SetDRCGamma, f32 gam);
 EXPORT_DECL(s32, GX2GetSystemTVScanMode, void);
 EXPORT_DECL(s32, GX2GetSystemDRCScanMode, void);
 EXPORT_DECL(void, GX2RSetAllocator, void * (* allocFunc)(u32, u32, u32), void (* freeFunc)(u32, void*));
+EXPORT_DECL(void, GX2SetSurfaceSwizzle, GX2Surface * srcSurface,u32 swizzle );
 EXPORT_DECL(void, GX2CopySurface, GX2Surface * srcSurface,u32 srcMip,u32 srcSlice,GX2Surface * dstSurface,u32 dstMip,u32 dstSlice );
 
 EXPORT_DECL(s32, GX2GetLastFrame, s32 target, GX2Texture * texture);
@@ -103,6 +104,7 @@ EXPORT_DECL(u32, GX2EndDisplayList, void * list);
 EXPORT_DECL(void, GX2DirectCallDisplayList, void * displayList,u32 size);
 EXPORT_DECL(void, GX2CallDisplayList, void * list, u32 size);
 EXPORT_DECL(void, GX2ExpandAAColorBuffer,GX2ColorBuffer * buffer);
+EXPORT_DECL(void, GX2ExpandDepthBuffer, GX2DepthBuffer * buffer);
 EXPORT_DECL(void, GX2ResolveAAColorBuffer, const GX2ColorBuffer * srcBuffer, GX2Surface * dstSurface,u32 dstMip,u32 dstSlice);
 EXPORT_DECL(u32, GX2RCreateBuffer, GX2RBuffer * buffer);
 EXPORT_DECL(void, GX2RDestroyBufferEx, GX2RBuffer * buffer, u32 flags);
@@ -189,6 +191,7 @@ extern "C" void InitGX2FunctionPointers(void) {
     OS_FIND_EXPORT(gx2_handle, GX2GetSystemTVScanMode);
     OS_FIND_EXPORT(gx2_handle, GX2GetSystemDRCScanMode);
     OS_FIND_EXPORT(gx2_handle, GX2RSetAllocator);
+    OS_FIND_EXPORT(gx2_handle, GX2SetSurfaceSwizzle);
     OS_FIND_EXPORT(gx2_handle, GX2CopySurface);
     OS_FIND_EXPORT(gx2_handle, GX2GetLastFrame);
     OS_FIND_EXPORT(gx2_handle, GX2ClearBuffersEx);
@@ -197,6 +200,7 @@ extern "C" void InitGX2FunctionPointers(void) {
     OS_FIND_EXPORT(gx2_handle, GX2DirectCallDisplayList);
     OS_FIND_EXPORT(gx2_handle, GX2CallDisplayList);
     OS_FIND_EXPORT(gx2_handle, GX2ExpandAAColorBuffer);
+    OS_FIND_EXPORT(gx2_handle, GX2ExpandDepthBuffer);
     OS_FIND_EXPORT(gx2_handle, GX2ResolveAAColorBuffer);
     OS_FIND_EXPORT(gx2_handle, GX2SetClearDepthStencil);
     OS_FIND_EXPORT(gx2_handle, GX2RCreateBuffer);

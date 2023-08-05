@@ -23,9 +23,6 @@
  ***************************************************************************/
 #include "dynamic_libs/os_functions.h"
 
-#if PLATFORM_IS_EMULATOR
-char log_msg[512];
-#endif
 u32 coreinit_handle = 0;
 
 //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -97,12 +94,14 @@ EXPORT_DECL(u64, OSGetTitleID, void);
 EXPORT_DECL(void, OSGetArgcArgv, s32* argc, char*** argv);
 EXPORT_DECL(void, __Exit, void);
 EXPORT_DECL(void, OSFatal, const char* msg);
+EXPORT_DECL(void, OSReport, const char * format, ...);
 EXPORT_DECL(void, OSConsoleWrite, const char *msg, s32 size);
 EXPORT_DECL(void *, OSSetExceptionCallback, u8 exceptionType, exception_callback newCallback);
 EXPORT_DECL(void *, OSSetExceptionCallbackEx, s32 unkwn, u8 exceptionType, exception_callback newCallback);
 EXPORT_DECL(void , OSLoadContext, OSContext * context);
 EXPORT_DECL(void, DCFlushRange, const void *addr, u32 length);
 EXPORT_DECL(void, DCStoreRange, const void *addr, u32 length);
+EXPORT_DECL(void, DCFlushRangeNoSync, const void *addr, u32 length);
 EXPORT_DECL(void, ICInvalidateRange, const void *addr, u32 length);
 EXPORT_DECL(void*, OSEffectiveToPhysical, const void*);
 EXPORT_DECL(void*, __OSPhysicalToEffectiveUncached, const void*);
@@ -275,6 +274,7 @@ void InitOSFunctionPointers(void) {
     //! System functions
     //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     OS_FIND_EXPORT(coreinit_handle, OSFatal);
+    OS_FIND_EXPORT(coreinit_handle, OSReport);
     OS_FIND_EXPORT(coreinit_handle, OSConsoleWrite);
     OS_FIND_EXPORT(coreinit_handle, OSGetTitleID);
     OS_FIND_EXPORT(coreinit_handle, OSGetArgcArgv);
@@ -283,6 +283,7 @@ void InitOSFunctionPointers(void) {
     OS_FIND_EXPORT(coreinit_handle, OSLoadContext);
     OS_FIND_EXPORT(coreinit_handle, DCFlushRange);
     OS_FIND_EXPORT(coreinit_handle, DCStoreRange);
+    OS_FIND_EXPORT(coreinit_handle, DCFlushRangeNoSync);
     OS_FIND_EXPORT(coreinit_handle, ICInvalidateRange);
     OS_FIND_EXPORT(coreinit_handle, OSEffectiveToPhysical);
     OS_FIND_EXPORT(coreinit_handle, __OSPhysicalToEffectiveUncached);

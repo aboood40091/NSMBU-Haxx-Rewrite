@@ -105,11 +105,6 @@ typedef void *(*DisasmGetSym)(u32 addr, u8 *symbolName, u32 nameBufSize);
 
 #define OS_MUTEX_SIZE                   44
 
-/* Message for logging */
-#if PLATFORM_IS_EMULATOR
-extern char log_msg[512];
-#endif
-
 /* Handle for coreinit */
 extern u32 coreinit_handle;
 extern void _os_find_export(u32 handle, const char *funcName, void *funcPointer);
@@ -187,9 +182,11 @@ extern u64 (* OSGetTitleID)(void);
 extern void (* OSGetArgcArgv)(s32* argc, char*** argv);
 extern void (* __Exit)(void);
 extern void (* OSFatal)(const char* msg);
+extern void (* OSReport)(const char * format, ...);
 extern void (* OSConsoleWrite)(const char *msg, s32 size);
 extern void (* DCFlushRange)(const void *addr, u32 length);
 extern void (* DCStoreRange)(const void *addr, u32 length);
+extern void (* DCFlushRangeNoSync)(const void *addr, u32 length);
 extern void (* ICInvalidateRange)(const void *addr, u32 length);
 extern void* (* OSEffectiveToPhysical)(const void*);
 extern void* (* __OSPhysicalToEffectiveUncached)(const void*);

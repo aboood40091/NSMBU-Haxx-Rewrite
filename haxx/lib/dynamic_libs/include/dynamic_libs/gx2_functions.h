@@ -108,6 +108,7 @@ extern void (* GX2SetDRCGamma)(f32 val);
 extern s32 (* GX2GetSystemTVScanMode)(void);
 extern s32 (* GX2GetSystemDRCScanMode)(void);
 extern void (* GX2RSetAllocator)(void * (*allocFunc)(u32, u32, u32), void (*freeFunc)(u32, void*));
+extern void (* GX2SetSurfaceSwizzle)(GX2Surface * srcSurface,u32 swizzle );
 extern void (* GX2CopySurface)(GX2Surface * srcSurface,u32 srcMip,u32 srcSlice,GX2Surface * dstSurface,u32 dstMip,u32 dstSlice );
 extern void (* GX2ClearBuffersEx)(GX2ColorBuffer * colorBuffer,GX2DepthBuffer * depthBuffer,f32 r, f32 g, f32 b, f32 a,f32 depthValue,u8 stencilValue,s32 clearFlags);
 extern s32 (* GX2GetLastFrame)(s32 target, GX2Texture * texture);
@@ -116,6 +117,7 @@ extern u32 (*GX2EndDisplayList)(void * list);
 extern void (*GX2DirectCallDisplayList)(void * displayList,u32 size);
 extern void (*GX2CallDisplayList)(void * list, u32 size);
 extern void (*GX2ExpandAAColorBuffer)(GX2ColorBuffer * buffer);
+extern void (*GX2ExpandDepthBuffer)(GX2DepthBuffer * buffer);
 extern void (*GX2ResolveAAColorBuffer)(const GX2ColorBuffer * srcBuffer, GX2Surface * dstSurface,u32 dstMip,u32 dstSlice);
 extern u32 (*GX2RCreateBuffer)(GX2RBuffer * buffer);
 extern void (*GX2RDestroyBufferEx)(GX2RBuffer * buffer, u32 flags);
@@ -134,13 +136,13 @@ static inline void GX2InitDepthBuffer(GX2DepthBuffer *depthBuffer, GX2SurfaceDim
     depthBuffer->surface.use = ((format==GX2_SURFACE_FORMAT_D_D24_S8_UNORM) || (format==GX2_SURFACE_FORMAT_D_D24_S8_FLOAT)) ? GX2_SURFACE_USE_DEPTH_BUFFER : GX2_SURFACE_USE_DEPTH_BUFFER_TEXTURE;
     depthBuffer->surface.tileMode = GX2_TILE_MODE_DEFAULT;
     depthBuffer->surface.swizzle  = 0;
-    depthBuffer->view_mip = 0;
-    depthBuffer->view_first_slice = 0;
-    depthBuffer->view_slices_count = depth;
-    depthBuffer->clear_depth = 1.0f;
-    depthBuffer->clear_stencil = 0;
-    depthBuffer->hiZ_data = NULL;
-    depthBuffer->hiZ_size = 0;
+    depthBuffer->viewMip = 0;
+    depthBuffer->viewFirstSlice = 0;
+    depthBuffer->viewNumSlices = depth;
+    depthBuffer->clearDepth = 1.0f;
+    depthBuffer->clearStencil = 0;
+    depthBuffer->hiZPtr = NULL;
+    depthBuffer->hiZSize = 0;
     GX2CalcSurfaceSizeAndAlignment(&depthBuffer->surface);
     GX2InitDepthBufferRegs(depthBuffer);
 }
@@ -165,11 +167,11 @@ static inline void GX2InitColorBuffer(GX2ColorBuffer *colorBuffer, GX2SurfaceDim
     u32 i;
     for(i = 0; i < 13; i++)
         colorBuffer->surface.mipOffset[i] = 0;
-    colorBuffer->view_mip = 0;
-    colorBuffer->view_first_slice = 0;
-    colorBuffer->view_slices_count = depth;
-    colorBuffer->aux_data = NULL;
-    colorBuffer->aux_size = 0;
+    colorBuffer->viewMip = 0;
+    colorBuffer->viewFirstSlice = 0;
+    colorBuffer->viewNumSlices = depth;
+    colorBuffer->auxPtr = NULL;
+    colorBuffer->auxSize = 0;
     for(i = 0; i < 5; i++)
         colorBuffer->regs[i] = 0;
 
@@ -182,10 +184,10 @@ static inline void GX2InitAttribStream(GX2AttribStream* attr, u32 location, u32 
     attr->buffer = buffer;
     attr->offset = offset;
     attr->format = format;
-    attr->index_type = 0;
-    attr->divisor = 0;
-    attr->destination_selector = attribute_dest_comp_selector[format & 0xff];
-    attr->endian_swap  = GX2_ENDIANSWAP_DEFAULT;
+    attr->indexType = 0;
+    attr->aluDivisor = 0;
+    attr->destSel = attribute_dest_comp_selector[format & 0xff];
+    attr->endianSwap  = GX2_ENDIANSWAP_DEFAULT;
 }
 
 static inline void GX2InitTexture(GX2Texture *tex, u32 width, u32 height, u32 depth, u32 num_mips, GX2SurfaceFormat format, GX2SurfaceDim dimension, GX2TileMode tile) {
@@ -208,11 +210,11 @@ static inline void GX2InitTexture(GX2Texture *tex, u32 width, u32 height, u32 de
     u32 i;
     for(i = 0; i < 13; i++)
         tex->surface.mipOffset[i] = 0;
-    tex->view_first_mip = 0;
-    tex->view_mips_count = num_mips;
-    tex->view_first_slice = 0;
-    tex->view_slices_count = depth;
-    tex->component_selector = texture_comp_selector[format & 0x3f];
+    tex->viewFirstMip = 0;
+    tex->viewNumMips = num_mips;
+    tex->viewFirstSlice = 0;
+    tex->viewNumSlices = depth;
+    tex->compSel = texture_comp_selector[format & 0x3f];
     for(i = 0; i < 5; i++)
         tex->regs[i] = 0;
 
@@ -263,6 +265,60 @@ static inline s32 GX2GetPixelUniformVarOffset(const GX2PixelShader* shader, cons
 static inline void GX2Draw(GX2PrimitiveType primitive_type, u32 count)
 {
     GX2DrawEx((s32)primitive_type, count, 0, 1);
+}
+
+static inline void GX2InitColorBufferFTV(GX2ColorBuffer *colorBuffer, u32 width, u32 height, GX2SurfaceFormat format, GX2AAMode aa)
+{
+    colorBuffer->surface.use = GX2_SURFACE_USE_COLOR_BUFFER_TEXTURE_FTV;
+    colorBuffer->surface.dim = GX2_SURFACE_DIM_2D;
+    colorBuffer->surface.width = width;
+    colorBuffer->surface.height = height;
+    colorBuffer->surface.depth = 1;
+    colorBuffer->surface.numMips = 1;
+    colorBuffer->surface.mipPtr = NULL;
+    colorBuffer->surface.format = format;
+    colorBuffer->surface.aa = aa;
+    colorBuffer->surface.tileMode = GX2_TILE_MODE_DEFAULT;
+    colorBuffer->surface.swizzle  = 0;
+    colorBuffer->viewMip = 0;
+    colorBuffer->viewFirstSlice = 0;
+    colorBuffer->viewNumSlices = 1;
+    GX2CalcSurfaceSizeAndAlignment(&colorBuffer->surface);
+    GX2InitColorBufferRegs(colorBuffer);
+    if (colorBuffer->surface.aa != aa) {
+        GX2Surface paddedSurf = colorBuffer->surface;
+        paddedSurf.aa = aa;
+        paddedSurf.use = GX2_SURFACE_USE_COLOR_BUFFER_TEXTURE;
+        GX2CalcSurfaceSizeAndAlignment(&paddedSurf);
+        colorBuffer->surface.imageSize = paddedSurf.imageSize;
+        colorBuffer->surface.alignment = paddedSurf.alignment;
+    }
+}
+
+static inline void GX2InitColorBufferPtr(GX2ColorBuffer *colorBuffer, void *ptr)
+{
+    colorBuffer->surface.imagePtr = ptr;
+}
+
+static inline void GX2InitColorBufferAuxPtr(GX2ColorBuffer *colorBuffer, void *auxPtr)
+{
+    colorBuffer->auxPtr = auxPtr;
+}
+
+static inline u32 GX2CalcFetchShaderSize(u32 num_attrib)
+{
+    return GX2CalcFetchShaderSizeEx(num_attrib, GX2_FETCH_SHADER_TESSELATION_NONE, GX2_TESSELLATION_MODE_DISCRETE);
+}
+
+static inline void GX2InitFetchShader(GX2FetchShader* fs, void* fs_buffer, u32 count, const GX2AttribStream* attribs)
+{
+    GX2InitFetchShaderEx(fs, fs_buffer, count, attribs, GX2_FETCH_SHADER_TESSELATION_NONE, GX2_TESSELLATION_MODE_DISCRETE);
+}
+
+static inline void GX2InitDepthBufferHiZPtr(GX2DepthBuffer *depthBuffer, void *hiZPtr)
+{
+    depthBuffer->hiZPtr = hiZPtr;
+    GX2InitDepthBufferHiZEnable(depthBuffer, (GX2Boolean)(hiZPtr != NULL));
 }
 
 #ifdef __cplusplus
