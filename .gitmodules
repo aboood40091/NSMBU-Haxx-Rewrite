@@ -4,3 +4,6 @@
 [submodule "game\\lib\\sead"]
 	path = game\\lib\\sead
 	url = https://github.com/aboood40091/sead
+[submodule "game\\include"]
+	path = game\\include
+	url = https://github.com/aboood40091/NSMBU-Headers.git
