@@ -1,9 +1,9 @@
-[submodule "game\\lib\\nw\\G3d"]
-	path = game\\lib\\nw\\G3d
+[submodule "game/lib/nw/G3d"]
+	path = game/lib/nw/G3d
 	url = https://github.com/nw4f/G3d
-[submodule "game\\lib\\sead"]
-	path = game\\lib\\sead
+[submodule "game/lib/sead"]
+	path = game/lib/sead
 	url = https://github.com/aboood40091/sead
-[submodule "game\\include"]
-	path = game\\include
-	url = https://github.com/aboood40091/NSMBU-Headers.git
+[submodule "game/include"]
+	path = game/include
+	url = https://github.com/aboood40091/NSMBU-Headers
