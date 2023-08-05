@@ -27,9 +27,10 @@ class EffectPlayer : public Actor
 public:
     EffectPlayer(const ActorInitArg& arg);
 
-    s32 create()  override;
-    s32 execute() override;
-    s32 draw()    override;
+private:
+    s32 create_()  override;
+    s32 execute_() override;
+    s32 draw_()    override;
 
 private:
     bool nextEffect_(const PlayerKey& player1_input);
@@ -87,7 +88,7 @@ EffectPlayer::EffectPlayer(const ActorInitArg& arg)
 {
 }
 
-s32 EffectPlayer::create()
+s32 EffectPlayer::create_()
 {
     LOG("EffectPlayer: create start")
 
@@ -130,7 +131,7 @@ s32 EffectPlayer::create()
     return 1;
 }
 
-s32 EffectPlayer::execute()
+s32 EffectPlayer::execute_()
 {
     s32 set_num = PtclMgr::instance()->getPtclSystem()->GetResource(0)->GetNumEmitterSet();
     if (set_num < 1 || mCurrentEmitterSetID >= set_num)
@@ -182,7 +183,7 @@ update:
     return 1;
 }
 
-s32 EffectPlayer::draw()
+s32 EffectPlayer::draw_()
 {
     return 1;
 }

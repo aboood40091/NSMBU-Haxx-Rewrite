@@ -8,6 +8,7 @@
 #include <graphics/Renderer.h>
 #include <map/Bg.h>
 #include <map/CourseData.h>
+#include <map/UnitID.h>
 #include <map_obj/PairObjChild.h>
 #include <map_obj/ParentMovementMgr.h>
 
@@ -32,10 +33,11 @@ public:
     MagicPlatform(const ActorInitArg& arg);
     virtual ~MagicPlatform() { }
 
-    s32 create() override;
-    s32 execute() override;
-    s32 draw() override;
-    s32 doDelete() override;
+private:
+    s32 create_()   override;
+    s32 execute_()  override;
+    s32 draw_()     override;
+    s32 doDelete_() override;
 
 private:
     u16*                        mTileData;
@@ -67,7 +69,7 @@ MagicPlatform::MagicPlatform(const ActorInitArg& arg)
 {
 }
 
-s32 MagicPlatform::create()
+s32 MagicPlatform::create_()
 {
     CourseDataFile* file = CourseData::instance()->getFile(Info::instance()->getFileNo());
     const Location* location = file->getLocation(nullptr, mParam0 & 0xFF);
@@ -89,7 +91,7 @@ s32 MagicPlatform::create()
         for (u32 x = 0; x < mTileW; x++)
         {
             u16* p_unit = Bg::getUnitCurrentCdCile(loc_x + x * 16, loc_y + y * 16, 0);
-            mTileData[x + y * mTileW] = p_unit ? *p_unit : 0;
+            mTileData[x + y * mTileW] = p_unit ? *p_unit : cUnitID_Null;
         }
     }
 
@@ -149,10 +151,10 @@ s32 MagicPlatform::create()
         mMovementID
     );
 
-    return execute();
+    return execute_();
 }
 
-s32 MagicPlatform::execute()
+s32 MagicPlatform::execute_()
 {
     mParentMovementMgr.execute();
     mPos = mParentMovementMgr.getPosition();
@@ -173,7 +175,7 @@ s32 MagicPlatform::execute()
     return 1;
 }
 
-s32 MagicPlatform::draw()
+s32 MagicPlatform::draw_()
 {
     f32 sin_v, cos_v;
     sead::Mathf::sinCosIdx(&sin_v, &cos_v, mAngle.z);
@@ -190,14 +192,14 @@ s32 MagicPlatform::draw()
             f32 rotated_y = -offset_x * sin_v + offset_y * cos_v;
             sead::Vector3f draw_pos(mPos.x + rotated_x, mPos.y - rotated_y, mPos.z);
 
-            Renderer::instance()->drawUnit(mTileData[y * mTileW + x], draw_pos, mAngle.z, mScale);
+            Renderer::instance()->drawActorBgUnit(UnitID(mTileData[y * mTileW + x]), draw_pos, mAngle.z, mScale);
         }
     }
 
     return 1;
 }
 
-s32 MagicPlatform::doDelete()
+s32 MagicPlatform::doDelete_()
 {
     if (mTileData != nullptr)
     {

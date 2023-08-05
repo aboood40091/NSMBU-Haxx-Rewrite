@@ -1,4 +1,3 @@
-//#include "activecollider.hpp"
 #include <actor/Profile.h>
 #include <collision/ActorBgCollisionMgr.h>
 #include <graphics/BasicModel.h>
@@ -26,10 +25,12 @@ public:
     FlipBlock(const ActorInitArg& arg);
     virtual ~FlipBlock() { }
 
-    s32 create() override;
-    s32 execute() override;
-    s32 draw() override;
+private:
+    s32 create_()  override;
+    s32 execute_() override;
+    s32 draw_()    override;
 
+public:
     void spawnItemUp() override;
     void spawnItemDown() override;
 
@@ -65,7 +66,7 @@ FlipBlock::FlipBlock(const ActorInitArg& arg)
 {
 }
 
-s32 FlipBlock::create()
+s32 FlipBlock::create_()
 {
     _1cb4 = 0.0f;
     _1cb8 = 0.0f;
@@ -99,9 +100,9 @@ s32 FlipBlock::create()
     return 1;
 }
 
-s32 FlipBlock::execute()
+s32 FlipBlock::execute_()
 {
-    s32 result = ActorBlockBase::execute();
+    s32 result = ActorBlockBase::execute_();
     if (result != 1)
         return result;
 
@@ -109,7 +110,7 @@ s32 FlipBlock::execute()
     return 1;
 }
 
-s32 FlipBlock::draw()
+s32 FlipBlock::draw_()
 {
     Renderer::instance()->drawModel(mpBasicModel);
     return 1;

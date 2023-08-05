@@ -17,16 +17,23 @@ public:
     Actor(const ActorInitArg& arg);
     virtual ~Actor();
 
-    void postCreate(MainState state) override;
+protected:
+    void postCreate_(MainState state) override;
 
-    s32 preExecute() override;
-    void postExecute(MainState state) override;
+    s32 preExecute_() override;
+    void postExecute_(MainState state) override;
 
-    s32 preDraw() override;
+    s32 preDraw_() override;
 
-    virtual void setPlayerId(s8 id)
+public:
+    virtual void setPlayerNo(s8 id)
     {
         mPlayerNo = id;
+    }
+
+    s8 getPlayerNo() const
+    {
+        return mPlayerNo;
     }
 
     virtual void removeCollisionCheck();

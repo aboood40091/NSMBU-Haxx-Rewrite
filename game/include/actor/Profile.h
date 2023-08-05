@@ -86,7 +86,7 @@ public:
 
     static Profile* get(u32 id);
 
-    static s16 getPriority(u32 id);
+    static s16 getDrawPriority(u32 id);
     static ResLoadAt getResLoadAt(u32 id);
     static u8 getResNum(u32 id);
     static const sead::SafeString* getResList(u32 id);
@@ -100,7 +100,7 @@ protected:
 
     static sead::SafeArray<Profile*, cNum>  sProfile;
 
-    static const s16                cPriority[cNum];
+    static const s16                cDrawPriority[cNum];
     static const u8                 cResLoadAt[cNum];
     static const u8                 cResNum[cNum];
     static const sead::SafeString*  cResList[cNum];
@@ -112,12 +112,12 @@ static_assert(sizeof(Profile) == 0x14);
 class ProfileHaxx : public Profile
 {
 public:
-    struct ReplacePriority
+    struct ReplaceDrawPriority
     {
-        ReplacePriority(const u32 id, const s16 priority)
+        ReplaceDrawPriority(const u32 id, const s16 priority)
         {
             if (id < cNum)
-                const_cast<s16*>(cPriority)[id] = priority;
+                const_cast<s16*>(cDrawPriority)[id] = priority;
         }
     };
 
@@ -153,7 +153,7 @@ public:
 private:
     static sead::SafeArray<Profile*, cNumCustom>    sProfileCustom;
 
-    static const s16                cPriorityCustom[cNumCustom];
+    static const s16                cDrawPriorityCustom[cNumCustom];
     static const u8                 cResLoadAtCustom[cNumCustom];
     static const u8                 cResNumCustom[cNumCustom];
     static const sead::SafeString*  cResListCustom[cNumCustom];

@@ -20,7 +20,7 @@ public:
         mID = id;
     }
 
-    u32 getID() const
+    u32 getValue() const
     {
         return mID;
     }

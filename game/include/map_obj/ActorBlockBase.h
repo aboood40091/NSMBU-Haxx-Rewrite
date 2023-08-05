@@ -22,9 +22,11 @@ public:
     bool init(bool register_collider, bool);
     void initMover();
 
-    s32 execute() override;
-    s32 draw() override;
+protected:
+    s32 execute_() override;
+    s32 draw_() override;
 
+public:
     void setBelowSensor() override;
     void spawnItemUp() override;
     void spawnItemDown() override;

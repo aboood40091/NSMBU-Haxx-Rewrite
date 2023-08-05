@@ -1,11 +1,11 @@
 #include <actor/Profile.h>
 
-s16 Profile::getPriority(u32 id)
+s16 Profile::getDrawPriority(u32 id)
 {
     if (id < cNum)
-        return cPriority[id];
+        return cDrawPriority[id];
 
-    return ProfileHaxx::cPriorityCustom[id - cNum];
+    return ProfileHaxx::cDrawPriorityCustom[id - cNum];
 }
 
 Profile::ResLoadAt Profile::getResLoadAt(u32 id)
@@ -37,9 +37,9 @@ u32 ProfileHaxx::getProfileNumAll()
     return cNumAll;
 }
 
-// ----------------------------------------- Priority ----------------------------------------- //
+// --------------------------------------- DrawPriority --------------------------------------- //
 
-const s16 ProfileHaxx::cPriorityCustom[] = {
+const s16 ProfileHaxx::cDrawPriorityCustom[] = {
     0,  // ProfileID::cActorSpawner
     0,  // ProfileID::cFlipBlock
     0,  // ProfileID::cMagicPlatform

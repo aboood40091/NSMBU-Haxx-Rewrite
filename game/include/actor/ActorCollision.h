@@ -12,13 +12,15 @@ public:
     ActorCollision(const ActorInitArg& arg);
     virtual ~ActorCollision() { }
 
-    void postCreate(MainState state) override;
+protected:
+    void postCreate_(MainState state) override;
 
-    s32 preExecute() override;
-    void postExecute(MainState state) override;
+    s32 preExecute_() override;
+    void postExecute_(MainState state) override;
 
-    s32 doDelete() override;
+    s32 doDelete_() override;
 
+public:
     ActorBgCollisionCheck* getBgCheck() override
     {
         return &mBgCheck;

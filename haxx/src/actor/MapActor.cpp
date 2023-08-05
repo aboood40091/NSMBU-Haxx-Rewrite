@@ -99,7 +99,7 @@ const u32 MapActor::cProfileID[] = {
     82,     //  94
     83,     //  95
     613,    //  96
-    587,    //  97
+    ProfileID::cBgCenter,       //  97
     614,    //  98
     385,    //  99
     13,     // 100
@@ -357,7 +357,7 @@ const u32 MapActor::cProfileID[] = {
     676,    // 352
     50,     // 353
     250,    // 354
-    210,    // 355
+    ProfileID::cFloorHoleDokan, // 355
     251,    // 356
     653,    // 357
     176,    // 358

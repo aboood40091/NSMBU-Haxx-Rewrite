@@ -3,37 +3,71 @@
 #include <gfx/seadCamera.h>
 #include <gfx/seadProjection.h>
 #include <heap/seadDisposer.h>
+#include <layer/aglLayer.h>
 #include <math/seadBoundBox.h>
-#include <math/seadVector.h>
 
-class Model;
-class BasicModel;
-class RenderObjLayerBase;
+class   BasicModel;
+class   Model;
+class   ModelFFL;
+class   RenderObjLayerBase;
+enum    UnitID;
+
+class Angle
+{
+public:
+    Angle(u32 angle)
+        : value(angle)
+    {
+    }
+
+    operator u32() const
+    {
+        return value;
+    }
+
+private:
+    u32 value;
+};
 
 class Renderer
 {
     SEAD_SINGLETON_DISPOSER(Renderer)
 
 public:
+    enum GatherType
+    {
+        cGatherType_0 = 0,  // AreaTask
+        cGatherType_1,      // CourseSelectTask, DarkCloudDemoScene, GameSetupScene, MultiPlayCourseSelectScene, ResultScene
+        cGatherType_2,      // DemoTestScene
+        cGatherType_3       // CourseTask, ChallengeResultScene, WithMiiPackSelectScene
+    };
+
+public:
     Renderer();
     ~Renderer();
 
-    void setTargetLayer(RenderObjLayerBase* p_layer, u32 obj_buffer_type = 0);
-    void resetTargetLayer();
+    void setViewBoundBox(const sead::BoundBox2f& box);
+
+    void calcForAreaTask();
+
+    void setLayer(agl::lyr::Layer* p_layer, GatherType type);
+    void resetLayer();
 
     void drawModel(Model* p_model);
-    void drawModel(BasicModel* p_bmdl);
-  //void drawModel(ModelFFL* p_model);
-    void drawUnit(u16 unit_no, const sead::Vector3f& trans, const u32& rotat, const sead::Vector3f& scale);
+    void drawModel(const BasicModel* p_model);
+    void drawModel(ModelFFL* p_model);
+
+    void drawActorBgUnit(UnitID unit, const sead::Vector3f& pos, Angle angle, const sead::Vector3f& scale);
+    void drawActorBgUnitLayer0(UnitID unit, const sead::Vector3f& pos, Angle angle, const sead::Vector3f& scale);
 
 private:
-    sead::BoundBox2f        _10;
-    sead::OrthoProjection   mProjection;
-    sead::LookAtCamera      mCamera;        // Actually sead::OrthoCamera
+    sead::BoundBox2f        mViewBoundBox;
+    sead::OrthoProjection   mProjection3D;
+    sead::OrthoCamera       mCamera3D;
     RenderObjLayerBase*     mpLayer;
-    s32                     mOpaBufferIdx;
-    s32                     mXluBufferIdx;
-    sead::OrthoProjection   _130;
-    sead::LookAtCamera      _1dc;           // Actually sead::OrthoCamera
+    s32                     mDefaultOpaBufferIdx;
+    s32                     mDefaultXluBufferIdx;
+    sead::OrthoProjection   mProjectionFinalKoopa;
+    sead::OrthoCamera       mCameraFinalKoopa;
 };
 static_assert(sizeof(Renderer) == 0x234);

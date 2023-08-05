@@ -10,10 +10,10 @@ deleteActorWhenOutOfView__5ActorFUi = 0x020007A0;
 splashLavaWave__5ActorFPQ2_4sead16Vector3__tm__2_f = 0x02000960;
 __ct__5ActorFRC12ActorInitArg = 0x02000AC8;
 __dt__5ActorFv = 0x02000F18;
-postCreate__5ActorFQ2_9ActorBase9MainState = 0x02000FB8;
-preExecute__5ActorFv = 0x02000FE8;
-postExecute__5ActorFQ2_9ActorBase9MainState = 0x020010BC;
-preDraw__5ActorFv = 0x020011A0;
+postCreate___5ActorFQ2_9ActorBase9MainState = 0x02000FB8;
+preExecute___5ActorFv = 0x02000FE8;
+postExecute___5ActorFQ2_9ActorBase9MainState = 0x020010BC;
+preDraw___5ActorFv = 0x020011A0;
 isOffScreen__5ActorFv = 0x02001254;
 checkDerivedRuntimeTypeInfo__5ActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x02002A38;
 killAtGoal__5ActorFv = 0x02002AD8;
@@ -28,23 +28,23 @@ getRuntimeTypeInfo__5ActorCFv = __deleted_virtual_called;
 
 /* ActorBase */
 getProfileID__9ActorBaseCFv = 0x02002C80;
-postDraw__9ActorBaseFQ2_9ActorBase9MainState = 0x02002F38;
-postDelete__9ActorBaseFQ2_9ActorBase9MainState = 0x02002F3C;
-preCreate__9ActorBaseFv = 0x02002F7C;
-onExecute__9ActorBaseFv = 0x02002F8C;
-finalUpdate__9ActorBaseFv = 0x02002F94;
-draw__9ActorBaseFv = 0x02002FA0;
-preDelete__9ActorBaseFv = 0x02002FA8;
-doDelete__9ActorBaseFv = 0x02002FB0;
+postDraw___9ActorBaseFQ2_9ActorBase9MainState = 0x02002F38;
+postDelete___9ActorBaseFQ2_9ActorBase9MainState = 0x02002F3C;
+preCreate___9ActorBaseFv = 0x02002F7C;
+execute___9ActorBaseFv = 0x02002F8C;
+finalUpdate___9ActorBaseFv = 0x02002F94;
+draw___9ActorBaseFv = 0x02002FA0;
+preDelete___9ActorBaseFv = 0x02002FA8;
+doDelete___9ActorBaseFv = 0x02002FB0;
 __vtbl__9ActorBase = 0x100006C0;
 __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__9ActorBaseSFv = 0x101E9CC4;
 typeInfo__L0__getRuntimeTypeInfoStatic__9ActorBaseSFv = 0x101E9CC8;
 
 /* ActorCollision */
-postCreate__14ActorCollisionFQ2_9ActorBase9MainState = 0x0200354C;
-preExecute__14ActorCollisionFv = 0x020035FC;
-postExecute__14ActorCollisionFQ2_9ActorBase9MainState = 0x020036D8;
-doDelete__14ActorCollisionFv = 0x02003724;
+postCreate___14ActorCollisionFQ2_9ActorBase9MainState = 0x0200354C;
+preExecute___14ActorCollisionFv = 0x020035FC;
+postExecute___14ActorCollisionFQ2_9ActorBase9MainState = 0x020036D8;
+doDelete___14ActorCollisionFv = 0x02003724;
 vf144__14ActorCollisionFb = 0x0200375C;
 vf14C__14ActorCollisionFP5Actor = 0x02003760;
 handleGravity__14ActorCollisionFv = 0x020039AC;
@@ -57,7 +57,7 @@ vf114__14ActorCollisionFv = __deleted_virtual_called;
 vf134__14ActorCollisionFv = __deleted_virtual_called;
 
 /* ActorMgr */
-create__8ActorMgrFRC12ActorInitArgQ2_8ActorMgr9Lifecycle = 0x02009A58;
+create__8ActorMgrFRC12ActorInitArgQ2_8ActorMgr12CreateOption = 0x02009A58;
 sInstance__8ActorMgr = 0x101C30C8;
 
 /* ActorState */
@@ -76,7 +76,7 @@ typeInfo__L0__getRuntimeTypeInfoStatic__15ActorMultiStateSFv = 0x101E9CE8;
 cDefault__15ActorCreateInfo = 0x100018F4;
 
 /* Profile */
-cPriority__7Profile = 0x10001940;
+cDrawPriority__7Profile = 0x10001940;
 cResLoadAt__7Profile = 0x10002064;
 cResNum__7Profile = 0x100023F8;
 cResList__7Profile = 0x101C321C;
@@ -84,6 +84,7 @@ sProfile__7Profile = 0x101ED8DC;
 
 /* ProfileID */
 cFloorHoleDokan__9ProfileID = 0x1000409C;
+cBgCenter__9ProfileID = 0x10004680;
 
 /* ActorBgCollisionCheck */
 __dt__21ActorBgCollisionCheckFv = 0x0218ADFC;
@@ -213,8 +214,8 @@ typeInfo__L0__getRuntimeTypeInfoStatic__5LayerSFv = 0x101EA070;
 setTargetLayer__8RendererFP18RenderObjLayerBaseUi = 0x024FAA50;
 resetTargetLayer__8RendererFv = 0x024FAB4C;
 drawModel__8RendererFP5Model = 0x024FAB58;
-drawModel__8RendererFP10BasicModel = 0x024FAC98;
-drawUnit__8RendererFUsRCQ2_4sead16Vector3__tm__2_fRCUiT2 = 0x024FAD28;
+drawModel__8RendererFPC10BasicModel = 0x024FAC98;
+drawActorBgUnit__8RendererF6UnitIDRCQ2_4sead16Vector3__tm__2_f5AngleT2 = 0x024FAD28;
 sInstance__8Renderer = 0x101D2D88;
 
 /* RenderMgr */
@@ -262,8 +263,8 @@ sInstance__10PSwitchMgr = 0x101DB06C;
 
 /* ActorBlockBase */
 __ct__14ActorBlockBaseFRC12ActorInitArg = 0x0269E614;
-execute__14ActorBlockBaseFv = 0x0269E6C4;
-onDraw__14ActorBlockBaseFv = 0x0269E77C;
+execute___14ActorBlockBaseFv = 0x0269E6C4;
+draw___14ActorBlockBaseFv = 0x0269E77C;
 spawnItemUp__14ActorBlockBaseFv = 0x0269EBC0;
 spawnItemDown__14ActorBlockBaseFv = 0x0269EBC4;
 vf1CC__14ActorBlockBaseFv = 0x0269EC04;

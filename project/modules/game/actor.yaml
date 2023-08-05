@@ -20,7 +20,7 @@ Hooks:
   - type: branch
     instr: b
     addr: 0x02019988
-    func: getPriority__7ProfileSFUi
+    func: getDrawPriority__7ProfileSFUi
 
   - type: branch
     instr: b

@@ -14,8 +14,9 @@ public:
     {
     }
 
-    s32 create() override;
-    s32 execute() override;
+private:
+    s32 create_() override;
+    s32 execute_() override;
 
 private:
     u16     mSpawnProfileID;
@@ -24,7 +25,7 @@ private:
 
 static const Profile ActorSpawner_Profile(&ActorSpawner::classInit, ProfileID::cActorSpawner, "ActorSpawner", nullptr, 0);
 
-s32 ActorSpawner::create()
+s32 ActorSpawner::create_()
 {
     if (mEventID[1] == 0)
         return 2;
@@ -37,11 +38,11 @@ s32 ActorSpawner::create()
 
     mSpawned = false;
 
-    execute(); // Call execute() to prevent the spawned actor to be missing for one frame if the event is already active.
+    execute_(); // Call execute_() to prevent the spawned actor to be missing for one frame if the event is already active.
     return 1;
 }
 
-s32 ActorSpawner::execute()
+s32 ActorSpawner::execute_()
 {
     if (!PSwitchMgr::instance()->isActivated(mEventID[1] - 1))
         mSpawned = false;
@@ -52,10 +53,10 @@ s32 ActorSpawner::execute()
         {
             arg.param_0     = mParam0;
             arg.param_1     = mParam1;
-            arg.profile     = Profile::get(mSpawnProfileID);
+            arg.p_profile   = Profile::get(mSpawnProfileID);
             arg.position    = mPos;
-            arg.event_id[0] = mEventID[0] & 0xF;
-            arg.event_id[1] = (mEventID[0] >> 4) & 0xF;
+            arg.event_id_0  = mEventID[0] & 0xF;
+            arg.event_id_1  = (mEventID[0] >> 4) & 0xF;
         }
         ActorMgr::instance()->create(arg);
 
