@@ -90,7 +90,7 @@ s32 MagicPlatform::create_()
     {
         for (u32 x = 0; x < mTileW; x++)
         {
-            u16* p_unit = Bg::getUnitCurrentCdCile(loc_x + x * 16, loc_y + y * 16, 0);
+            u16* p_unit = Bg::getUnitCurrentCdFile(loc_x + x * 16, loc_y + y * 16, 0);
             mTileData[x + y * mTileW] = p_unit ? *p_unit : cUnitID_Null;
         }
     }

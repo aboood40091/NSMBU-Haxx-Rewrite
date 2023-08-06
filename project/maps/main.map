@@ -244,7 +244,7 @@ __ct__21SeadControllerWrapperFv = 0x02514150;
 registerWith__21SeadControllerWrapperFQ2_14SeadController2Id = 0x025141B0;
 
 /* Bg */
-getUnitCurrentCdCile__2BgSFUsT1UcPi = 0x02685000;
+getUnitCurrentCdFile__2BgSFUsT1UcPi = 0x02685000;
 getBgCheckData__2BgFUsT1Ucb = 0x02685148;
 sInstance__2Bg = 0x101DAB94;
 
