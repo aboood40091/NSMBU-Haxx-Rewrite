@@ -27,10 +27,8 @@ static_assert(sizeof(MagicPlatformCB) == sizeof(PairObjChildBaseCB));
 
 class MagicPlatform : public Actor
 {
-    ACTOR_CLASS_INIT(MagicPlatform)
-
 public:
-    MagicPlatform(const ActorInitArg& arg);
+    MagicPlatform(const ActorCreateParam& param);
     virtual ~MagicPlatform() { }
 
 private:
@@ -58,10 +56,10 @@ private:
 };
 
 static const ActorCreateInfo MagicPlatform_ActorCreateInfo = { sead::Vector2i(0, 0), sead::Vector2i(0, 0), sead::Vector2i(0, 0), 0, 0, 0, 0, ActorCreateInfo::cFlag_IgnoreSpawnRange | ActorCreateInfo::cFlag_MapObj };
-static const Profile MagicPlatform_Profile(&MagicPlatform::classInit, ProfileID::cMagicPlatform, "MagicPlatform", &MagicPlatform_ActorCreateInfo, 0);
+static const Profile MagicPlatform_Profile(&TActorFactory<MagicPlatform>, ProfileID::cMagicPlatform, "MagicPlatform", &MagicPlatform_ActorCreateInfo, 0);
 
-MagicPlatform::MagicPlatform(const ActorInitArg& arg)
-    : Actor(arg)
+MagicPlatform::MagicPlatform(const ActorCreateParam& param)
+    : Actor(param)
     , mTileData(nullptr)
     , mParentMovementMgr()
     , mSquareBgCollision()

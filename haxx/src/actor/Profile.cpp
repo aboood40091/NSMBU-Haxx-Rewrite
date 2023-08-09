@@ -3,8 +3,8 @@
 
 sead::SafeArray<Profile*, ProfileHaxx::cNumCustom> ProfileHaxx::sProfileCustom;
 
-Profile::Profile(ClassInit p_class_init, u32 id, const sead::SafeString& name, const ActorCreateInfo* p_create_info, u32 flag)
-    : mpClassInit(p_class_init)
+Profile::Profile(ActorFactory p_actor_factory, s32 id, const sead::SafeString& name, const ActorCreateInfo* p_create_info, u32 flag)
+    : mpActorFactory(p_actor_factory)
     , mID(id)
     , mpActorCreateInfo(p_create_info != nullptr ? p_create_info : &ActorCreateInfo::cDefault)
     , mIsResLoaded(false)
@@ -18,7 +18,7 @@ Profile::Profile(ClassInit p_class_init, u32 id, const sead::SafeString& name, c
 }
 
 
-Profile* Profile::get(u32 id)
+Profile* Profile::get(s32 id)
 {
     if (id < cNum)
         return sProfile[id];

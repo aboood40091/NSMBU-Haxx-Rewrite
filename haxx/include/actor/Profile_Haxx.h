@@ -15,12 +15,12 @@ public:
         }
     };
 
-    struct ReplaceResLoadAt
+    struct ReplaceResType
     {
-        ReplaceResLoadAt(const u32 id, const u8 res_load_at)
+        ReplaceResType(const u32 id, const u8 res_type)
         {
             if (id < cNum)
-                const_cast<u8*>(cResLoadAt)[id] = res_load_at;
+                const_cast<u8*>(cResType)[id] = res_type;
         }
     };
 
@@ -48,7 +48,7 @@ private:
     static sead::SafeArray<Profile*, cNumCustom>    sProfileCustom;
 
     static const s16                cDrawPriorityCustom[cNumCustom];
-    static const u8                 cResLoadAtCustom[cNumCustom];
+    static const u8                 cResTypeCustom[cNumCustom];
     static const u8                 cResNumCustom[cNumCustom];
     static const sead::SafeString*  cResListCustom[cNumCustom];
 

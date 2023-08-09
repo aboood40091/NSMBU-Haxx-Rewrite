@@ -1,6 +1,6 @@
 #include <actor/Profile_Haxx.h>
 
-s16 Profile::getDrawPriority(u32 id)
+s16 Profile::getDrawPriority(s32 id)
 {
     if (id < cNum)
         return cDrawPriority[id];
@@ -8,15 +8,15 @@ s16 Profile::getDrawPriority(u32 id)
     return ProfileHaxx::cDrawPriorityCustom[id - cNum];
 }
 
-Profile::ResLoadAt Profile::getResLoadAt(u32 id)
+Profile::ResType Profile::getResType(s32 id)
 {
     if (id < cNum)
-        return ResLoadAt(cResLoadAt[id]);
+        return ResType(cResType[id]);
 
-    return ResLoadAt(ProfileHaxx::cResLoadAtCustom[id - cNum]);
+    return ResType(ProfileHaxx::cResTypeCustom[id - cNum]);
 }
 
-u8 Profile::getResNum(u32 id)
+u8 Profile::getResNum(s32 id)
 {
     if (id < cNum)
         return cResNum[id];
@@ -24,7 +24,7 @@ u8 Profile::getResNum(u32 id)
     return ProfileHaxx::cResNumCustom[id - cNum];
 }
 
-const sead::SafeString* Profile::getResList(u32 id)
+const sead::SafeString* Profile::getResList(s32 id)
 {
     if (id < cNum)
         return cResList[id];
@@ -46,13 +46,13 @@ const s16 ProfileHaxx::cDrawPriorityCustom[] = {
     0   // ProfileID::cEffectPlayer
 };
 
-// ----------------------------------------  ResLoadAt ---------------------------------------- //
+// -----------------------------------------  ResType ----------------------------------------- //
 
-const u8 ProfileHaxx::cResLoadAtCustom[] = {
-    Profile::cResLoadAt_Course, // ProfileID::cActorSpawner
-    Profile::cResLoadAt_Course, // ProfileID::cFlipBlock
-    Profile::cResLoadAt_Course, // ProfileID::cMagicPlatform
-    Profile::cResLoadAt_Course  // ProfileID::cEffectPlayer
+const u8 ProfileHaxx::cResTypeCustom[] = {
+    Profile::cResType_Course,   // ProfileID::cActorSpawner
+    Profile::cResType_Course,   // ProfileID::cFlipBlock
+    Profile::cResType_Course,   // ProfileID::cMagicPlatform
+    Profile::cResType_Course    // ProfileID::cEffectPlayer
 };
 
 // -------------------------------------------  Res ------------------------------------------- //

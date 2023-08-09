@@ -9,7 +9,7 @@ directionToPlayerH__5ActorFRC4Vec3 = 0x020005EC;
 directionToPlayerV__5ActorFRC4Vec3 = 0x020006B4;
 screenOutCheck__5ActorFUs = 0x020007A0;
 splashLavaWave__5ActorFPQ2_4sead16Vector3__tm__2_f = 0x02000960;
-__ct__5ActorFRC12ActorInitArg = 0x02000AC8;
+__ct__5ActorFRC16ActorCreateParam = 0x02000AC8;
 __dt__5ActorFv = 0x02000F18;
 postCreate___5ActorFQ2_9ActorBase9MainState = 0x02000FB8;
 preExecute___5ActorFv = 0x02000FE8;
@@ -59,7 +59,7 @@ vf114__14ActorCollisionFv = __deleted_virtual_called;
 vf134__14ActorCollisionFv = __deleted_virtual_called;
 
 /* ActorMgr */
-create__8ActorMgrFRC12ActorInitArgQ2_8ActorMgr12CreateOption = 0x02009A58;
+createImmediately__8ActorMgrFRC16ActorCreateParamQ2_8ActorMgr12CreateOption = 0x02009A58;
 sInstance__8ActorMgr = 0x101C30C8;
 
 /* ActorState */
@@ -79,7 +79,7 @@ cDefault__15ActorCreateInfo = 0x100018F4;
 
 /* Profile */
 cDrawPriority__7Profile = 0x10001940;
-cResLoadAt__7Profile = 0x10002064;
+cResType__7Profile = 0x10002064;
 cResNum__7Profile = 0x100023F8;
 cResList__7Profile = 0x101C321C;
 sProfile__7Profile = 0x101ED8DC;
@@ -264,7 +264,7 @@ sInstance__10CourseData = 0x101DB048;
 sInstance__10PSwitchMgr = 0x101DB06C;
 
 /* ActorBlockBase */
-__ct__14ActorBlockBaseFRC12ActorInitArg = 0x0269E614;
+__ct__14ActorBlockBaseFRC16ActorCreateParam = 0x0269E614;
 execute___14ActorBlockBaseFv = 0x0269E6C4;
 draw___14ActorBlockBaseFv = 0x0269E77C;
 spawnItemUp__14ActorBlockBaseFv = 0x0269EBC0;

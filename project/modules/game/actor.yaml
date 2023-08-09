@@ -10,32 +10,32 @@ Hooks:
   - type: branch
     instr: b
     addr: 0x02019554
-    func: __ct__7ProfileFPFRC12ActorInitArg_P9ActorBaseUiRCQ2_4sead23SafeStringBase__tm__2_cPC15ActorCreateInfoT2
+    func: __ct__7ProfileFPFRC16ActorCreateParam_P9ActorBaseiRCQ2_4sead23SafeStringBase__tm__2_cPC15ActorCreateInfoUi
 
   - type: branch
     instr: b
     addr: 0x02019774
-    func: get__7ProfileSFUi
+    func: get__7ProfileSFi
 
   - type: branch
     instr: b
     addr: 0x02019988
-    func: getDrawPriority__7ProfileSFUi
+    func: getDrawPriority__7ProfileSFi
 
   - type: branch
     instr: b
     addr: 0x020199A8
-    func: getResLoadAt__7ProfileSFUi
+    func: getResType__7ProfileSFi
 
   - type: branch
     instr: b
     addr: 0x020199CC
-    func: getResNum__7ProfileSFUi
+    func: getResNum__7ProfileSFi
 
   - type: branch
     instr: b
     addr: 0x020199EC
-    func: getResList__7ProfileSFUi
+    func: getResList__7ProfileSFi
 
   - type: patch
     addr:

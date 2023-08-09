@@ -1,7 +1,7 @@
 #include <actor/MapActor.h>
 #include <actor/ProfileID_Haxx.h>
 
-const u32 MapActor::cProfileID[] = {
+const s32 MapActor::cProfileID[] = {
     467,    //   0
     469,    //   1
     479,    //   2

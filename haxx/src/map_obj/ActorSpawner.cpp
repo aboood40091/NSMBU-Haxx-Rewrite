@@ -6,11 +6,9 @@
 
 class ActorSpawner : public Actor
 {
-    ACTOR_CLASS_INIT(ActorSpawner)
-
 public:
-    ActorSpawner(const ActorInitArg& arg)
-        : Actor(arg)
+    ActorSpawner(const ActorCreateParam& param)
+        : Actor(param)
     {
     }
 
@@ -23,7 +21,7 @@ private:
     bool    mSpawned;
 };
 
-static const Profile ActorSpawner_Profile(&ActorSpawner::classInit, ProfileID::cActorSpawner, "ActorSpawner", nullptr, 0);
+static const Profile ActorSpawner_Profile(&TActorFactory<ActorSpawner>, ProfileID::cActorSpawner, "ActorSpawner", nullptr, 0);
 
 s32 ActorSpawner::create_()
 {
@@ -49,16 +47,16 @@ s32 ActorSpawner::execute_()
 
     else if (!mSpawned)
     {
-        ActorInitArg arg;
+        ActorCreateParam param;
         {
-            arg.param_0     = mParam0;
-            arg.param_1     = mParam1;
-            arg.p_profile   = Profile::get(mSpawnProfileID);
-            arg.position    = mPos;
-            arg.event_id_0  = mEventID[0] & 0xF;
-            arg.event_id_1  = (mEventID[0] >> 4) & 0xF;
+            param.param_0       = mParam0;
+            param.param_1       = mParam1;
+            param.p_profile     = Profile::get(mSpawnProfileID);
+            param.position      = mPos;
+            param.event_id_0    = mEventID[0] & 0xF;
+            param.event_id_1    = (mEventID[0] >> 4) & 0xF;
         }
-        ActorMgr::instance()->create(arg);
+        ActorMgr::instance()->createImmediately(param);
 
         mSpawned = true;
     }

@@ -19,10 +19,8 @@
 
 class FlipBlock : public ActorBlockBase
 {
-    ACTOR_CLASS_INIT(FlipBlock)
-
 public:
-    FlipBlock(const ActorInitArg& arg);
+    FlipBlock(const ActorCreateParam& param);
     virtual ~FlipBlock() { }
 
 private:
@@ -56,12 +54,12 @@ CREATE_STATE_ID(FlipBlock, Flipping)
 CREATE_STATE_VIRTUAL_ID_OVERRIDE(FlipBlock, BlockCoinBase, DownMove_DiffEnd)
 
 static const ActorCreateInfo FlipBlock_ActorCreateInfo = { sead::Vector2i(8, -16), sead::Vector2i(8, -8), sead::Vector2i(0x100, 0x100), 0, 0, 0, 0, ActorCreateInfo::cFlag_MapObj };
-static const Profile FlipBlock_Profile(&FlipBlock::classInit, ProfileID::cFlipBlock, "FlipBlock", &FlipBlock_ActorCreateInfo, 0x1002);
+static const Profile FlipBlock_Profile(&TActorFactory<FlipBlock>, ProfileID::cFlipBlock, "FlipBlock", &FlipBlock_ActorCreateInfo, 0x1002);
 
 const ActorCollisionCheck::Info FlipBlock::cCcInfo = { sead::Vector2f(0.0f, 8.0f), sead::Vector2f(8.0f, 8.0f), ActorCollisionCheck::cShape_Square, 0, 0, 0, 0, 0, nullptr };
 
-FlipBlock::FlipBlock(const ActorInitArg& arg)
-    : ActorBlockBase(arg)
+FlipBlock::FlipBlock(const ActorCreateParam& param)
+    : ActorBlockBase(param)
     , mFlipsRemaining(0)
 {
 }

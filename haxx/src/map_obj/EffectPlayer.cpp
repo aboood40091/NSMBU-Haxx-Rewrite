@@ -22,10 +22,8 @@
 
 class EffectPlayer : public Actor
 {
-    ACTOR_CLASS_INIT(EffectPlayer)
-
 public:
-    EffectPlayer(const ActorInitArg& arg);
+    EffectPlayer(const ActorCreateParam& param);
 
 private:
     s32 create_()  override;
@@ -74,10 +72,10 @@ const sead::Vector2f EffectPlayer::s_p4( 8.0f, -16.0f);
 const sead::Vector2f EffectPlayer::s_p5(-8.0f, -16.0f);
 const sead::Vector2f EffectPlayer::s_p6(-8.0f,   0.0f);
 
-static const Profile EffectPlayer_Profile(&EffectPlayer::classInit, ProfileID::cEffectPlayer, "EffectPlayer", nullptr, 0);
+static const Profile EffectPlayer_Profile(&TActorFactory<EffectPlayer>, ProfileID::cEffectPlayer, "EffectPlayer", nullptr, 0);
 
-EffectPlayer::EffectPlayer(const ActorInitArg& arg)
-    : Actor(arg)
+EffectPlayer::EffectPlayer(const ActorCreateParam& param)
+    : Actor(param)
     , mEffectHandle()
     , mCurrentEmitterSetID(-1)
     , mMtx(nw::math::MTX34::Identity())
