@@ -102,8 +102,8 @@ s32 MagicPlatform::create_()
         return 2;
 
     BgCheckUnitInfo::SurfaceType bg_collision_surface_type = BgCheckUnitInfo::SurfaceType((mParam0 >> 12) & 0xF);
-    if (bg_collision_surface_type > BgCheckUnitInfo::cSurfaceType_BeanstalkLeaf)
-        bg_collision_surface_type = BgCheckUnitInfo::cSurfaceType_Normal;
+    if (bg_collision_surface_type > BgCheckUnitInfo::cSurfaceType_Manta)
+        bg_collision_surface_type = BgCheckUnitInfo::cSurfaceType_Rock;
 
     switch (mCollisionType)
     {

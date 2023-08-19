@@ -4,7 +4,7 @@ __deleted_virtual_called = 0x02AFA5E8;
 /* Actor */
 removeCollisionCheck__5ActorFv = 0x020002CC;
 reviveCollisionCheck__5ActorFv = 0x02000328;
-distanceToPlayer__5ActorFR4Vec2 = 0x020005A4;
+searchNearPlayer__5ActorFR4Vec2 = 0x020005A4;
 directionToPlayerH__5ActorFRC4Vec3 = 0x020005EC;
 directionToPlayerV__5ActorFRC4Vec3 = 0x020006B4;
 screenOutCheck__5ActorFUs = 0x020007A0;
