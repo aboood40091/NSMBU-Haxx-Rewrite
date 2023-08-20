@@ -414,13 +414,13 @@ sInstance__11SndAudioMgr = 0x101E7C84;
 /* SndBgmMgr */
 shouldHurryUp__9SndBgmMgrFv = 0x029B83D8;
 
-/* IStateID */
-__LSG__s_number_memo__L0____ct__8IStateIDFv = 0x101E9E9C;
-s_number_memo__L0____ct__8IStateIDFv = 0x101E9F04;
+/* StateID */
+__LSG__s_number_memo__L0____ct__7StateIDFv = 0x101E9E9C;
+s_number_memo__L0____ct__7StateIDFv = 0x101E9F04;
 
 /* StateMethod */
 execute__11StateMethodFv = 0x029C4A80;
-changeStateMethod__11StateMethodFRC8IStateID = 0x029C4AF0;
+changeStateMethod__11StateMethodFRC7StateID = 0x029C4AF0;
 cNullStateID__11StateMethod = 0x1022D390;
 
 /* new/delete */
