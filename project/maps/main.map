@@ -149,28 +149,46 @@ typeInfo__L0__getRuntimeTypeInfoStatic__24BasicRideLineBgCollisionSFv = 0x101E9F
 setType__11BgCollisionFQ2_11BgCollision4Type = 0x021A5A70;
 setSolidType__11BgCollisionFQ2_15BgCheckUnitInfo9SolidType = 0x021A5A90;
 setSurfaceType__11BgCollisionFQ2_15BgCheckUnitInfo11SurfaceType = 0x021A5AD0;
+vf24__11BgCollisionFPUiUi = 0x021A7688; // TODO: Remove me
+vf2C__11BgCollisionFPUi = __deleted_virtual_called;
 __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__11BgCollisionSFv = 0x101E9D2C;
 typeInfo__L0__getRuntimeTypeInfoStatic__11BgCollisionSFv = 0x101E9FA4;
+
+/* SimpleBoxBgCollision */
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__20SimpleBoxBgCollisionSFv = 0x101E9EA0;
+typeInfo__L0__getRuntimeTypeInfoStatic__20SimpleBoxBgCollisionSFv = 0x101E9FCC;
+
+/* BoxBgCollision */
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__14BoxBgCollisionSFv = 0x101E9D38;
+typeInfo__L0__getRuntimeTypeInfoStatic__14BoxBgCollisionSFv = 0x101E9FBC;
 
 /* LoopRideLineBgCollision */
 __ct__23LoopRideLineBgCollisionFiPQ2_4sead16Vector2__tm__2_fP13BasicRideLineT3 = 0x021A7904;
 __dt__23LoopRideLineBgCollisionFv = 0x021A7A04;
+vf34__23LoopRideLineBgCollisionFv = 0x021A7E34;
 execute__23LoopRideLineBgCollisionFv = 0x021A871C;
-setRect__23LoopRideLineBgCollisionFP4Vec2T1 = 0x021AD25C;
+vf44__23LoopRideLineBgCollisionFP22BgCollisionCheckResultPUcPQ2_4sead16Vector2__tm__2_fT3Uc = 0x021A8780;
+vf4C__23LoopRideLineBgCollisionFP27ActorBgCollisionCheckResultPQ2_4sead16Vector2__tm__2_fT2UcP21ActorBgCollisionCheck = 0x021ABFD8;
+vf5C__23LoopRideLineBgCollisionFPUi = __deleted_virtual_called;
+vf84__23LoopRideLineBgCollisionFv = 0x021AC8F8;
+vf64__23LoopRideLineBgCollisionFv = 0x021ACB50;
+vf6C__23LoopRideLineBgCollisionFv = 0x021ACBB4;
+vf74__23LoopRideLineBgCollisionFPUi = 0x021ACE40;
+vf7C__23LoopRideLineBgCollisionFPQ2_4sead16Vector2__tm__2_ff = 0x021ACE8C;
 __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__23LoopRideLineBgCollisionSFv = 0x101E9D30;
 typeInfo__L0__getRuntimeTypeInfoStatic__23LoopRideLineBgCollisionSFv = 0x101E9FB4;
 
 /* LoopRideLineBgCollisionUtil */
-set__27LoopRideLineBgCollisionUtilSFP23LoopRideLineBgCollisionP5ActorRCQ2_11BgCollision13SquareInitArg = 0x021AD3BC;
+set__27LoopRideLineBgCollisionUtilSFP23LoopRideLineBgCollisionP5ActorRCQ2_11BgCollision10BoxInitArg = 0x021AD3BC;
 
 /* PoleRopeBgCollision */
 __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__19PoleRopeBgCollisionSFv = 0x101EA380;
 typeInfo__L0__getRuntimeTypeInfoStatic__19PoleRopeBgCollisionSFv = 0x101EA384;
 
-/* SquareBgCollision */
-__vtbl__17SquareBgCollision = 0x100FB820;
-__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__17SquareBgCollisionSFv = 0x101E9D38;
-typeInfo__L0__getRuntimeTypeInfoStatic__17SquareBgCollisionSFv = 0x101E9FBC;
+/* SimpleShapeBgCollision */
+vf54__22SimpleShapeBgCollisionFPUcPQ2_4sead16Vector2__tm__2_f = 0x021B096C;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__22SimpleShapeBgCollisionSFv = 0x101E9D34;
+typeInfo__L0__getRuntimeTypeInfoStatic__22SimpleShapeBgCollisionSFv = 0x101E9FB8;
 
 /* CourseSelectTask::Layer2D */
 __vtbl__Q2_16CourseSelectTask7Layer2D = 0x10047018;

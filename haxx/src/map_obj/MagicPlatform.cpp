@@ -2,7 +2,7 @@
 #include <actor/Profile_Haxx.h>
 #include <collision/ActorBgCollisionMgr.h>
 #include <collision/BasicRideLineBgCollision.h>
-#include <collision/SquareBgCollision.h>
+#include <collision/BoxBgCollision.h>
 #include <game/Info.h>
 #include <graphics/BasicModel.h>
 #include <graphics/Renderer.h>
@@ -46,11 +46,12 @@ private:
 
     enum CollisionType
     {
-        cCollisionType_Square,
+        cCollisionType_Box,
         cCollisionType_Line,
         cCollisionType_None
-    }                           mCollisionType;
-    SquareBgCollision           mSquareBgCollision;
+    };
+    CollisionType               mCollisionType;
+    BoxBgCollision              mBoxBgCollision;
     MagicPlatformCB             mCollisionCallback;
     BasicRideLineBgCollision    mLineBgCollision;
 };
@@ -62,7 +63,7 @@ MagicPlatform::MagicPlatform(const ActorCreateParam& param)
     : Actor(param)
     , mTileData(nullptr)
     , mParentMovementMgr()
-    , mSquareBgCollision()
+    , mBoxBgCollision()
     , mLineBgCollision()
 {
 }
@@ -107,25 +108,25 @@ s32 MagicPlatform::create_()
 
     switch (mCollisionType)
     {
-    case cCollisionType_Square:
+    case cCollisionType_Box:
         {
-            BgCollision::SquareInitArg arg = { sead::Vector2f(0.0f, 0.0f), sead::Vector2f(0.0f, 0.0f), sead::Vector2f(mTileW * -8.0f, mTileH * 8.0f), sead::Vector2f(mTileW * 8.0f, mTileH * -8.0f), 0 };
-            mSquareBgCollision.set(this, arg);
+            BgCollision::BoxInitArg arg = { sead::Vector2f(0.0f, 0.0f), sead::Vector2f(0.0f, 0.0f), sead::Vector2f(mTileW * -8.0f, mTileH * 8.0f), sead::Vector2f(mTileW * 8.0f, mTileH * -8.0f), 0 };
+            mBoxBgCollision.set(this, arg);
 
             // More Ugh
             // Callback table, useful for squishing the player
-            mSquareBgCollision.setCollisionCallback(&mCollisionCallback);
-            mSquareBgCollision.setCheckRev(
+            mBoxBgCollision.setCollisionCallback(&mCollisionCallback);
+            mBoxBgCollision.setCheckRev(
                 &PairObjChild::checkRevFoot,
                 &PairObjChild::checkRevHead,
                 &PairObjChild::checkRevWall
             );
 
-            mSquareBgCollision.setType(bg_collision_type);
+            mBoxBgCollision.setType(bg_collision_type);
             if ((mParam0 >> 24) & 1)
-                mSquareBgCollision.setSurfaceType(bg_collision_surface_type);
+                mBoxBgCollision.setSurfaceType(bg_collision_surface_type);
 
-            ActorBgCollisionMgr::instance()->entry(mSquareBgCollision);
+            ActorBgCollisionMgr::instance()->entry(mBoxBgCollision);
         }
         break;
     case cCollisionType_Line:
@@ -160,9 +161,9 @@ s32 MagicPlatform::execute_()
 
     switch (mCollisionType)
     {
-    case cCollisionType_Square:
-        mSquareBgCollision.setAngle(mAngle.z);
-        mSquareBgCollision.execute();
+    case cCollisionType_Box:
+        mBoxBgCollision.setAngle(mAngle.z);
+        mBoxBgCollision.execute();
         break;
     case cCollisionType_Line:
         mLineBgCollision.setAngle(mAngle.z);

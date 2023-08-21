@@ -56,7 +56,7 @@ CREATE_STATE_VIRTUAL_ID_OVERRIDE(FlipBlock, BlockCoinBase, DownMove_DiffEnd)
 static const ActorCreateInfo FlipBlock_ActorCreateInfo = { sead::Vector2i(8, -16), sead::Vector2i(8, -8), sead::Vector2i(0x100, 0x100), 0, 0, 0, 0, ActorCreateInfo::cFlag_MapObj };
 static const Profile FlipBlock_Profile(&TActorFactory<FlipBlock>, ProfileID::cFlipBlock, "FlipBlock", &FlipBlock_ActorCreateInfo, 0x1002);
 
-const ActorCollisionCheck::Info FlipBlock::cCcInfo = { sead::Vector2f(0.0f, 8.0f), sead::Vector2f(8.0f, 8.0f), ActorCollisionCheck::cShape_Square, 0, 0, 0, 0, 0, nullptr };
+const ActorCollisionCheck::Info FlipBlock::cCcInfo = { sead::Vector2f(0.0f, 8.0f), sead::Vector2f(8.0f, 8.0f), ActorCollisionCheck::cShape_Box, 0, 0, 0, 0, 0, nullptr };
 
 FlipBlock::FlipBlock(const ActorCreateParam& param)
     : ActorBlockBase(param)
@@ -74,7 +74,7 @@ s32 FlipBlock::create_()
     mCollisionMask.setDirect(0x01);
 
     mType = cType_Hatena;
-    mSquareBgCollision.setType(BgCollision::cType_QuestionBlock);
+    mBoxBgCollision.setType(BgCollision::cType_QuestionBlock);
 
     if (!init(true, true))
         return 2;
@@ -142,15 +142,15 @@ void FlipBlock::finalizeState_DownMove_DiffEnd()
 
     // Undo our "fake" Used state
     mType = cType_Hatena;
-    mSquareBgCollision.setType(BgCollision::cType_QuestionBlock);
+    mBoxBgCollision.setType(BgCollision::cType_QuestionBlock);
 
-    mSquareBgCollision.setCallbackFlag(0x00000018);
-    mSquareBgCollision.setCallback(
+    mBoxBgCollision.setCallbackFlag(0x00000018);
+    mBoxBgCollision.setCallback(
         &BlockCoinBase::callbackFoot,
         &BlockCoinBase::callbackHead,
         &BlockCoinBase::callBackWall
     );
-    mSquareBgCollision.setCollisionCallback(&mCollisionCallback);
+    mBoxBgCollision.setCollisionCallback(&mCollisionCallback);
 }
 
 bool FlipBlock::isActive()
@@ -173,7 +173,7 @@ void FlipBlock::destroy2()
 void FlipBlock::initializeState_Flipping()
 {
     mFlipsRemaining = 7;
-    ActorBgCollisionMgr::instance()->release(mSquareBgCollision);
+    ActorBgCollisionMgr::instance()->release(mBoxBgCollision);
 }
 
 void FlipBlock::executeState_Flipping()

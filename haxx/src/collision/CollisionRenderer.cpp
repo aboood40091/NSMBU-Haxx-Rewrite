@@ -293,7 +293,7 @@ static inline void drawCapsule(const sead::Vector2f& point1, const sead::Vector2
     drawLine(point1 + delta, point2 + delta, z, color, line_width);
 }
 
-static inline void drawActorCollisionCheck_Square(const ActorCollisionCheck& cc)
+static inline void drawActorCollisionCheck_Box(const ActorCollisionCheck& cc)
 {
     const sead::BoundBox2f& box = cc.getBoundBox();
     const f32 z = cc.getOwner()->getPos().z;
@@ -388,8 +388,8 @@ static inline void drawActorCollisionCheck(const ActorCollisionCheck& cc)
 {
     switch (cc.getInfo().shape)
     {
-    case ActorCollisionCheck::cShape_Square:
-        drawActorCollisionCheck_Square(cc);
+    case ActorCollisionCheck::cShape_Box:
+        drawActorCollisionCheck_Box(cc);
         break;
     case ActorCollisionCheck::cShape_Circle:
         drawActorCollisionCheck_Circle(cc);
