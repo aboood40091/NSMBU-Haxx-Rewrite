@@ -539,10 +539,10 @@ static inline void drawBgCollision(const BgCollision& bg_collision, const agl::l
 
   //drawBox(affected_area, 3600, sead::Color4f::cRed, 1.0f);
 
-    const f32 x = (affected_area.getMin().x - screen_left  ) * w_ratio;
-    const f32 y = (affected_area.getMin().y - screen_bottom) * h_ratio;
-    const f32 w = affected_area.getSizeX() * w_ratio;
-    const f32 h = affected_area.getSizeY() * h_ratio;
+    const f32 x = ((affected_area.getMin().x - 0.5f) - screen_left  ) * w_ratio;
+    const f32 y = ((affected_area.getMin().y - 0.5f) - screen_bottom) * h_ratio;
+    const f32 w = (affected_area.getSizeX() + 1.0f) * w_ratio;
+    const f32 h = (affected_area.getSizeY() + 1.0f) * h_ratio;
 
     // Apply scissor
     {
@@ -553,6 +553,15 @@ static inline void drawBgCollision(const BgCollision& bg_collision, const agl::l
 
         sead::Vector2f real_size;
         viewport.getOnFrameBufferSize(&real_size, frame_buffer);
+
+        const f32 real_pos_max_x = std::ceil(real_pos.x + real_size.x);
+        const f32 real_pos_max_y = std::ceil(real_pos.y + real_size.y);
+
+        real_pos .x = sead::Mathf::max(std::floor(real_pos .x), frame_buffer.getPhysicalArea().getMin().x);
+        real_pos .y = sead::Mathf::max(std::floor(real_pos .y), frame_buffer.getPhysicalArea().getMin().y);
+
+        real_size.x = sead::Mathf::min(real_pos_max_x, frame_buffer.getPhysicalArea().getMax().x) - real_pos.x;
+        real_size.y = sead::Mathf::min(real_pos_max_y, frame_buffer.getPhysicalArea().getMax().y) - real_pos.y;
 
         // SEAD_ASSERT(frame_buffer.getPhysicalArea().isInside(real_pos) && frame_buffer.getPhysicalArea().isInside(real_pos + real_size));
 
