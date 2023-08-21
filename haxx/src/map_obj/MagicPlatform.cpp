@@ -1,8 +1,8 @@
 #include <actor/Actor.h>
 #include <actor/Profile_Haxx.h>
 #include <collision/ActorBgCollisionMgr.h>
+#include <collision/ActorBoxBgCollision.h>
 #include <collision/BasicRideLineBgCollision.h>
-#include <collision/BoxBgCollision.h>
 #include <game/Info.h>
 #include <graphics/BasicModel.h>
 #include <graphics/Renderer.h>
@@ -51,7 +51,7 @@ private:
         cCollisionType_None
     };
     CollisionType               mCollisionType;
-    BoxBgCollision              mBoxBgCollision;
+    ActorBoxBgCollision         mBoxBgCollision;
     MagicPlatformCB             mCollisionCallback;
     BasicRideLineBgCollision    mLineBgCollision;
 };

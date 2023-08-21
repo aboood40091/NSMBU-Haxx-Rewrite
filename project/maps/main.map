@@ -106,6 +106,10 @@ sInstance__19ActorBgCollisionMgr = 0x101C9360;
 /* __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__24ActorBgCollisionObjCheckSFv */
 /* typeInfo__L0__getRuntimeTypeInfoStatic__24ActorBgCollisionObjCheckSFv */
 
+/* ActorBoxBgCollision */
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__19ActorBoxBgCollisionSFv = 0x101E9D38;
+typeInfo__L0__getRuntimeTypeInfoStatic__19ActorBoxBgCollisionSFv = 0x101E9FBC;
+
 /* ActorCircleBgCollision */
 __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__22ActorCircleBgCollisionSFv = 0x101E9F88;
 typeInfo__L0__getRuntimeTypeInfoStatic__22ActorCircleBgCollisionSFv = 0x101EA398;
@@ -154,14 +158,6 @@ vf2C__11BgCollisionFPUi = __deleted_virtual_called;
 __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__11BgCollisionSFv = 0x101E9D2C;
 typeInfo__L0__getRuntimeTypeInfoStatic__11BgCollisionSFv = 0x101E9FA4;
 
-/* SimpleBoxBgCollision */
-__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__20SimpleBoxBgCollisionSFv = 0x101E9EA0;
-typeInfo__L0__getRuntimeTypeInfoStatic__20SimpleBoxBgCollisionSFv = 0x101E9FCC;
-
-/* BoxBgCollision */
-__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__14BoxBgCollisionSFv = 0x101E9D38;
-typeInfo__L0__getRuntimeTypeInfoStatic__14BoxBgCollisionSFv = 0x101E9FBC;
-
 /* LoopRideLineBgCollision */
 __ct__23LoopRideLineBgCollisionFiPQ2_4sead16Vector2__tm__2_fP13BasicRideLineT3 = 0x021A7904;
 __dt__23LoopRideLineBgCollisionFv = 0x021A7A04;
@@ -184,6 +180,10 @@ set__27LoopRideLineBgCollisionUtilSFP23LoopRideLineBgCollisionP5ActorRCQ2_11BgCo
 /* PoleRopeBgCollision */
 __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__19PoleRopeBgCollisionSFv = 0x101EA380;
 typeInfo__L0__getRuntimeTypeInfoStatic__19PoleRopeBgCollisionSFv = 0x101EA384;
+
+/* SimpleBoxBgCollision */
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__20SimpleBoxBgCollisionSFv = 0x101E9EA0;
+typeInfo__L0__getRuntimeTypeInfoStatic__20SimpleBoxBgCollisionSFv = 0x101E9FCC;
 
 /* SimpleShapeBgCollision */
 vf54__22SimpleShapeBgCollisionFPUcPQ2_4sead16Vector2__tm__2_f = 0x021B096C;
