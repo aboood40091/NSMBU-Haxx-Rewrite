@@ -15,6 +15,7 @@
 #include <collision/BasicRideLineBgCollision.h>
 #include <collision/LoopRideLineBgCollision.h>
 #include <collision/PoleRopeBgCollision.h>
+#include <collision/UnitBgCollisionHolder.h>
 #include <graphics/RenderObjLayer.h>
 #include <map/Bg.h>
 #include <scroll/BgScrollMgr.h>
@@ -512,11 +513,53 @@ static inline void drawBgCollision_PoleRope(const PoleRopeBgCollision& bg_collis
     }
 }
 
-static inline void drawBgCollision(const BgCollision& bg_collision)
+static inline void drawBgCollision(const BgCollision& bg_collision, const agl::lyr::RenderInfo& render_info)
 {
     const BgCheckUnitInfo& bc_data = bg_collision.getBgCheckData();
     if (bc_data.getUnitKind() == BgCheckUnitInfo::cKind_Normal && bc_data.getUnitSolidType() == BgCheckUnitInfo::cSolidType_None)
         return;
+
+    const BgScrollMgr& bg_scroll_mgr = *BgScrollMgr::instance();
+
+    const f32 screen_left   = bg_scroll_mgr.getScreenLeft();
+    const f32 screen_bottom = bg_scroll_mgr.getScreenBottom();
+    const f32 screen_w      = bg_scroll_mgr.getScreenWidth();
+    const f32 screen_h      = bg_scroll_mgr.getScreenHeight();
+
+    const sead::FrameBuffer& frame_buffer = *render_info.getFrameBuffer();
+
+    const sead::Vector2f& fb_size = frame_buffer.getVirtualSize();
+    const f32 fb_w = frame_buffer.getVirtualSize().x;
+    const f32 fb_h = frame_buffer.getVirtualSize().y;
+
+    const f32 w_ratio = fb_w / screen_w;
+    const f32 h_ratio = fb_h / screen_h;
+
+    const sead::BoundBox2f& affected_area = bg_collision.getAffectedArea();
+
+  //drawBox(affected_area, 3600, sead::Color4f::cRed, 1.0f);
+
+    const f32 x = (affected_area.getMin().x - screen_left  ) * w_ratio;
+    const f32 y = (affected_area.getMin().y - screen_bottom) * h_ratio;
+    const f32 w = affected_area.getSizeX() * w_ratio;
+    const f32 h = affected_area.getSizeY() * h_ratio;
+
+    // Apply scissor
+    {
+        sead::Viewport viewport = sead::Viewport(x, y, w, h);
+
+        sead::Vector2f real_pos;
+        viewport.getOnFrameBufferPos(&real_pos, frame_buffer);
+
+        sead::Vector2f real_size;
+        viewport.getOnFrameBufferSize(&real_size, frame_buffer);
+
+        // SEAD_ASSERT(frame_buffer.getPhysicalArea().isInside(real_pos) && frame_buffer.getPhysicalArea().isInside(real_pos + real_size));
+
+        real_pos.y = (frame_buffer.getPhysicalArea().getSizeY() - real_size.y) - real_pos.y;
+
+        sead::Graphics::instance()->setScissorRealPosition(real_pos.x, real_pos.y, real_size.x, real_size.y);
+    }
 
     const sead::Color4f& color = getBgCollisionColor(bg_collision.getBgCheckData());
 
@@ -534,14 +577,32 @@ static inline void drawBgCollision(const BgCollision& bg_collision)
 
     else if (sead::IsDerivedTypes<PoleRopeBgCollision>(&bg_collision))
         drawBgCollision_PoleRope(static_cast<const PoleRopeBgCollision&>(bg_collision), color);
+
+    // Restore scissor
+    {
+        const sead::Viewport& viewport = *render_info.getViewport();
+
+        sead::Vector2f real_pos;
+        viewport.getOnFrameBufferPos(&real_pos, frame_buffer);
+
+        sead::Vector2f real_size;
+        viewport.getOnFrameBufferSize(&real_size, frame_buffer);
+
+        // SEAD_ASSERT(frame_buffer.getPhysicalArea().isInside(real_pos) && frame_buffer.getPhysicalArea().isInside(real_pos + real_size));
+
+        real_pos.y = (frame_buffer.getPhysicalArea().getSizeY() - real_size.y) - real_pos.y;
+
+        sead::Graphics::instance()->setScissorRealPosition(real_pos.x, real_pos.y, real_size.x, real_size.y);
+    }
 }
 
 #if COLLISION_DRAW_BG
 
-static inline void drawBgUnitCollision()
+static inline void drawBgUnitCollision(const agl::lyr::RenderInfo& render_info)
 {
     BgScrollMgr& bg_scroll_mgr = *BgScrollMgr::instance();
     Bg& bg = *Bg::instance();
+    UnitBgCollisionHolder& bg_collision_holder = *UnitBgCollisionHolder::instance();
 
     const s32 unit_size = 16;
     const s32 delta = unit_size - 1;
@@ -556,19 +617,17 @@ static inline void drawBgUnitCollision()
     {
         for (s32 x = left; x < right; x += unit_size)
         {
-            const BgCheckUnitInfo bc_data = bg.getBgCheckData(x, y, 0);
-            if (bc_data.getUnitKind() == BgCheckUnitInfo::cKind_Normal && bc_data.getUnitSolidType() == BgCheckUnitInfo::cSolidType_None)
+            bg_collision_holder.setFromBgUnit(
+                sead::Vector2f(static_cast<f32>(x), -static_cast<f32>(y)),  // position
+                0,                                                          // layer 1
+                sead::BitFlag8(u8(-1))                                      // collision mask
+            );
+
+            BgCollision* p_bg_collision = bg_collision_holder.getBgCollision();
+            if (p_bg_collision == nullptr)
                 continue;
 
-            const sead::Color4f& color = getBgCollisionColor(bc_data);
-
-            const sead::BoundBox2f box(
-                sead::Vector2f(static_cast<f32>(x),             -static_cast<f32>(y + unit_size)),
-                sead::Vector2f(static_cast<f32>(x + unit_size), -static_cast<f32>(y))
-            );
-            const f32 z = 0.0f;
-
-            drawBox(box, z, color, 1.0f);
+            drawBgCollision(*p_bg_collision, render_info);
         }
     }
 }
@@ -677,7 +736,7 @@ void CollisionRenderer::draw(const agl::lyr::RenderInfo& render_info)
         if (p_bg_collision == nullptr)
             continue;
 
-        drawBgCollision(*p_bg_collision);
+        drawBgCollision(*p_bg_collision, render_info);
     }
 
     for (LineNodeMgr<BgCollision>::Node* node = ActorBgCollisionMgr::instance()->getPoleList().front(); node != nullptr; node = node->next)
@@ -686,11 +745,11 @@ void CollisionRenderer::draw(const agl::lyr::RenderInfo& render_info)
         if (p_bg_collision == nullptr)
             continue;
 
-        drawBgCollision(*p_bg_collision);
+        drawBgCollision(*p_bg_collision, render_info);
     }
 
 #if COLLISION_DRAW_BG
-    drawBgUnitCollision();
+    drawBgUnitCollision(render_info);
 #endif // COLLISION_DRAW_BG
 
     for (LineNodeMgr<ActorBgCollisionCheck>::Node* node = ActorBgCollisionCheckMgr::instance()->getDrawList().front(); node != nullptr; )

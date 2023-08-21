@@ -203,6 +203,10 @@ vf54__22SimpleShapeBgCollisionFPUcPQ2_4sead16Vector2__tm__2_f = 0x021B096C;
 __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__22SimpleShapeBgCollisionSFv = 0x101E9D34;
 typeInfo__L0__getRuntimeTypeInfoStatic__22SimpleShapeBgCollisionSFv = 0x101E9FB8;
 
+/* UnitBgCollisionHolder */
+setFromBgUnit__21UnitBgCollisionHolderFRCQ2_4sead16Vector2__tm__2_fUcRCQ2_4sead17BitFlag__tm__3_Uc = 0x021B1094;
+sInstance__21UnitBgCollisionHolder = 0x101C9650;
+
 /* CourseSelectTask::Layer2D */
 __vtbl__Q2_16CourseSelectTask7Layer2D = 0x10047018;
 
@@ -535,6 +539,9 @@ cCyan__Q2_4sead7Color4f = 0x105EA100;
 /* sead::FrameBuffer */
 bind__Q2_4sead11FrameBufferCFv = 0x02A058F0;
 
+/* sead::Graphics */
+sInstance__Q2_4sead8Graphics = 0x101E8000;
+
 /* sead::GraphicsContextMRT */
 __ct__Q2_4sead18GraphicsContextMRTFv = 0x02A07E70;
 
@@ -549,7 +556,10 @@ __dt__Q2_4sead21PerspectiveProjectionFv = 0x02A06298;
 set__Q2_4sead21PerspectiveProjectionFfN31 = 0x02A062EC;
 
 /* sead::Viewport */
+__ct__Q2_4sead8ViewportFfN31 = 0x02A072FC;
 __ct__Q2_4sead8ViewportFRCQ2_4sead18LogicalFrameBuffer = 0x02A074C8;
+getOnFrameBufferPos__Q2_4sead8ViewportCFPQ2_4sead16Vector2__tm__2_fRCQ2_4sead18LogicalFrameBuffer = 0x02A07570;
+getOnFrameBufferSize__Q2_4sead8ViewportCFPQ2_4sead16Vector2__tm__2_fRCQ2_4sead18LogicalFrameBuffer = 0x02A077B0;
 apply__Q2_4sead8ViewportCFRCQ2_4sead18LogicalFrameBuffer = 0x02A0783C;
 
 /* sead::GraphicsContext */
