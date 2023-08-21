@@ -2,7 +2,7 @@
 #include <actor/Profile_Haxx.h>
 #include <collision/ActorBgCollisionMgr.h>
 #include <collision/ActorBoxBgCollision.h>
-#include <collision/BasicRideLineBgCollision.h>
+#include <collision/ActorLineBgCollision.h>
 #include <game/Info.h>
 #include <graphics/BasicModel.h>
 #include <graphics/Renderer.h>
@@ -38,11 +38,11 @@ private:
     s32 doDelete_() override;
 
 private:
-    u16*                        mTileData;
-    u32                         mTileW;
-    u32                         mTileH;
+    u16*                    mTileData;
+    u32                     mTileW;
+    u32                     mTileH;
 
-    ParentMovementMgr           mParentMovementMgr;
+    ParentMovementMgr       mParentMovementMgr;
 
     enum CollisionType
     {
@@ -50,10 +50,10 @@ private:
         cCollisionType_Line,
         cCollisionType_None
     };
-    CollisionType               mCollisionType;
-    ActorBoxBgCollision         mBoxBgCollision;
-    MagicPlatformCB             mCollisionCallback;
-    BasicRideLineBgCollision    mLineBgCollision;
+    CollisionType           mCollisionType;
+    ActorBoxBgCollision     mBoxBgCollision;
+    MagicPlatformCB         mCollisionCallback;
+    ActorLineBgCollision    mLineBgCollision;
 };
 
 static const ActorCreateInfo MagicPlatform_ActorCreateInfo = { sead::Vector2i(0, 0), sead::Vector2i(0, 0), sead::Vector2i(0, 0), 0, 0, 0, 0, ActorCreateInfo::cFlag_IgnoreSpawnRange | ActorCreateInfo::cFlag_MapObj };
@@ -131,9 +131,7 @@ s32 MagicPlatform::create_()
         break;
     case cCollisionType_Line:
         {
-            const sead::Vector2f points[2] = { sead::Vector2f(mTileW * -8.0f, mTileH * 8.0f), sead::Vector2f(mTileW * 8.0f, mTileH * 8.0f) };
-            BgCollision::InitArg arg = { sead::Vector2f(0.0f, 0.0f), sead::Vector2f(0.0f, 0.0f), points, 0 };
-            mLineBgCollision.set(this, arg, 2);
+            mLineBgCollision.set(this, sead::Vector2f(mTileW * -8.0f, mTileH * 8.0f), sead::Vector2f(mTileW * 8.0f, mTileH * 8.0f));
 
             mLineBgCollision.setType(bg_collision_type);
             if ((mParam0 >> 24) & 1)
