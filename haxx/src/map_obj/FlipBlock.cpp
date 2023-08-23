@@ -204,7 +204,7 @@ void FlipBlock::updateModel()
     mtx.makeRTIdx(mAngle, pos);
 
     mpBasicModel->getModel()->setMtxRT(mtx);
-    mpBasicModel->updateModel();
+    mpBasicModel->calcMdl();
 }
 
 bool FlipBlock::playerOverlaps()

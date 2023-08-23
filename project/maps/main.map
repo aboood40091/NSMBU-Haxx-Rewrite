@@ -223,8 +223,8 @@ sInstance__4Info = 0x101D18EC;
 /* BasicModel */
 __ct__10BasicModelFP7ModelNWUiN42 = 0x024D4798;
 __CPR93__init__10BasicModelFP13ModelResourcePCQ2_4sead32PtrArray__tm__16_J20JPQ2_J40J4Heap = 0x024D49A0;
-updateAnimations__10BasicModelFv = 0x024D4D20;
-updateModel__10BasicModelFv = 0x024D4E84;
+playAnmFrameCtrl__10BasicModelFv = 0x024D4D20;
+calcMdl__10BasicModelFv = 0x024D4E84;
 
 /* Model */
 __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__5ModelSFv = 0x101E9D08;
