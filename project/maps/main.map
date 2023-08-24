@@ -221,7 +221,7 @@ drawLayer3D__8AreaTaskFRCQ3_3agl3lyr10RenderInfo = 0x024B84A8;
 sInstance__4Info = 0x101D18EC;
 
 /* BasicModel */
-__ct__10BasicModelFP7ModelNWUiN42 = 0x024D4798;
+__ct__10BasicModelFP8ModelG3dUiN42 = 0x024D4798;
 __CPR93__init__10BasicModelFP13ModelResourcePCQ2_4sead32PtrArray__tm__16_J20JPQ2_J40J4Heap = 0x024D49A0;
 playAnmFrameCtrl__10BasicModelFv = 0x024D4D20;
 calcMdl__10BasicModelFv = 0x024D4E84;
@@ -231,12 +231,12 @@ __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__5ModelSFv = 0x101E9D08;
 typeInfo__L0__getRuntimeTypeInfoStatic__5ModelSFv = 0x101E9F9C;
 
 /* Model??? */
-createNW__5ModelSFRC13ModelResourceRCQ2_4sead23SafeStringBase__tm__2_ciN43Q2_5Model12BoundingModePQ2_4sead4Heap = 0x024EE440;
+createG3d__5ModelSFRC13ModelResourceRCQ2_4sead23SafeStringBase__tm__2_ciN43Q2_5Model12BoundingModePQ2_4sead4Heap = 0x024EE440;
 
-/* ModelNW */
-__vtbl__7ModelNW = 0x100BCF30;
-__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__7ModelNWSFv = 0x101E9F78;
-typeInfo__L0__getRuntimeTypeInfoStatic__7ModelNWSFv = 0x101E9FA0;
+/* ModelG3d */
+__vtbl__8ModelG3d = 0x100BCF30;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__8ModelG3dSFv = 0x101E9F78;
+typeInfo__L0__getRuntimeTypeInfoStatic__8ModelG3dSFv = 0x101E9FA0;
 
 /* ModelResourceMgr */
 getResource__16ModelResourceMgrCFRCQ2_4sead23SafeStringBase__tm__2_c = 0x024F60EC;

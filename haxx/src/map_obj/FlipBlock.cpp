@@ -1,7 +1,7 @@
 #include <actor/Profile_Haxx.h>
 #include <collision/ActorBgCollisionMgr.h>
 #include <graphics/BasicModel.h>
-#include <graphics/ModelNW.h>
+#include <graphics/ModelG3d.h>
 #include <graphics/Renderer.h>
 #include <map_obj/ActorBlockBase.h>
 #include <player/PlayerObject.h>
