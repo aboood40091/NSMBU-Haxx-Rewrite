@@ -1,27 +1,27 @@
 #include <actor/ActorBase.h>
 #include <actor/Profile_Haxx.h>
 
-sead::SafeArray<Profile*, ProfileHaxx::cNumCustom> ProfileHaxx::sProfileCustom;
+sead::SafeArray<Profile*, cProfileID_MaxCustom> ProfileHaxx::sProfileCustom;
 
-Profile::Profile(ActorFactory p_actor_factory, s32 id, const sead::SafeString& name, const ActorCreateInfo* p_create_info, u32 flag)
-    : mpActorFactory(p_actor_factory)
+Profile::Profile(ActorFactory factory, s32 id, const sead::SafeString& name, const ActorCreateInfo* p_create_info, u32 flag)
+    : mFactory(factory)
     , mID(id)
     , mpActorCreateInfo(p_create_info != nullptr ? p_create_info : &ActorCreateInfo::cDefault)
     , mIsResLoaded(false)
     , mFlag(flag)
 {
-    if (id < cNum)
+    if (id < cProfileID_Max)
         sProfile[id] = this;
 
     else
-        ProfileHaxx::sProfileCustom[id - cNum] = this;
+        ProfileHaxx::sProfileCustom[id - cProfileID_Max] = this;
 }
 
 
 Profile* Profile::get(s32 id)
 {
-    if (id < cNum)
+    if (id < cProfileID_Max)
         return sProfile[id];
 
-    return ProfileHaxx::sProfileCustom[id - cNum];
+    return ProfileHaxx::sProfileCustom[id - cProfileID_Max];
 }

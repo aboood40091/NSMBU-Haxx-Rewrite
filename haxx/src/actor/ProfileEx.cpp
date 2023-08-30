@@ -2,53 +2,61 @@
 
 s16 Profile::getDrawPriority(s32 id)
 {
-    if (id < cNum)
-        return cDrawPriority[id];
+    if (static_cast<u32>(id) >= cProfileID_MaxAll)
+        return -1;
 
-    return ProfileHaxx::cDrawPriorityCustom[id - cNum];
+    return (id < cProfileID_Max)
+        ? cDrawPriority[id]
+        : ProfileHaxx::cDrawPriorityCustom[id - cProfileID_Max];
 }
 
 Profile::ResType Profile::getResType(s32 id)
 {
-    if (id < cNum)
-        return ResType(cResType[id]);
+    if (static_cast<u32>(id) >= cProfileID_MaxAll)
+        return cResType_Boot;
 
-    return ResType(ProfileHaxx::cResTypeCustom[id - cNum]);
+    return (id < cProfileID_Max)
+        ? ResType(cResType[id])
+        : ResType(ProfileHaxx::cResTypeCustom[id - cProfileID_Max]);
 }
 
-u8 Profile::getResNum(s32 id)
+u32 Profile::getResNum(s32 id)
 {
-    if (id < cNum)
-        return cResNum[id];
+    if (static_cast<u32>(id) >= cProfileID_MaxAll)
+        return 0;
 
-    return ProfileHaxx::cResNumCustom[id - cNum];
+    return (id < cProfileID_Max)
+        ? cResNum[id]
+        : ProfileHaxx::cResNumCustom[id - cProfileID_Max];
 }
 
 const sead::SafeString* Profile::getResList(s32 id)
 {
-    if (id < cNum)
-        return cResList[id];
+    if (static_cast<u32>(id) >= cProfileID_MaxAll)
+        return nullptr;
 
-    return ProfileHaxx::cResListCustom[id - cNum];
+    return (id < cProfileID_Max)
+        ? cResList[id]
+        : ProfileHaxx::cResListCustom[id - cProfileID_Max];
 }
 
 u32 ProfileHaxx::getProfileNumAll()
 {
-    return cNumAll;
+    return cProfileID_MaxAll;
 }
 
 // --------------------------------------- DrawPriority --------------------------------------- //
 
-const s16 ProfileHaxx::cDrawPriorityCustom[] = {
-    0,  // ProfileID::cActorSpawner
-    0,  // ProfileID::cFlipBlock
-    0,  // ProfileID::cMagicPlatform
-    0   // ProfileID::cEffectPlayer
+const s16 ProfileHaxx::cDrawPriorityCustom[cProfileID_MaxCustom] = {
+    118 - 0x3ff,    // ProfileID::cActorSpawner
+    796,            // ProfileID::cFlipBlock
+    797,            // ProfileID::cMagicPlatform
+    798             // ProfileID::cEffectPlayer
 };
 
 // -----------------------------------------  ResType ----------------------------------------- //
 
-const u8 ProfileHaxx::cResTypeCustom[] = {
+const s8 ProfileHaxx::cResTypeCustom[cProfileID_MaxCustom] = {
     Profile::cResType_Course,   // ProfileID::cActorSpawner
     Profile::cResType_Course,   // ProfileID::cFlipBlock
     Profile::cResType_Course,   // ProfileID::cMagicPlatform
@@ -73,13 +81,11 @@ static const sead::SafeString cRes_EffectPlayer[]  = {
 
 // ------------------------------------------ ResNum ------------------------------------------ //
 
-template <s32 N>
-inline s32 GetResNum(const sead::SafeString (&)[N])
-{
-    return N;
-}
+template <typename T, size_t N>
+u8 (&_ResNumGetter(T(&)[N]))[N];
+#define GetResNum(array) (sizeof(_ResNumGetter(array)))
 
-const u8 ProfileHaxx::cResNumCustom[] = {
+const u8 ProfileHaxx::cResNumCustom[cProfileID_MaxCustom] = {
     0,                              // ProfileID::cActorSpawner
     GetResNum(cRes_FlipBlock),      // ProfileID::cFlipBlock
     0,                              // ProfileID::cMagicPlatform
@@ -88,7 +94,7 @@ const u8 ProfileHaxx::cResNumCustom[] = {
 
 // -----------------------------------------  ResList ----------------------------------------- //
 
-const sead::SafeString* ProfileHaxx::cResListCustom[] = {
+const sead::SafeString* ProfileHaxx::cResListCustom[cProfileID_MaxCustom] = {
     nullptr,            // ProfileID::cActorSpawner
     cRes_FlipBlock,     // ProfileID::cFlipBlock
     nullptr,            // ProfileID::cMagicPlatform

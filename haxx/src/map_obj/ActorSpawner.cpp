@@ -1,6 +1,6 @@
 #include <actor/Actor.h>
 #include <actor/ActorMgr.h>
-#include <actor/MapActor.h>
+#include <actor/MapActor_Haxx.h>
 #include <actor/Profile_Haxx.h>
 #include <map/PSwitchMgr.h>
 
@@ -30,7 +30,7 @@ s32 ActorSpawner::create_()
 
     u16 id = ((mMovementID & 0xF) << 8) | mLinkID;
     if (mMovementID >> 4 & 1)  // Map Actor ID
-        mSpawnProfileID = MapActor::cProfileID[id];
+        mSpawnProfileID = MapActorHaxx::cProfileID[id];
     else
         mSpawnProfileID = id;
 
