@@ -1,5 +1,8 @@
 #include <sound/AudFxSocket.h>
 #include <sound/SndAudioMgr.h>
+#include <sound/SndSceneMgr.h>
+
+extern "C" {
 
 extern nw::snd::internal::FxReverbHiParam DefaultReverbHiParam;
 extern nw::snd::internal::FxDelayParam    DefaultDelayParam;
@@ -9,7 +12,7 @@ extern f32 SFXReverb_1;
 extern f32 SFXReverbPlyJump_0;
 extern f32 SFXReverbPlyJump_1;
 
-void SetFxReverbHiAndDelay(void*, u32 sfx_mode)
+void SetFxReverbHiAndDelay(void*, SndSceneMgr::EffectType sfx_mode)
 {
     nw::snd::internal::FxReverbHiParam& reverbHiParam = SndAudioMgr::instance()->getFxSocket()->getReverbHiParam();
     nw::snd::internal::FxDelayParam&    delayParam    = SndAudioMgr::instance()->getFxSocket()->getDelayParam();
@@ -36,7 +39,8 @@ void SetFxReverbHiAndDelay(void*, u32 sfx_mode)
 
     switch (sfx_mode)
     {
-    case 0:
+    case SndSceneMgr::cEffect_Soto:
+  //case SndSceneMgr::cEffect_Default:
     default:
         reverbHiParam.fusedTime = 4.0f;
         reverbHiParam.damping = 0.0f;
@@ -51,8 +55,8 @@ void SetFxReverbHiAndDelay(void*, u32 sfx_mode)
         SFXReverbPlyJump_0 = 0.04f;
         SFXReverbPlyJump_1 = 0.04f;
         return;
-    case 1:
-    case 11:
+    case SndSceneMgr::cEffect_Chika:
+    case SndSceneMgr::cEffect_Chika_Sa:
         reverbHiParam.fusedTime = 5.0f;
         reverbHiParam.fusedMode = 5;
 
@@ -65,7 +69,7 @@ void SetFxReverbHiAndDelay(void*, u32 sfx_mode)
         SFXReverbPlyJump_0 = 0.03f;
         SFXReverbPlyJump_1 = 0.05f;
         return;
-    case 2:
+    case SndSceneMgr::cEffect_Chika_S:
         reverbHiParam.fusedTime = 1.2f;
         reverbHiParam.damping = 0.9f;
         reverbHiParam.fusedMode = 2;
@@ -79,7 +83,7 @@ void SetFxReverbHiAndDelay(void*, u32 sfx_mode)
         SFXReverbPlyJump_0 = 0.07f;
         SFXReverbPlyJump_1 = 0.07f;
         return;
-    case 3:
+    case SndSceneMgr::cEffect_Water:
         reverbHiParam.fusedTime = 3.0f;
         reverbHiParam.fusedMode = 2;
 
@@ -92,7 +96,7 @@ void SetFxReverbHiAndDelay(void*, u32 sfx_mode)
         SFXReverbPlyJump_0 = 0.03f;
         SFXReverbPlyJump_1 = 0.1f;
         return;
-    case 4:
+    case SndSceneMgr::cEffect_Boss:
         reverbHiParam.damping = 0.2f;
         reverbHiParam.fusedMode = 3;
 
@@ -105,7 +109,7 @@ void SetFxReverbHiAndDelay(void*, u32 sfx_mode)
         SFXReverbPlyJump_0 = 0.07f;
         SFXReverbPlyJump_1 = 0.04f;
         return;
-    case 5:
+    case SndSceneMgr::cEffect_Toride:
         reverbHiParam.damping = 0.9f;
         reverbHiParam.fusedMode = 3;
 
@@ -118,7 +122,7 @@ void SetFxReverbHiAndDelay(void*, u32 sfx_mode)
         SFXReverbPlyJump_0 = 0.05f;
         SFXReverbPlyJump_1 = 0.07f;
         return;
-    case 6:
+    case SndSceneMgr::cEffect_Shiro:
         reverbHiParam.damping = 0.1f;
         reverbHiParam.fusedMode = 4;
 
@@ -131,7 +135,7 @@ void SetFxReverbHiAndDelay(void*, u32 sfx_mode)
         SFXReverbPlyJump_0 = 0.1f;
         SFXReverbPlyJump_1 = 0.08f;
         return;
-    case 7:
+    case SndSceneMgr::cEffect_Obake:
         reverbHiParam.fusedTime = 2.5f;
         reverbHiParam.fusedMode = 2;
 
@@ -144,7 +148,7 @@ void SetFxReverbHiAndDelay(void*, u32 sfx_mode)
         SFXReverbPlyJump_0 = 0.06f;
         SFXReverbPlyJump_1 = 0.17f;
         return;
-    case 8:
+    case SndSceneMgr::cEffect_Dokan:
         reverbHiParam.fusedTime = 1.8f;
         reverbHiParam.coloration = 0.4f;
         reverbHiParam.fusedMode = 1;
@@ -158,7 +162,7 @@ void SetFxReverbHiAndDelay(void*, u32 sfx_mode)
         SFXReverbPlyJump_0 = 0.04f;
         SFXReverbPlyJump_1 = 0.1f;
         return;
-    case 9:
+    case SndSceneMgr::cEffect_Gake:
         reverbHiParam.fusedTime = 1.0f;
         reverbHiParam.fusedMode = 5;
 
@@ -171,7 +175,7 @@ void SetFxReverbHiAndDelay(void*, u32 sfx_mode)
         SFXReverbPlyJump_0 = 0.01f;
         SFXReverbPlyJump_1 = 0.02f;
         return;
-    case 10:
+    case SndSceneMgr::cEffect_House:
         reverbHiParam.fusedTime = 0.3f;
         reverbHiParam.fusedMode = 2;
 
@@ -184,7 +188,7 @@ void SetFxReverbHiAndDelay(void*, u32 sfx_mode)
         SFXReverbPlyJump_0 = 0.1f;
         SFXReverbPlyJump_1 = 0.15f;
         return;
-    case 12:
+    case SndSceneMgr::cEffect_Boss_Jr:
         reverbHiParam.fusedTime = 0.8f;
         reverbHiParam.fusedMode = 2;
 
@@ -197,7 +201,7 @@ void SetFxReverbHiAndDelay(void*, u32 sfx_mode)
         SFXReverbPlyJump_0 = 0.07f;
         SFXReverbPlyJump_1 = 0.15f;
         return;
-    case 13:
+    case SndSceneMgr::cEffect_Kurayami:
         reverbHiParam.fusedTime = 3.5f;
         reverbHiParam.fusedMode = 5;
 
@@ -210,7 +214,7 @@ void SetFxReverbHiAndDelay(void*, u32 sfx_mode)
         SFXReverbPlyJump_0 = 0.05f;
         SFXReverbPlyJump_1 = 0.1f;
         return;
-    case 14:
+    case SndSceneMgr::cEffect_Chika_Ka:
         reverbHiParam.fusedTime = 5.0f;
         reverbHiParam.fusedMode = 5;
 
@@ -223,4 +227,6 @@ void SetFxReverbHiAndDelay(void*, u32 sfx_mode)
         SFXReverbPlyJump_0 = 0.04f;
         SFXReverbPlyJump_1 = 0.08f;
     }
+}
+
 }

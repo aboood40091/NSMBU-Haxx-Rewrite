@@ -22,4 +22,4 @@ Hooks:
   - type: branch
     instr: b
     addr: 0x029C3B7C
-    func: SetFxReverbHiAndDelay__FPvUi
+    func: SetFxReverbHiAndDelay
