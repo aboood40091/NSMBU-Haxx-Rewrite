@@ -539,7 +539,7 @@ const s32 MapActorHaxx::cProfileID[] = {
     ProfileID::c0D5,                            // 534
     ProfileID::c0D6,                            // 535
     ProfileID::c268,                            // 536
-    ProfileID::c269,                            // 537
+    ProfileID::cSpanner,                        // 537
     ProfileID::c118,                            // 538
     ProfileID::c17B,                            // 539
     ProfileID::c051,                            // 540
