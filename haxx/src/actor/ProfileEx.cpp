@@ -47,11 +47,21 @@ u32 ProfileHaxx::getProfileNumAll()
 
 // --------------------------------------- DrawPriority --------------------------------------- //
 
+enum DrawPriority
+{
+    cDrawPriority_FlipBlock         = 796,
+    cDrawPriority_MagicPlatform     = 797,
+    cDrawPriority_EffectPlayer      = 798,
+
+    // No Draw
+    cDrawPriority_ActorSpawner      = 118 - 0x3ff
+};
+
 const s16 ProfileHaxx::cDrawPriorityCustom[cProfileID_MaxCustom] = {
-    118 - 0x3ff,    // ProfileID::cActorSpawner
-    796,            // ProfileID::cFlipBlock
-    797,            // ProfileID::cMagicPlatform
-    798             // ProfileID::cEffectPlayer
+    cDrawPriority_ActorSpawner,         // ProfileID::cActorSpawner
+    cDrawPriority_FlipBlock,            // ProfileID::cFlipBlock
+    cDrawPriority_MagicPlatform,        // ProfileID::cMagicPlatform
+    cDrawPriority_EffectPlayer          // ProfileID::cEffectPlayer
 };
 
 // -----------------------------------------  ResType ----------------------------------------- //
