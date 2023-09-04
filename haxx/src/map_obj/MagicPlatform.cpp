@@ -145,7 +145,7 @@ s32 MagicPlatform::create_()
     mParentMovementMgr.link(
         mPos,
         mParentMovementMgr.getTypeMask(ParentMovementType(mParam1 & 0xFF)),
-        mMovementID
+        mParamEx.course.movement_id
     );
 
     return execute_();

@@ -28,8 +28,8 @@ s32 ActorSpawner::create_()
     if (mEventID[1] == 0)
         return 2;
 
-    u16 id = ((mMovementID & 0xF) << 8) | mLinkID;
-    if (mMovementID >> 4 & 1)  // Map Actor ID
+    u16 id = ((mParamEx.course.movement_id & 0xF) << 8) | mParamEx.course.link_id;
+    if (mParamEx.course.movement_id >> 4 & 1)  // Map Actor ID
         mSpawnProfileID = MapActorHaxx::cProfileID[id];
     else
         mSpawnProfileID = id;
@@ -49,12 +49,12 @@ s32 ActorSpawner::execute_()
     {
         ActorCreateParam param;
         {
-            param.param_0       = mParam0;
-            param.param_1       = mParam1;
-            param.p_profile     = Profile::get(mSpawnProfileID);
-            param.position      = mPos;
-            param.event_id_0    = mEventID[0] & 0xF;
-            param.event_id_1    = (mEventID[0] >> 4) & 0xF;
+            param.param_0                       = mParam0;
+            param.param_1                       = mParam1;
+            param.p_profile                     = Profile::get(mSpawnProfileID);
+            param.position                      = mPos;
+            param.param_ex_0.course.event_id_0  = mEventID[0] & 0xF;
+            param.param_ex_0.course.event_id_1  = (mEventID[0] >> 4) & 0xF;
         }
         ActorMgr::instance()->createImmediately(param);
 
