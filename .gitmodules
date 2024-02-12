@@ -7,3 +7,6 @@
 [submodule "game/include"]
 	path = game/include
 	url = https://github.com/aboood40091/NSMBU-Headers
+[submodule "game/lib/ffl"]
+	path = game/lib/ffl
+	url = https://github.com/aboood40091/FFL

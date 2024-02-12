@@ -87,6 +87,13 @@ typedef struct FSAsyncResult_ {
 typedef enum {
 } FSVolumeState;
 
+typedef void (*FSStateChangeCallback)(FSClient *, FSVolumeState, void *);
+typedef struct {
+    FSStateChangeCallback   userCallback;
+    void                   *userContext;
+    OSMessageQueue         *ioMsgQueue;
+} FSStateChangeParams;
+
 typedef s32 FSFileHandle;
 typedef s32 FSDirHandle;
 typedef s32 FSStatus;

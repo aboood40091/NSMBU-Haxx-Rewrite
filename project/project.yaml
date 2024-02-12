@@ -13,6 +13,7 @@ Variables:
   LIB_MODULES_DIR: "./modules/lib"
 IncludeDirs:
   - "$GAME_DIR/include"
+  - "$GAME_LIB_DIR/ffl/include"
   - "$GAME_LIB_DIR/nw/G3d/include"
   - "$GAME_LIB_DIR/nw/Snd/include"
   - "$GAME_LIB_DIR/sead/engine/library/include"

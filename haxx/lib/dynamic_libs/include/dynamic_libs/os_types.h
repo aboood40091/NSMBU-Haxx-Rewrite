@@ -228,6 +228,15 @@ struct _OSMutex
     OSMutexLink link;
 };
 
+typedef struct OSEvent_ {
+    u32 txtTag;
+    char *name;
+    u32 reserved;
+    s32 state;
+    OSThreadQueue queue;
+    s32 mode;
+} OSEvent;
+
 typedef struct MCPTitleListType {
     u64 titleId;
     u8 unknwn[4];
