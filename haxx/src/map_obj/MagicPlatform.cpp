@@ -21,7 +21,7 @@
 class MagicPlatformCB : public PairObjChildBaseCB
 {
 public:
-    bool bcCallback1(Actor*, BgCollision*, const sead::Vector2f&) override { return false; }
+    bool bcCallback1(BgCollision*, const sead::Vector2f&) override { return false; }
 };
 static_assert(sizeof(MagicPlatformCB) == sizeof(PairObjChildBaseCB));
 

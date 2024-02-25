@@ -1038,9 +1038,9 @@ cDefault__Q2_19ActorCollisionCheck4Info = 0x10041BC0;
 sInstance__22ActorCollisionCheckMgr = 0x101C95D8;
 
 /* CollisionCallback */
-ccCallback0__17CollisionCallbackFP5ActorP19ActorCollisionCheckRCQ2_4sead16Vector2__tm__2_f = 0x0219E7E8;
-ccCallback2__17CollisionCallbackFP5ActorP19ActorCollisionCheckRCQ2_4sead16Vector2__tm__2_f = 0x0219E8A4;
-bcCallback0__17CollisionCallbackFP5ActorP11BgCollisionRCQ2_4sead16Vector2__tm__2_f = 0x0219E8B8;
+ccCallback0__17CollisionCallbackFP19ActorCollisionCheckRCQ2_4sead16Vector2__tm__2_f = 0x0219E7E8;
+ccCallback2__17CollisionCallbackFP19ActorCollisionCheckRCQ2_4sead16Vector2__tm__2_f = 0x0219E8A4;
+bcCallback0__17CollisionCallbackFP11BgCollisionRCQ2_4sead16Vector2__tm__2_f = 0x0219E8B8;
 
 /* ActorEllipseBgCollision */
 __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__23ActorEllipseBgCollisionSFv = 0x101EA39C;
@@ -1321,7 +1321,7 @@ checkRevHead__12PairObjChildSFP5ActorT1 = 0x0283FBE0;
 checkRevWall__12PairObjChildSFP5ActorT1Uc = 0x0283FC14;
 
 /* PairObjChildBaseCB */
-bcCallback2__18PairObjChildBaseCBFP5ActorP11BgCollisionRCQ2_4sead16Vector2__tm__2_f = 0x0284184C;
+bcCallback2__18PairObjChildBaseCBFP11BgCollisionRCQ2_4sead16Vector2__tm__2_f = 0x0284184C;
 
 /* ParentMovementMgr */
 __ct__17ParentMovementMgrFv = 0x02849C40;
