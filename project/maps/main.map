@@ -1360,11 +1360,11 @@ shouldHurryUp__9SndBgmMgrFv = 0x029B83D8;
 /* StateID */
 __LSG__s_number_memo__L0____ct__7StateIDFv = 0x101E9E9C;
 s_number_memo__L0____ct__7StateIDFv = 0x101E9F04;
+cNull__7StateID = 0x1022D390;
 
 /* StateMethod */
 execute__11StateMethodFv = 0x029C4A80;
 changeStateMethod__11StateMethodFRC7StateID = 0x029C4AF0;
-cNullStateID__11StateMethod = 0x1022D390;
 
 /* new/delete */
 __nw__FUi = 0x029F1594;
