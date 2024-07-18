@@ -3,6 +3,8 @@ extern "C"
 {
 #endif // __cplusplus
 
+#include "os_types.h"
+
 typedef f32 MTX[3][4];
 typedef f32 MTX44[3][4];
 
@@ -12,6 +14,7 @@ void ASM_MTXIdentity(MTX o);
 u32  ASM_MTXInverse(MTX n, MTX o);
 void ASM_MTXScale(MTX o, f32 x, f32 y, f32 z);
 void ASM_MTXTrans(MTX o, f32 x, f32 y, f32 z);
+void ASM_MTXTransApply(MTX n, MTX o, f32 x, f32 y, f32 z);
 void ASM_MTXTranspose(MTX n, MTX o);
 void ASM_MTX44Concat(MTX44 a, MTX44 b, MTX44 o);
 void ASM_MTX44Copy(MTX44 n, MTX44 o);
