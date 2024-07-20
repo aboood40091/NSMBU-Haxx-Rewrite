@@ -1,0 +1,17 @@
+---
+Files:
+  C++:
+    - "$HAXX_DIR/src/effect/PtclParamMgr.cpp"
+Hooks:
+  # Dynamic effect ID count
+  ## Disable hardcoded effect count
+  - type: nop
+    addr: 0x022AD930
+  - type: nop
+    addr: 0x022AD938
+    count: 2
+  ## Custom function to use dynamic effect count
+  - type: branch
+    instr: b
+    addr: 0x022AD944
+    func: getParam__12PtclParamMgrCFUi
