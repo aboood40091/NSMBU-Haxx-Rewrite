@@ -1,0 +1,29 @@
+userData:
+  bitfield:
+    description: 16-bit bitfield.
+    value: '0b0000000000100000'
+  num1:
+    description: 1-byte number 1.
+    value: 0
+  num2:
+    description: 1-byte number 2.
+    value: 0
+emitters:
+- name:
+    description: Name of the emitter.
+    value: Refraction
+  path:
+    description: Emitter folder path, relative to this file.
+    value: Refraction
+- name:
+    description: Name of the emitter.
+    value: Main
+  path:
+    description: Emitter folder path, relative to this file.
+    value: Main
+- name:
+    description: Name of the emitter.
+    value: Spark
+  path:
+    description: Emitter folder path, relative to this file.
+    value: Spark

@@ -1,0 +1,2869 @@
+general:
+  emitterType:
+    description: 'The type of the emitter. Possible types are:
+
+      Simple:  Allows use of the most basic features for creating an effect
+
+      Complex: Allows use of all fields, fluxes, child, and stripe features. Enabling
+      these features will increase the processing cost in comparison with the simple
+      type, but allows a wider range of effects to be created.'
+    value: Simple
+  ptclFollowType:
+    description: 'Particle emitter-follow type. Possible types are:
+
+      All:     Perfectly follow emitter SRT. Particles after emission move in accordance
+      with emitter transform animations.
+
+      Null:    Do not follow emitter. Particles after emission do not follow emitter
+      transform animations.
+
+      PosOnly: Follow only emitter position. Particles after emission move in accordance
+      with emitter position transforms only.'
+    value: All
+  randomSeed:
+    description: 'Seed value used to initialize the Random Number Generator (RNG)
+      of this emitter. Possible values are:
+
+      PerEmitter:      Seed is generated randomly per emitter.
+
+      PerSet:          Seed is generated randomly per emitter set. (Emitters using
+      this type within the same set will use the same random seed.)
+
+      1 to 4294967294: Constant seed value to use directly. (This will cause the emitter
+      to always behave the same every time it is spawned.)'
+    value: PerEmitter
+  drawParam:
+    isVisible:
+      description: Draw the particles of this emitter? (This setting does not affect
+        the child emitter, if present.)
+      value: true
+    drawPath:
+      description: Draw path index. (0-31)
+      value: 0
+    particleSort:
+      description: 'Order in which to draw particles. Possible orders are:
+
+        Ascending
+
+        Descending
+
+        ZSort'
+      value: Ascending
+emitter:
+  shape:
+    type:
+      description: 'Shape type of the emitter. Possible types are:
+
+        Point:              Emits particles from a single fixed point. Each particle
+        originates from the same position.
+
+        Circle:             Emits particles from random positions along the circumference
+        of a circle/ellipse, or an arc.
+
+        CircleSameDivide:   Emits particles incrementally along the circumference
+        of a circle/ellipse, or an arc, at equal spacing. (Number of partitions is
+        controlled by emission rate.)
+
+        FillCircle:         Emits particles from random positions within the area
+        of a circle/ellipse, or the area of a circular/elliptical sector defined by
+        an arc.
+
+        Sphere:             Emits particles from random positions along the surface
+        of a sphere/ellipsoid, or the surface of a spherical/ellipsoidal wedge defined
+        by an arc either along the longitude or latitude.
+
+        SphereSameDivide:   Emits particles incrementally along the surface of a sphere/ellipsoid
+        at equal spacing. (Number of partitions is specified by `tblIndex`.)
+
+        SphereSameDivide64: Same as `SphereSameDivide`, but has more partitions.
+
+        FillSphere:         Emits particles from random positions within the area
+        of a sphere/ellipsoid, or the area of a spherical/ellipsoidal wedge defined
+        by an arc either along the longitude or latitude.
+
+        Cylinder:           Emits particles from random positions along the surface
+        of a(n elliptic) cylinder, or the surface of a(n elliptic) cylindrical sector
+        defined by an arc.
+
+        FillCylinder:       Emits particles from random positions within the area
+        of a(n elliptic) cylinder, or the area of a(n elliptic) cylindrical sector
+        defined by an arc.
+
+        Box:                Emits particles from random positions along the surface
+        of a box.
+
+        FillBox:            Emits particles from random positions within the area
+        of a box.
+
+        Line:               Emits particles from random positions along a line.
+
+        LineSameDivide:     Emits particles incrementally along the a line at equal
+        spacing. (Number of partitions is controlled by emission rate.)
+
+        Rectangle:          Emits particles from random positions along the sides
+        of a rectangle.'
+      value: Point
+    extent:
+      description: 'The extent of the shape. For each shape type, this means:
+
+        Point:     Value is not used.
+
+        *Circle*:  The lengths of the axes of the ellipse (or the radius of the circle
+        if X = Z). Y axis is not used.
+
+        *Sphere*:  The lengths of the axes of the ellipsoid (or the radius of the
+        sphere if X = Y = Z).
+
+        *Cylinder: The height (Y) of the cylinder, and the lengths (X & Z) of the
+        axes of the elliptical cross-section (or the radius of the circular cross-section
+        if X = Z).
+
+        *Box:      The width, height and length of the box.
+
+        Line*:     The length (Z) of the line. X & Y axes are not used.
+
+        Rectangle: The width and height of the rectangle. Y axis is not used.
+
+        Value must be positive.'
+      value:
+        x: 29.0
+        y: 29.0
+        z: 29.0
+    extentScale:
+      description: Scale to apply on top of shape extent. Value must be positive.
+      value:
+        x: 1.0
+        y: 1.0
+        z: 1.0
+    tblIndex:
+      description: 'For the two `SphereSameDivide*` shape types, used as an index
+        to a table containing arrays of latitudes of equally-divided parts of a sphere
+        surface. It determines possible latitudes the particle can be spawned at.
+
+        Value must be in the range:
+
+        SphereSameDivide:   [0, 7]
+
+        SphereSameDivide64: [0, 60]'
+      value: 0
+    caliber:
+      description: 'Hollowness for `Fill` shape types. It specifies a region from
+        which particles are not emitted as a percentage from the center of the emitter.
+
+        Value must be in the range `[0, 1]`, where a value of 1 is equivalent to 100%.'
+      value: 1.0
+    lineCenter:
+      description: Center position / half length for the two `Line*` shape types.
+      value: 0.0
+    arcOpening:
+      description: 'For the `Sphere` and `FillSphere` shape types, method of arc opening.
+        Possible values are:
+
+        Longitude: The arc is defined along the longitude. If this type is chosen,
+        the values of `sweepParam` & `sweepStart`/`sweepStartRandom` are respected
+        and the values of `latitude` & `latitudeDir` are ignored.
+
+        Latitude: The arc is defined along the latitude. If this type is chosen, the
+        values of `latitude` & `latitudeDir` are respected and the values of `sweepParam`
+        & `sweepStart`/`sweepStartRandom` are ignored.'
+      value: Longitude
+    sweepStart:
+      description: For shape types which can use arcs, this is the arc start angle,
+        in SIGNED 32-bit Binary Angular Measurement (BAM) where (+/-)0x40000000 =
+        (+/-)90 degrees.
+      value: '-0x7FFFFFFF'
+    sweepStartRandom:
+      description: For shape types which can use arcs, randomly choose arc start angle?
+        If True, the value of `sweepParam` is ignored.
+      value: false
+    sweepParam:
+      description: 'For shape types which can use arcs, this is the arc central angle,
+        in UNSIGNED 32-bit Binary Angular Measurement (BAM) where 0x40000000 = 90
+        degrees. Positive values only!
+
+        Ignored if `sweepStartRandom` is True.'
+      value: '0xFFFFFFFF'
+    latitude:
+      description: 'For the `Sphere` and `FillSphere` shape types, minimum latitude
+        at which the particle is spawned, in radians.
+
+        Value must be in the range `[0, 3.141592653589793]`.'
+      value: 3.141592653589793
+    latitudeDir:
+      description: 'For the `Sphere` and `FillSphere` shape types, the basis to which
+        the latitude should be transformed *to*. The original basis is +Y Axis.
+
+        Possible values are:
+
+        PosX: +X Axis.
+
+        NegX: -X Axis.
+
+        PosY: +Y Axis. (No transformation.)
+
+        NegY: -Y Axis.
+
+        PosZ: +Z Axis.
+
+        NegZ: -Z Axis.'
+      value: PosY
+  transform:
+    scale:
+      description: Emitter scale. Value must be positive.
+      value:
+        x: 1.0
+        y: 1.0
+        z: 1.0
+    rot:
+      description: 'Emitter rotation, in radians.
+
+        Value must be in the range `[0, 6.283185307179586]`.'
+      value:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+    rotRnd:
+      description: 'Emitter rotation random range size, in radians.
+
+        A random decimal value picked from the range `(-rotRnd, rotRnd]` is added
+        to `rot`.
+
+        Value must be in the range `[0, 3.141592653589793]`.'
+      value:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+    trans:
+      description: Emitter translation.
+      value:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+    transRnd:
+      description: 'Emitter translation random range size.
+
+        A random decimal value picked from the range `(-transRnd, transRnd]` is added
+        to `trans`.
+
+        Value must be positive.'
+      value:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+  globalColor0:
+    description: Emitter global multiplication color 0. Multiplies the particle color
+      0 RGB values with the specified RGB values.
+    value:
+      r: 1.0
+      g: 1.0
+      b: 1.0
+  globalColor1:
+    description: Emitter global multiplication color 1. Multiplies the particle color
+      1 RGB values with the specified RGB values.
+    value:
+      r: 1.0
+      g: 1.0
+      b: 1.0
+  globalAlpha:
+    description: 'Emitter global multiplication alpha. Multiplies the particle alpha
+      value with the specified alpha value.
+
+      Value must be positive.'
+    value: 1.0
+emission:
+  timing:
+    startFrame:
+      description: Emission start frame. Must be a positive integer value.
+      value: 0
+    emitTime:
+      description: 'Emission duration length. Possible values are:
+
+        Infinite: After the emission start frame is reached, the emitter continues
+        emitting infinitely.
+
+        Positive integer value: The emission duration length in frames.'
+      value: Infinite
+    interval:
+      type:
+        description: 'Type of particle emission interval. Possible types are:
+
+          Time: Particles are emitted each time a certain amount of time passes.
+
+          Distance: Particles are emitted each time the emitter moves a certain unit
+          of distance. (Equidistant particle emission.)'
+        value: Time
+      paramTime:
+        emitRate:
+          description: 'Emission rate. This is the number of particles emitted per
+            emission event.
+
+            Fractional values are allowed. For example, a value of of 1.5 would spawn
+            1 particle on some emission event, then 2 on the next, such that they
+            add up to 3 particles per 2 emission events (3/2 = 1.5).
+
+            Value must be positive.'
+          value: 1.0
+        emitStep:
+          description: 'Emission interval in frames. The number of frames between
+            each emission event.
+
+            Value must be positive.'
+          value: 2
+        emitStepRnd:
+          description: 'Emission interval random addition range.
+
+            A random integer value picked from the range `[0, emitStepRnd)` is added
+            to `emitStep`.
+
+            Value must be positive.'
+          value: 0
+      paramDistance:
+        emitDistUnit:
+          description: 'Emission unit distance.
+
+            A particle is emitted when the sum of the distance per frame between the
+            emitter position and the previous particle emission position exceeds this
+            value.
+
+            Must be greater than zero.'
+          value: 1.0
+        emitDistClampMax:
+          description: 'Total travel distance per frame clamp range maximum value.
+
+            Value must be greater than or equal to `emitDistClampMin`.'
+          value: 10.0
+        emitDistClampMin:
+          description: 'Total travel distance per frame clamp range minimum value.
+
+            Must be a positive value.'
+          value: 0.0
+        emitDistMargin:
+          description: 'Total travel distance per frame truncation threshold.
+
+            If the distance in the current frame between the emitter position and
+            the previous particle emission position is less than this value, the distance
+            is truncated to 0.
+
+            This operation is applied before the distance is clamped within the range
+            `[emitDistClampMin, emitDistClampMax]`.
+
+            Must be a positive value.'
+          value: 0.0
+  posAndInitVel:
+    initPosRand:
+      description: 'Particle initial position randomizer sphere radius.
+
+        If nonzero, the actual initial position of the particle ends up being a random
+        point on the surface of a sphere centered on the original initial position
+        of the particle. This value defines the radius of that sphere.
+
+        Value must be positive.'
+      value: 0.0
+    figureVel:
+      description: 'Magnitude of random-direction initial velocity.
+
+        This is the magnitude of the particle initial velocity in the direction of
+        emission (and that direction is randomized to begin with).'
+      value: 0.05
+    emitterVel:
+      description: 'Magnitude of emission velocity. Value must be positive.
+
+        This is the magnitude of a velocity added to the particle initial velocity
+        at emission.'
+      value: 0.0
+    emitterVelDir:
+      description: 'Direction of emission velocity.
+
+        This is the direction of a velocity added to the particle initial velocity
+        at emission.
+
+        Each axis value must be in the range `[-1, 1]`.'
+      value:
+        x: 0.0
+        y: 1.0
+        z: 0.0
+    emitterVelDirAngle:
+      description: 'Dispersion angle of emission velocity, in degrees.
+
+        This value specifies the spread or cone angle within which the direction of
+        emission velocity can vary. It controls how much the direction of the emission
+        velocity can deviate its original direction.
+
+        Value must be in the range `[0.0, 180.0]`.
+
+        When the value is 0, the emission velocity is set directly to the direction
+        specified by `emitterVelDir`, scaled by `emitterVel`.
+
+        When the value is greater than 0, the direction of emission velocity is randomly
+        varied within a cone defined by this angle.
+
+        When the value is 180, the direction of emission velocity can vary within
+        a full sphere centered around emitterVelDir.'
+      value: 0.0
+    xzDiffusionVel:
+      description: 'Magnitude of initial horizontal (XZ) drift.
+
+        This is the magnitude of an additional velocity component added to the particle
+        initial velocity in the horizontal (XZ) plane, perpendicular to the Y axis.
+        It causes the particle to drift further in a direction influenced by its initial
+        position in the XZ plane.'
+      value: 0.0
+    spreadVec:
+      description: 'Initial velocity spread vector. This attribute specifies the range
+        of random variation applied to a particle initial velocity in the X, Y, and
+        Z directions. It consists of three components:
+
+        * A random decimal value picked from the range `[-x, x)` is added to the X
+        component of the particle initial velocity.
+
+        * A random decimal value picked from the range `[-y, y)` is added to the Y
+        component of the particle initial velocity.
+
+        * A random decimal value picked from the range `[-z, z)` is added to the Z
+        component of the particle initial velocity.
+
+        Values must be positive.
+
+        This spread vector is the *last* adjustment applied to the particle initial
+        velocity. i.e., its effect is not impacted by `initVelRnd`.'
+      value:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+    initVelRnd:
+      description: 'Initial velocity random scale range. Value must be positive.
+
+        A random decimal value picked from the range `[1-initVelRnd, 1)` is used to
+        scale the particle initial velocity.
+
+        This random scale is applied to the particle initial velocity *before* `spreadVec`
+        is applied.'
+      value: 0.0
+    airRegist:
+      description: 'Air resistance. This value is used to scale the particle velocity
+        on every frame, and can be used to reduce or increase the particle velocity.
+
+        Value must be positive.'
+      value: 0.98
+  gravity:
+    isWorldGravity:
+      description: Apply gravity in world coordinates?
+      value: false
+    vector:
+      description: Gravity vector. This value is added to the velocity and can also
+        be thought of as the acceleration vector.
+      value:
+        x: 0.0
+        y: 0.01
+        z: 0.0
+particle:
+  lifespan:
+    description: 'Particle lifespan. Possible values are:
+
+      Infinite: Once emitted, the particle lives infinitely.
+
+      Integer value greater than zero: The duration of the particle life from emission
+      until expiration, in frames.'
+    value: 35
+  lifespanRnd:
+    description: 'Particle lifespan random reduction range.
+
+      A random integer value picked from the range `[0, lifespanRnd)` is subtracted
+      from `lifespan`.
+
+      Ignored if `lifespan` is set to `Infinite`.
+
+      Otherwise, value must be in the range `[0, lifespan]`.'
+    value: 0
+  momentumRnd:
+    description: 'Momentum random scale range. Value must be positive.
+
+      Makes individual particle motion appear random:
+
+      A random decimal value picked from the range `(1-momentumRnd, 1+momentumRnd]`
+      is used to scale the particle velocity (as well as the Spin, Convergence and
+      PosAdd fields).'
+    value: 0.0
+  shape:
+    type:
+      description: 'Particle mesh type. Possible types are:
+
+        Particle:  The particle is a flat sheet.
+
+        Primitive: The particle uses a primitive model.
+
+        Stripe:    The particle is stretched out like fiber. This type is usually
+        used with effects that leave a trail (stripe). `emitterType` must be set to
+        `Complex` to be able to use this type.'
+      value: Particle
+    primitiveFigure:
+      description: Primitive model to use for the figure of particles
+      filename:
+        description: Filename of primitive to use, relative to the primitive path
+          set in the project YAML file
+        value: null
+    billboardType:
+      description: 'Billboard (particle orientation) type. Possible types are:
+
+        - If mesh type is `Particle` or `Primitive`, possible types are:
+
+        Billboard:          Normal billboard. The particle Y-axis is bound to the
+        camera `up` vector and the Z-axis is always parallel to the camera lens axis.
+
+        YBillboard:         Y-axis billboard. Displays the view after rotating the
+        particle around the Y-axis only, so that its Z-axis is parallel to the camera
+        lens axis.
+
+        PolygonXY:          XY-plane polygon. This type of particle has sides in the
+        X direction and the Y direction.
+
+        PolygonXZ:          XZ-plane polygon. This type of particle has sides in the
+        X direction and the Z direction.
+
+        VelLook:            Directional Y-billboard. As this type of particle moves,
+        it looks at its position in the previous frame and tilts in that direction
+        of movement. It rotates only around the Y-axis to display with the Z-axis
+        facing the camera.
+
+        VelLookPolygon:     Directional polygon. As this type of particle moves, it
+        looks at its position in the previous frame and tilts in that direction of
+        movement.
+
+        - If mesh type is `Stripe`, possible types are:
+
+        HistoricalStripe:   Historical Stripe. This type of particle is stretched
+        out like a fiber and has a trail behind the particle.
+
+        ConsolidatedStripe: Consolidated Stripe. This type of particle is stretched
+        out like a fiber and has a trail connected to particles in the emitter.'
+      value: Billboard
+    pivotOffset:
+      description: Sets the offset of the pivot position for particle scaling and
+        rotation, in local coordinates.
+      value:
+        x: 0.0
+        y: 0.0
+    toCameraOffset:
+      description: 'Drawing offset in camera direction. Offsets the position where
+        a particle is rendered either forward or backward relative to the camera.
+
+        Since this value is configurable per emitter, you can think of it as the Z-order
+        of the emitter and can be used to adjust particle overlap between emitters.'
+      value: 0.0
+  renderState:
+    blendType:
+      description: 'Blend type. Possible types are:
+
+        Normal: Standard Blending, blends the source and destination colors using
+        the source alpha value for smooth transparency effects, where the source partially
+        covers the destination.
+
+        Add:    Additive Blending, adds the source color to the destination color,
+        creating brightening effects such as glows or light flares.
+
+        Sub:    Subtractive Blending, subtracts the source color from the destination
+        color using reverse subtraction, often used for creating inverted or darkening
+        effects.
+
+        Screen: Screen Blending, combines the source and destination colors by inverting,
+        multiplying, and adding them, useful for lightening the image and creating
+        highlights.
+
+        Mult:   Multiplicative Blending, multiplies the source color with the destination
+        color, commonly used for tinting, shading, or creating shadow effects.'
+      value: Add
+    zBufATestType:
+      description: 'Z-buffer alpha test type. Possible types are:
+
+        Normal:  Translucent Rendering (with depth testing), enables depth testing
+        and sets the depth function to allow writing to fragments that are closer
+        or at the same depth as existing ones, disables depth writing, and enables
+        blending for proper rendering of transparent objects.
+
+        ZIgnore: Translucent Rendering (without depth testing), disables depth testing
+        and depth writing, and enables blending, typically used for rendering effects
+        that do not require depth sorting.
+
+        Entity:  Opaque Rendering (with depth and alpha testing), enables depth testing
+        with depth writing, sets the depth function to allow writing to fragments
+        that are closer or at the same depth as existing ones, uses alpha testing
+        to discard fragments with alpha less than or equal to 0.5, and disables blending,
+        making it suitable for rendering fully opaque objects that need depth sorting.'
+      value: Normal
+    displaySide:
+      description: 'Which side to display. Possible values are:
+
+        Both:  Display both sides of particles.
+
+        Front: Display only front side of particles.
+
+        Back:  Display only back side of particles.'
+      value: Both
+combiner:
+  mode:
+    description: 'Pixel combiner mode. Possible modes are:
+
+      - Normal:
+
+      In this mode, the new pixel output is calculated as follows:
+
+      PixelColor = Texture0Color;
+
+      if (Texture1IsPresent) PixelColor = Texture1ColorBlendFunc(PixelColor);
+
+      PixelColor = PtclColorBlendFunc(PixelColor);
+
+      if (MeshTypeIsPrimitive) PixelColor = PrimitiveColorBlendFunc(PixelColor);
+
+      PixelAlpha = Texture0Alpha;
+
+      if (Texture1IsPresent) PixelAlpha = Texture1AlphaBlendFunc(PixelAlpha);
+
+      if (MeshTypeIsPrimitive) PixelAlpha = PrimitiveAlphaBlendFunc(PixelAlpha);
+
+      PixelAlpha = PtclAlphaBlendFunc(PixelAlpha);
+
+
+      - Refraction:
+
+      Color Buffer Refraction. Causes distortion of the background of the particle.
+
+      In this mode, the new pixel output is calculated as follows:
+
+      vec2 Offset = vec2(Texture0Color.r, Texture0Alpha) * offsetScale;
+
+      if (Texture1IsPresent && applyAlphaToRefract) Offset *= Texture1Alpha * PtclAlpha;
+
+      PixelColor = GetOriginalPixel(Offset);
+
+      PixelColor = PtclColorBlendFunc(PixelColor);
+
+      if (MeshTypeIsPrimitive) PixelColor = PrimitiveColorBlendFunc(PixelColor);
+
+      float AlphaTemp = 1.0;
+
+      if (MeshTypeIsPrimitive) AlphaTemp = PrimitiveAlphaBlendFunc(AlphaTemp);
+
+      PixelAlpha = PtclAlphaBlendFunc(AlphaTemp);
+
+      if (Texture1IsPresent) PixelAlpha *= Texture1Alpha * AlphaTemp;
+
+
+      - Distortion:
+
+      Uses texture 0 to distort texture 1.
+
+      In this mode, the new pixel output is calculated as follows:
+
+      vec2 Offset = vec2(Texture0Color.r, Texture0Alpha) * offsetScale;
+
+      vec4 ColorTemp = GetTexture1Color(Offset);
+
+      float AlphaTemp = GetTexture1Alpha(Offset);
+
+      PixelColor = PtclColorBlendFunc(ColorTemp);
+
+      if (MeshTypeIsPrimitive) PixelColor = PrimitiveColorBlendFunc(PixelColor);
+
+      if (MeshTypeIsPrimitive) AlphaTemp = PrimitiveAlphaBlendFunc(AlphaTemp);
+
+      PixelAlpha = PtclAlphaBlendFunc(AlphaTemp);'
+    value: Normal
+  offsetScale:
+    description: Used to scale the offset in `Refraction` and `Distortion` modes.
+    value:
+      x: 0.004999999888241291
+      y: 0.0
+  applyAlphaToRefract:
+    description: Scale the offset using texture 1 & particle alpha in `Refraction`
+      mode?
+    value: true
+  softParticle:
+    description: This effect smooths out the edges of particles when they overlap
+      with other objects in the scene, avoiding harsh intersections with surfaces.
+      By enabling soft particles, you can make the particle system emit particles
+      close to opaque surfaces without causing hard edges. Instead of having a hard,
+      sharp edge, the particles gradually become more transparent near their boundaries,
+      creating a softer transition between the particles and the background. This
+      helps particles look less like flat images and more like volumetric objects.
+    enable:
+      description: Enable soft particles?
+      value: false
+    fadeDistance:
+      description: 'Soft particle fade distance. This parameter sets how far from
+        the point of overlap between the particle and the model the softening effect
+        will start, i.e., the transition from opaque to transparent. A larger distance
+        results in a more gradual fade.
+
+        Value must be positive.'
+      value: 0.0
+    volume:
+      description: 'Adjusts the perceived thickness of the particles. Higher values
+        make the particles appear thicker by influencing how transparency is calculated
+        based on the particle color brightness.
+
+        Value must be positive.'
+      value: 0.0
+  colorCombiner:
+    texture0:
+      source:
+        description: '`Texture0Color` value source.
+
+          Possible sources are:
+
+          RGB: Color data of texture 0.
+
+          One: Constant value (1.0).'
+        value: RGB
+    texture1:
+      source:
+        description: '`Texture1Color` value source.
+
+          Possible sources are:
+
+          RGB: Color data of texture 1.
+
+          One: Constant value (1.0).'
+        value: RGB
+      colorBlendType:
+        description: 'Type of color blending with `Texture1Color`.
+
+          Possible types are:
+
+          - Mod:
+
+          Texture1ColorBlendFunc(Color) = Color * Texture1Color;
+
+          - Add:
+
+          Texture1ColorBlendFunc(Color) = Color + Texture1Color;
+
+          - Sub:
+
+          Texture1ColorBlendFunc(Color) = Color - Texture1Color;'
+        value: Mod
+    ptclColor:
+      colorBlendType:
+        description: 'Color calculation formula.
+
+          Possible types are:
+
+          - Color:
+
+          PtclColorBlendFunc(Color) = PtclColor0;
+
+          - Texture:
+
+          PtclColorBlendFunc(Color) = Color * PtclColor0;
+
+          - TextureInterpolate:
+
+          PtclColorBlendFunc(Color) = (Color * PtclColor0) + ((1 - Color) * PtclColor1);
+
+          - TextureAdd:
+
+          PtclColorBlendFunc(Color) = (Color * PtclColor0) + PtclColor1;'
+        value: TextureInterpolate
+    primitive:
+      source:
+        description: '`PrimitiveColor` value source.
+
+          Possible sources are:
+
+          RGB: Color data of primitive.
+
+          One: Constant value (1.0).'
+        value: RGB
+      colorBlendType:
+        description: 'Type of color blending with `PrimitiveColor`.
+
+          Possible types are:
+
+          - Mod:
+
+          PrimitiveColorBlendFunc(Color) = Color * PrimitiveColor;
+
+          - Add:
+
+          PrimitiveColorBlendFunc(Color) = Color + PrimitiveColor;
+
+          - Sub:
+
+          PrimitiveColorBlendFunc(Color) = Color - PrimitiveColor;'
+        value: Mod
+  alphaCombiner:
+    commonSource:
+      description: 'Common alpha source from texture 0, texture 1 and primitive.
+
+        Possible sources are:
+
+        Alpha: Alpha channel of texture 0, texture 1 and primitive color data.
+
+        Red:   Red channel of texture 0, texture 1 and primitive color data.'
+      value: Red
+    texture0:
+      source:
+        description: '`Texture0Alpha` value source.
+
+          Possible sources are:
+
+          Pass: Select from `commonSource`.
+
+          One:  Constant value (1.0).'
+        value: Pass
+    texture1:
+      source:
+        description: '`Texture1Alpha` value source.
+
+          Possible sources are:
+
+          Pass: Select from `commonSource`.
+
+          One:  Constant value (1.0).
+
+          If `Refraction` mode, the source is always assumed to be the alpha channel
+          of texture 1 color data, regardless of what you set this to.'
+        value: Pass
+      alphaBlendType:
+        description: 'Type of alpha blending with `Texture1Alpha`.
+
+          Possible types are:
+
+          - Mod:
+
+          Texture1AlphaBlendFunc(Alpha) = Alpha * Texture1Alpha;
+
+          - Add:
+
+          Texture1AlphaBlendFunc(Alpha) = Alpha + Texture1Alpha;
+
+          - Sub:
+
+          Texture1AlphaBlendFunc(Alpha) = Alpha - Texture1Alpha;'
+        value: Mod
+    primitive:
+      source:
+        description: '`PrimitiveAlpha` value source.
+
+          Possible sources are:
+
+          Pass: Select from `commonSource`.
+
+          One:  Constant value (1.0).'
+        value: Pass
+      alphaBlendType:
+        description: 'Type of alpha blending with `PrimitiveAlpha`.
+
+          Possible types are:
+
+          - Mod:
+
+          PrimitiveAlphaBlendFunc(Alpha) = Alpha * PrimitiveAlpha;
+
+          - Add:
+
+          PrimitiveAlphaBlendFunc(Alpha) = Alpha + PrimitiveAlpha;
+
+          - Sub:
+
+          PrimitiveAlphaBlendFunc(Alpha) = Alpha - PrimitiveAlpha;'
+        value: Mod
+    ptclAlpha:
+      alphaBlendType:
+        description: 'Alpha calculation formula.
+
+          Possible types are:
+
+          Mod:
+
+          PtclAlphaBlendFunc(Alpha) = Alpha * PtclAlpha;
+
+          Sub:
+
+          PtclAlphaBlendFunc(Alpha) = (Alpha - (1 - PtclAlpha)) * 2;'
+        value: Mod
+texture0:
+  filename:
+    description: 'Filename of texture to use, relative to the texture path set in
+      the project YAML file.
+
+      (Only GTX and PNG allowed, though GTX specifically is strongly recommended.)'
+    value: Fire_01.gtx
+  originalDataFormat:
+    description: Hint of the format of the original texture that was used to generate
+      either the GTX or PNG file specified in `filename`. Optional.
+    value: RGB
+  numTexDivX:
+    description: Number of horizontal divisions. This value divides the texture horizontally
+      into patterns which are used in the texture pattern animation.
+    value: 4
+  numTexDivY:
+    description: Number of vertical divisions. This value divides the texture vertically
+      into patterns which are used in the texture pattern animation.
+    value: 1
+  wrapModeU:
+    description: 'Wrap mode in the U (horizontal) direction. Possible modes are:
+
+      Mirror
+
+      Repeat
+
+      Clamp'
+    value: Mirror
+  wrapModeV:
+    description: Wrap mode in the V (vertical) direction. Same modes as `wrapModeU`.
+    value: Mirror
+  repetitionCount:
+    description: 'Texture repetition count in each axis to use when the texture is
+      divided into the patterns for the texture pattern animation.
+
+      Possible values are:
+
+      U1V1: No repetition in the texture. (1x1)
+
+      U2V1: The texture is repeated once in the U (horizontal) direction. (2x1)
+
+      U1V2: The texture is repeated once in the V (vertical) direction. (1x2)
+
+      U2V2: The texture is repeated once in both the U (horizontal) & V (vertical)
+      directions. (1x2).'
+    value: U1V1
+  filterMode:
+    description: 'Texture filter mode. Possible modes are:
+
+      Linear: Interpolates between texel colors to make textures appear smooth.
+
+      Near:   Displays each texel distinctly.'
+    value: Linear
+  enableMipLevel:
+    description: 'Mip LOD level maximum value.
+
+      For textures with mipmaps, this value can be used to specify the range of mipmap
+      levels that are applied.
+
+      (Valid values are `0.0` to `15.99`.)'
+    value: 15.99
+  mipMapBias:
+    description: 'Mip LOD level bias value.
+
+      For textures with mipmaps, this value can be used to adjust the mipmap levels
+      that are applied.
+
+      (Valid values are `-32.0` to `31.99`.)'
+    value: 0.0
+  texSRTAnim:
+    mode:
+      description: 'Animation type. Possible types are:
+
+        Null:  Disables texture UV animation.
+
+        Trans: Enables texture UV translation animation.
+
+        Scale: Enables texture UV scale animation.
+
+        Rot:   Enables texture UV rotation animation.
+
+        All:   Enables texture UV SRT animation.'
+      value: 'Null'
+    trans:
+      add:
+        description: UV translation speed. This value is added to the UV translation
+          in every frame.
+        value:
+          u: 0.0
+          v: 0.0
+      init:
+        description: Initial UV translation.
+        value:
+          u: 0.0
+          v: 0.0
+      initRnd:
+        description: 'Initial UV translation random range size.
+
+          A random decimal value picked from the range `(-initRnd, initRnd]` is added
+          to `init`.
+
+          Value must be positive.'
+        value:
+          u: 0.0
+          v: 0.0
+    scale:
+      add:
+        description: UV scale speed. This value is added to the UV scale in every
+          frame.
+        value:
+          u: 0.0
+          v: 0.0
+      init:
+        description: Initial UV scale.
+        value:
+          u: 1.0
+          v: 1.0
+      initRnd:
+        description: 'Initial UV scale random range size.
+
+          A random decimal value picked from the range `(-initRnd, initRnd]` is added
+          to `init`.
+
+          Value must be positive.'
+        value:
+          u: 0.0
+          v: 0.0
+    rot:
+      add:
+        description: 'UV rotation speed, in radians. This value is added to the UV
+          rotation in every frame.
+
+          Value must be in the range `[-3.141592653589793, 3.141592653589793]`.'
+        value: 0.0
+      init:
+        description: 'Initial UV rotation, in radians.
+
+          Value must be in the range `[0, 6.283185307179586]`.'
+        value: 0.0
+      initRnd:
+        description: 'Initial UV rotation random range size, in radians.
+
+          A random decimal value picked from the range `(-initRnd, initRnd]` is added
+          to `init`.
+
+          Value must be in the range `[0, 6.283185307179586]`.'
+        value: 0.0
+  texPatAnim:
+    mode:
+      description: 'Animation type. Possible types are:
+
+        Null:    Disables texture pattern animation.
+
+        LifeFit: Fits the texture pattern animation to the particle lifespan such
+        that it plays only once and in full.
+
+        Clamp:   Plays the texture pattern animation once, then the final pattern
+        is shown for the rest of the particle lifespan.
+
+        Loop:    Plays the texture pattern animation once, then keeps looping it repeatedly
+        for the rest of the particle lifespan.
+
+        Random:  Plays a single pattern for the entirety of the particle lifespan,
+        randomly selected (per particle).'
+      value: 'LifeFit'
+    numTexPat:
+      description: 'For the `Random` mode, the number of sequential patterns to consider
+        as candidates for random selection.
+
+        Value must be greater than `1` when the `Random` mode is selected.'
+      value: 1
+    isTexPatAnimRand:
+      description: 'For the `Loop` mode, set animation start position randomly (per
+        particle)?
+
+        In other words, if enabled, instead of the animation starting from the first
+        pattern, the animation will start from a random point with it.'
+      value: false
+    texPatFreq:
+      description: 'For the `Clamp` and `Loop` modes, the period of each pattern,
+        in frames.
+
+        Value must be greater than `0` when the `Clamp` and `Loop` modes are selected.'
+      value: 0
+    texPatTblUse:
+      description: 'For the `LifeFit`, `Clamp` and `Loop` modes, the total number
+        of patterns to use in the animation.
+
+        Value must be in the range `[1, 32)`.'
+      value: 6
+    texPatTbl:
+      description: For the `LifeFit`, `Clamp` and `Loop` modes, the order of patterns
+        in the animation. (Max size = 32)
+      value:
+      - 0
+      - 0
+      - 1
+      - 2
+      - 3
+      - 3
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+texture1:
+  filename:
+    description: 'Filename of texture to use, relative to the texture path set in
+      the project YAML file.
+
+      (Only GTX and PNG allowed, though GTX specifically is strongly recommended.)'
+    value: null
+  originalDataFormat:
+    description: Hint of the format of the original texture that was used to generate
+      either the GTX or PNG file specified in `filename`. Optional.
+    value: null
+  numTexDivX:
+    description: Number of horizontal divisions. This value divides the texture horizontally
+      into patterns which are used in the texture pattern animation.
+    value: 1
+  numTexDivY:
+    description: Number of vertical divisions. This value divides the texture vertically
+      into patterns which are used in the texture pattern animation.
+    value: 1
+  wrapModeU:
+    description: 'Wrap mode in the U (horizontal) direction. Possible modes are:
+
+      Mirror
+
+      Repeat
+
+      Clamp'
+    value: Mirror
+  wrapModeV:
+    description: Wrap mode in the V (vertical) direction. Same modes as `wrapModeU`.
+    value: Mirror
+  repetitionCount:
+    description: 'Texture repetition count in each axis to use when the texture is
+      divided into the patterns for the texture pattern animation.
+
+      Possible values are:
+
+      U1V1: No repetition in the texture. (1x1)
+
+      U2V1: The texture is repeated once in the U (horizontal) direction. (2x1)
+
+      U1V2: The texture is repeated once in the V (vertical) direction. (1x2)
+
+      U2V2: The texture is repeated once in both the U (horizontal) & V (vertical)
+      directions. (1x2).'
+    value: U1V1
+  filterMode:
+    description: 'Texture filter mode. Possible modes are:
+
+      Linear: Interpolates between texel colors to make textures appear smooth.
+
+      Near:   Displays each texel distinctly.'
+    value: Linear
+  enableMipLevel:
+    description: 'Mip LOD level maximum value.
+
+      For textures with mipmaps, this value can be used to specify the range of mipmap
+      levels that are applied.
+
+      (Valid values are `0.0` to `15.99`.)'
+    value: 15.99
+  mipMapBias:
+    description: 'Mip LOD level bias value.
+
+      For textures with mipmaps, this value can be used to adjust the mipmap levels
+      that are applied.
+
+      (Valid values are `-32.0` to `31.99`.)'
+    value: 0.0
+  texSRTAnim:
+    mode:
+      description: 'Animation type. Possible types are:
+
+        Null:  Disables texture UV animation.
+
+        Trans: Enables texture UV translation animation.
+
+        Scale: Enables texture UV scale animation.
+
+        Rot:   Enables texture UV rotation animation.
+
+        All:   Enables texture UV SRT animation.'
+      value: 'Null'
+    trans:
+      add:
+        description: UV translation speed. This value is added to the UV translation
+          in every frame.
+        value:
+          u: 0.0
+          v: 0.0
+      init:
+        description: Initial UV translation.
+        value:
+          u: 0.0
+          v: 0.0
+      initRnd:
+        description: 'Initial UV translation random range size.
+
+          A random decimal value picked from the range `(-initRnd, initRnd]` is added
+          to `init`.
+
+          Value must be positive.'
+        value:
+          u: 0.0
+          v: 0.0
+    scale:
+      add:
+        description: UV scale speed. This value is added to the UV scale in every
+          frame.
+        value:
+          u: 0.0
+          v: 0.0
+      init:
+        description: Initial UV scale.
+        value:
+          u: 1.0
+          v: 1.0
+      initRnd:
+        description: 'Initial UV scale random range size.
+
+          A random decimal value picked from the range `(-initRnd, initRnd]` is added
+          to `init`.
+
+          Value must be positive.'
+        value:
+          u: 0.0
+          v: 0.0
+    rot:
+      add:
+        description: 'UV rotation speed, in radians. This value is added to the UV
+          rotation in every frame.
+
+          Value must be in the range `[-3.141592653589793, 3.141592653589793]`.'
+        value: 0.0
+      init:
+        description: 'Initial UV rotation, in radians.
+
+          Value must be in the range `[0, 6.283185307179586]`.'
+        value: 0.0
+      initRnd:
+        description: 'Initial UV rotation random range size, in radians.
+
+          A random decimal value picked from the range `(-initRnd, initRnd]` is added
+          to `init`.
+
+          Value must be in the range `[0, 6.283185307179586]`.'
+        value: 0.0
+  texPatAnim:
+    mode:
+      description: 'Animation type. Possible types are:
+
+        Null:    Disables texture pattern animation.
+
+        LifeFit: Fits the texture pattern animation to the particle lifespan such
+        that it plays only once and in full.
+
+        Clamp:   Plays the texture pattern animation once, then the final pattern
+        is shown for the rest of the particle lifespan.
+
+        Loop:    Plays the texture pattern animation once, then keeps looping it repeatedly
+        for the rest of the particle lifespan.
+
+        Random:  Plays a single pattern for the entirety of the particle lifespan,
+        randomly selected (per particle).'
+      value: 'Null'
+    numTexPat:
+      description: 'For the `Random` mode, the number of sequential patterns to consider
+        as candidates for random selection.
+
+        Value must be greater than `1` when the `Random` mode is selected.'
+      value: 1
+    isTexPatAnimRand:
+      description: 'For the `Loop` mode, set animation start position randomly (per
+        particle)?
+
+        In other words, if enabled, instead of the animation starting from the first
+        pattern, the animation will start from a random point with it.'
+      value: false
+    texPatFreq:
+      description: 'For the `Clamp` and `Loop` modes, the period of each pattern,
+        in frames.
+
+        Value must be greater than `0` when the `Clamp` and `Loop` modes are selected.'
+      value: 0
+    texPatTblUse:
+      description: 'For the `LifeFit`, `Clamp` and `Loop` modes, the total number
+        of patterns to use in the animation.
+
+        Value must be in the range `[1, 32)`.'
+      value: 2
+    texPatTbl:
+      description: For the `LifeFit`, `Clamp` and `Loop` modes, the order of patterns
+        in the animation. (Max size = 32)
+      value:
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+ptclColor:
+  colorScale:
+    description: 'Color scale. Used to scale the final color 0 & color 1 values.
+
+      Value must be positive.'
+    value: 1.0
+  color0:
+    colorCalcType:
+      description: 'Color behavior type. Possible types are:
+
+        Fixed:     The value of this color attribute is fixed.
+
+        Random:    The value of this color attribute is randomly picked once then
+        fixed.
+
+        Animation: The value of this color attribute is animated using 3 color elements
+        in 4 sections that are fitted to the particle lifespan.'
+      value: Fixed
+    colorElem:
+      description: 'Three RGB color elements. They have different significance based
+        on the `colorCalcType` value:
+
+        Fixed:     The first element in this array is always used as the color.
+
+        Random:    One of these three elements is randomly picked as the color for
+        each particle.
+
+        Animation: These three elements are used to animate the color.
+
+        Values must be positive.'
+      value:
+      - r: 1.0
+        g: 0.392
+        b: 0.196
+      - r: 1.0
+        g: 1.0
+        b: 1.0
+      - r: 1.0
+        g: 1.0
+        b: 1.0
+    animationParam:
+      colorSection1:
+        description: 'End of 1st color section as percentage of particle lifespan.
+
+          Value must be in the range `[0, 100]`.
+
+          During this section, the color value is fixed to `colorElem[0]`.'
+        value: 20
+      colorSection2:
+        description: 'End of 2nd color section as percentage of particle lifespan.
+
+          Value must be in the range `[0, 100]`.
+
+          During this section, the color value transitions from `colorElem[0]` to
+          `colorElem[1]` (using linear interpolation).'
+        value: 60
+      colorSection3:
+        description: 'End of 3rd color section as percentage of particle lifespan.
+
+          Value must be in the range `[0, 100]`.
+
+          During this section, the color value transitions from `colorElem[1]` to
+          `colorElem[2]` (using linear interpolation).
+
+          (In the 4th color section (which is last), the color value is fixed to `colorElem[2]`.)'
+        value: 80
+      colorNumRepeat:
+        description: 'Color animation repetition count.
+
+          Specifies how many times this color animation must be played over the particle
+          lifespan.
+
+          Must be greater than zero.'
+        value: 1
+      colorRepeatStartRand:
+        description: 'Set color animation start position randomly (per particle)?
+
+          In other words, if enabled, instead of the color animation starting from
+          the beginning of the 1st color section, the animation will start from a
+          random point in one of the 4 sections (for each particle).'
+        value: false
+  color1:
+    colorCalcType:
+      description: 'Color behavior type. Possible types are:
+
+        Fixed:     The value of this color attribute is fixed.
+
+        Random:    The value of this color attribute is randomly picked once then
+        fixed.
+
+        Animation: The value of this color attribute is animated using 3 color elements
+        in 4 sections that are fitted to the particle lifespan.'
+      value: Fixed
+    colorElem:
+      description: 'Three RGB color elements. They have different significance based
+        on the `colorCalcType` value:
+
+        Fixed:     The first element in this array is always used as the color.
+
+        Random:    One of these three elements is randomly picked as the color for
+        each particle.
+
+        Animation: These three elements are used to animate the color.
+
+        Values must be positive.'
+      value:
+      - r: 1.0
+        g: 0.0
+        b: 0.0
+      - r: 1.0
+        g: 1.0
+        b: 1.0
+      - r: 1.0
+        g: 1.0
+        b: 1.0
+    animationParam:
+      colorSection1:
+        description: 'End of 1st color section as percentage of particle lifespan.
+
+          Value must be in the range `[0, 100]`.
+
+          During this section, the color value is fixed to `colorElem[0]`.'
+        value: 20
+      colorSection2:
+        description: 'End of 2nd color section as percentage of particle lifespan.
+
+          Value must be in the range `[0, 100]`.
+
+          During this section, the color value transitions from `colorElem[0]` to
+          `colorElem[1]` (using linear interpolation).'
+        value: 60
+      colorSection3:
+        description: 'End of 3rd color section as percentage of particle lifespan.
+
+          Value must be in the range `[0, 100]`.
+
+          During this section, the color value transitions from `colorElem[1]` to
+          `colorElem[2]` (using linear interpolation).
+
+          (In the 4th color section (which is last), the color value is fixed to `colorElem[2]`.)'
+        value: 80
+      colorNumRepeat:
+        description: 'Color animation repetition count.
+
+          Specifies how many times this color animation must be played over the particle
+          lifespan.
+
+          Must be greater than zero.'
+        value: 1
+      colorRepeatStartRand:
+        description: 'Set color animation start position randomly (per particle)?
+
+          In other words, if enabled, instead of the color animation starting from
+          the beginning of the 1st color section, the animation will start from a
+          random point in one of the 4 sections (for each particle).'
+        value: false
+ptclAlpha:
+  description: The value of the particle alpha attribute is animated using 3 alpha
+    elements in 3 sections that are fitted to the particle lifespan. If `alphaSection1`
+    is set to 0 AND `alphaSection2` is set to 100, the alpha animation is disabled.
+  animationParam:
+    alphaElem[0]:
+      description: 'Alpha animation element 0.
+
+        Value must be in the range `[0, 1]`'
+      value: 0.0
+    diffAlphaElem10:
+      description: 'The difference between alpha elements 0 & 1.
+
+        (`alphaElem[1] = alphaElem[0] + diffAlphaElem10`)
+
+        Value must be such that `alphaElem[1]` is in the range `[0, 1]`.'
+      value: 1.0
+    diffAlphaElem21:
+      description: 'The difference between the alpha elements 1 & 2.
+
+        (`alphaElem[2] = alphaElem[1] + diffAlphaElem21`)
+
+        Value must be such that `alphaElem[2]` is in the range `[0, 1]`.'
+      value: -1.0
+    alphaSection1:
+      description: 'End of 1st alpha section as percentage of particle lifespan.
+
+        Value must be in the range `[0, 100]`.
+
+        During this section, the alpha value transitions from `alphaElem[0]` to `alphaElem[1]`
+        (using linear interpolation).'
+      value: 0
+    alphaSection2:
+      description: 'End of 2nd alpha section as percentage of particle lifespan.
+
+        Value must be in the range `[0, 100]`.
+
+        During this section, the alpha value is fixed to `alphaElem[1]`.
+
+        (In the 3rd alpha section (which is last), the alpha value transitions from
+        `alphaElem[1]` to `alphaElem[2]` (using linear interpolation).)'
+      value: 79
+ptclScale:
+  description: 'The value of the particle scale attribute is animated using 3 scale
+    percentage elements in 3 sections that are fitted to the particle lifespan.
+
+    At every point in time, the particle scale is set to the particle scale base value
+    (`baseScale`) multiplied by the current scale percentage.
+
+    For all scale percentage values, a value of 1 is equivalent to 100%.
+
+    If `scaleSection1` is set to -127 AND `scaleSection2` is set to 100, the scale
+    animation is disabled.'
+  baseScale:
+    description: Particle Scale base value. Must be positive.
+    value:
+      x: 6.0
+      y: 6.0
+  baseScaleRand:
+    description: 'Particle Scale base value random percentage range.
+
+      A random decimal value picked from the range `(1-baseScaleRand, 1]` is used
+      to scale the particle scale base value (`baseScale`).
+
+      Value must be positive.'
+    value: 0.5
+  animationParam:
+    scaleElem[0]:
+      description: 'Scale percentage animation element 0.
+
+        Value must positive.'
+      value:
+        x: 0.7
+        y: 0.7
+    diffScaleElem10:
+      description: 'The difference between scale percentage elements 0 & 1.
+
+        (`scaleElem[1] = scaleElem[0] + diffScaleElem10`)
+
+        Value must be such that `scaleElem[1]` is positive.'
+      value:
+        x: 0.3
+        y: 0.3
+    diffScaleElem21:
+      description: 'The difference between the scale percentage elements 1 & 2.
+
+        (`scaleElem[2] = scaleElem[1] + diffScaleElem21`)
+
+        Value must be such that `scaleElem[2]` is positive.'
+      value:
+        x: -0.23
+        y: -0.23
+    scaleSection1:
+      description: 'End of 1st scale section as percentage of particle lifespan.
+
+        Value must either be in the range `[0, 100]`, or be -127.
+
+        During this section, the scale percentage value transitions from `scaleElem[0]`
+        to `scaleElem[1]` (using linear interpolation).'
+      value: 30
+    scaleSection2:
+      description: 'End of 2nd scale section as percentage of particle lifespan.
+
+        Value must be in the range `[0, 100]`.
+
+        During this section, the scale percentage value is fixed to `scaleElem[1]`.
+
+        (In the 3rd scale section (which is last), the scale percentage value transitions
+        from `scaleElem[1]` to `scaleElem[2]` (using linear interpolation).)'
+      value: 30
+ptclRot:
+  type:
+    description: 'Particle rotation type. Possible types are:
+
+      NoWork: Particles do not rotate.
+
+      RotX:   Particles can rotate only around on the X axis.
+
+      RotY:   Particles can rotate only around on the Y axis.
+
+      RotZ:   Particles can rotate only around on the Z axis.
+
+      RotXYZ: Particles can rotate around all axes.'
+    value: RotZ
+  initRot:
+    description: 'Particle initial rotation, in radians.
+
+      Value must be in the range `[0, 6.283185307179586]`.'
+    value:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+  initRotRand:
+    description: 'Particle initial rotation random range size, in radians.
+
+      A random decimal value picked from the range `[0, initRotRand)` is added to
+      `initRot`.
+
+      Value must be in the range `[0, 6.283185307179586]`.'
+    value:
+      x: 0.0
+      y: 0.0
+      z: 6.265732014659643
+  rotRegist:
+    description: 'Particle rotation air resistance. This value is used to scale the
+      particle angular velocity on every frame, and can be used to reduce or increase
+      the particle angular velocity.
+
+      Value must be positive.'
+    value: 1.0
+  rotVel:
+    description: 'Particle angular velocity, in radians.
+
+      Value must be in the range `[-3.141592653589793, 3.141592653589793]`.'
+    value:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+  rotVelRand:
+    description: 'Particle angular velocity random range size, in radians.
+
+      A random decimal value picked from the range `[0, rotVelRand)` is added to `rotVel`.
+
+      Value must be in the range `[0, 6.283185307179586]`.'
+    value:
+      x: 0.0
+      y: 0.0
+      z: 0.03490658503988659
+termination:
+  isStopEmitInFade:
+    description: Cease particle emission during fade out?
+    value: true
+  alphaAddInFade:
+    description: 'Alpha fade rate. This value will be subtracted from/added to the
+      particle fading alpha multiplier during fade out/in.
+
+      Value must be positive.'
+    value: 0.0
+userData:
+  callbackID:
+    description: User data callback ID (0-7 or null).
+    value: null
+  bitfield:
+    description: 16-bit bitfield.
+    value: '0b0000000000100000'
+  numArrayU8:
+    description: 1-byte number array (Size = 6).
+    value:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+  numArrayF:
+    description: Decimal number array (Size = 8).
+    value:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+userShader:
+  shaderType:
+    description: Games and applications are allowed to select a global shader type
+      (ref. `nw::eft::Renderer::SetShaderType` function) that define special environments
+      under which user shaders are allowed to behave differently. Three global types
+      exist (0, 1, 2). Type 0 is the type under which user shaders should behave as
+      normal. Types 1 and 2 are special types that user shaders can react to.
+    macroDef1:
+      description: A macro to be dynamically defined at shader compilation when the
+        global shader type is set to 1. The user shader can detect if the global type
+        is set to 1 by checking if this macro has been defined. Value must be encodeable
+        to less than 16 bytes using Shift JIS.
+      value: null
+    macroDef2:
+      description: A macro to be dynamically defined at shader compilation when the
+        global shader type is set to 2. The user shader can detect if the global type
+        is set to 2 by checking if this macro has been defined. Value must be encodeable
+        to less than 16 bytes using Shift JIS.
+      value: null
+  localType:
+    description: 'Local shader type that can be selected per emitter, in contrast
+      to the global shader type. Nine local types exist (0-8). Type 0 is the type
+      under which user shaders should behave as normal. Types 1 to 8 are special types
+      that user shaders can react to.
+
+      - If the value is set to 0, the macros `USR_SETTING_NONE`, `USR_VERTEX_SETTING_NONE`
+      and `USR_FRAGMENT_SETTING_NONE` are dynamically defined at shader compilation.
+
+      - If the value is set to some number `X` between 1 and 8, the macros `USR_SETTING_X`,
+      `USR_VERTEX_SETTING_X` and `USR_FRAGMENT_SETTING_X` are dynamically defined
+      at shader compilation.'
+    value: 0
+  bitfield:
+    description: 'A 32-bit bitfield specifying 32 flags which are possible to combine.
+
+      For each bit X between 0 and 31 that is set to 1, the macros `USR_FLAG_X`, `USR_VERTEX_FLAG_X`
+      and `USR_FRAGMENT_FLAG_X` are dynamically defined at shader compilation.'
+    value: '0b00000000000000000000000000000000'
+  switchCase:
+    description: 'A 32-bit bitfield specifying 32 switch cases.
+
+      For each bit X between 0 and 31 that is set to 1, the macros `USR_SWITCH_FLAG_X`,
+      `USR_VERTEX_SWITCH_FLAG_X` and `USR_FRAGMENT_SWITCH_FLAG_X` are dynamically
+      defined at shader compilation.'
+    value: '0b00000000000000000000000000000000'
+  param:
+    description: Decimal number array (Size = 32).
+    value:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+complex:
+  description: Options that are only available when the emitter type is set to `Complex`.
+  field:
+    random:
+      enable:
+        description: Enable velocity randomization field?
+        value: false
+      interval:
+        description: 'The time interval (in frames) between each time the field effect
+          should take place.
+
+          Must be greater than zero.'
+        value: 1
+      rnd:
+        description: 'This attribute specifies the range of random variation applied
+          to the particle velocity, at each time interval specified by `interval`,
+          in the X, Y, and Z directions. It consists of three components:
+
+          * A random decimal value picked from the range `[-x, x)` is added to the
+          X component of the particle velocity.
+
+          * A random decimal value picked from the range `[-y, y)` is added to the
+          Y component of the particle velocity.
+
+          * A random decimal value picked from the range `[-z, z)` is added to the
+          Z component of the particle velocity.
+
+          Value must be positive.'
+        value:
+          x: 0.0
+          y: 0.0
+          z: 0.0
+    magnet:
+      enable:
+        description: Enable magnetic field?
+        value: false
+      power:
+        description: 'Specifies the strength of the magnet, which affects the velocity
+          of nearby particles.
+
+          If a positive value is set, particles are attracted to the magnet.
+
+          If a negative value is set, particles are repelled away from the magnet.'
+        value: 0.0
+      pos:
+        description: The position of the magnet, in the local space of the emitter.
+        value:
+          x: 0.0
+          y: 0.0
+          z: 0.0
+      targetX:
+        description: Is the magnet effective on the X axis?
+        value: true
+      targetY:
+        description: Is the magnet effective on the Y axis?
+        value: true
+      targetZ:
+        description: Is the magnet effective on the Z axis?
+        value: true
+    spin:
+      enable:
+        description: Enable spin field?
+        value: false
+      rotVel:
+        description: 'The angular velocity around the specified axis, in SIGNED 32-bit
+          Binary Angular Measurement (BAM) where (+/-)0x40000000 = (+/-)90 degrees.
+
+          (This value is affected by the emitter `momentumRnd` attribute.)'
+        value: '0x00000000'
+      axis:
+        description: The axis of rotation. Possible values are `X`, `Y` and `Z`.
+        value: Y
+      diffusionVel:
+        description: 'Magnitude of drift on plane perpendicular to the specified axis.
+          This is the magnitude of an additional velocity component added to the particle
+          position, perpendicular to the specified axis. It causes the particle to
+          drift further in a direction influenced by its current position on the plane
+          perpendicular to the specified axis.
+
+          (This value is affected by the emitter `momentumRnd` attribute.)'
+        value: 0.0
+    convergence:
+      enable:
+        description: 'Enable convergence field?
+
+          Convergence field is similar to an attractive magnetic field. However, the
+          magnetic field is more dynamic as it impacts the particle velocity, whereas
+          the convergence field forces particles to move in a straightforward, linear
+          motion towards the target (convergence position).'
+        value: false
+      rate:
+        description: 'Specifies the rate of convergence. Value must be positive.
+
+          (This value is affected by the emitter `momentumRnd` attribute.)'
+        value: 0.0
+      pos:
+        description: The position of convergence, in the local space of the emitter.
+        value:
+          x: 0.0
+          y: 0.0
+          z: 0.0
+    posAdd:
+      enable:
+        description: Enable constant-additional-velocity field?
+        value: false
+      vel:
+        description: A constant velocity that is always added to the particle position
+          when this field is enabled.
+        value:
+          x: 0.0
+          y: 0.0
+          z: 0.0
+    collision:
+      enable:
+        description: Enable collision surface?
+        value: false
+      type:
+        description: 'Type of particles reaction to collision. Possible types are:
+
+          Cessation:  Particle stops at collision surface and stays alive for only
+          1 more frame.
+
+          Reflection: Particle velocity Y value reflects (i.e., it is multiplied by
+          -1).'
+        value: Cessation
+      isWorld:
+        description: 'True: Collision is processed in world-space (global coordinates).
+
+          False: Collision is processed in local-space (relative to the emitter).'
+        value: false
+      surfPosY:
+        description: Y position of the collision surface (in space defined by `isWorld`).
+        value: 0.0
+      reflectCoef:
+        description: For the `Reflection` type, coefficient of reflection. After the
+          particle velocity Y value is reflected, it is scaled by this value (i.e.,
+          this value sets the bounciness of particles). Value must be positive.
+        value: 0.0
+  flux:
+    enable:
+      description: Enable fluctuation effect?
+      value: false
+    applyAlpha:
+      description: Apply effect to particle alpha?
+      value: true
+    applyScale:
+      description: Apply effect to particle scale?
+      value: true
+    amplitude:
+      description: Amplitude of fluctuation sine wave. Value must be positive.
+      value: 1.0
+    frequency:
+      description: Frequency of fluctuation sine wave (reciprocal of period in frames).
+        Value must be greater than zero.
+      value: 0.05
+    startRandPhase:
+      description: Start fluctuation at a random phase?
+      value: false
+  child:
+    general:
+      enable:
+        description: 'Enable child emitters?
+
+          When enabled, each particle emitted by the original emitter becomes a new
+          (child) emitter.'
+        value: false
+      drawBeforeParent:
+        description: Draw child particles before parent?
+        value: false
+      followEmitter:
+        description: 'Enable perfect following of parent emitter SRT?
+
+          When enabled, child particles after emission move in accordance with parent
+          emitter transform animations.'
+        value: true
+      parentField:
+        description: Enable the effect of parent emitter fields on child particles?
+        value: false
+    emission:
+      timing:
+        emitRate:
+          description: 'Emission rate. This is the number of particles emitted per
+            emission event.
+
+            Value must be a positive integer.'
+          value: 1
+        startFramePercent:
+          description: 'Emission start frame as percentage of parent particle lifespan.
+
+            Value must be in the range `[0, 100]`.'
+          value: 60
+        emitStep:
+          description: Emission interval in frames. The number of frames between each
+            emission event.
+          value: 10
+      posAndInitVel:
+        initPosRand:
+          description: 'Particle initial position randomizer sphere radius.
+
+            If nonzero, the actual initial position of the particle ends up being
+            a random point on the surface of a sphere centered on the original initial
+            position of the particle. This value defines the radius of that sphere.
+
+            Value must be positive.'
+          value: 0.0
+        inheritInitVel:
+          enable:
+            description: Inherit initial velocity from parent particle velocity?
+            value: false
+          scale:
+            description: The scale of the inherited initial velocity from parent particle
+              velocity.
+            value: 1.0
+        figureVel:
+          description: 'Magnitude of random-direction initial velocity.
+
+            This is the magnitude of the particle initial velocity in the direction
+            of emission (and that direction is randomized to begin with).
+
+            (Added on top of inherited initial velocity if available.)'
+          value: 0.1
+        spreadVec:
+          description: 'Initial velocity spread vector. This attribute specifies the
+            range of random variation applied to a particle initial velocity in the
+            X, Y, and Z directions. It consists of three components:
+
+            * A random decimal value picked from the range `[-x, x)` is added to the
+            X component of the particle initial velocity.
+
+            * A random decimal value picked from the range `[-y, y)` is added to the
+            Y component of the particle initial velocity.
+
+            * A random decimal value picked from the range `[-z, z)` is added to the
+            Z component of the particle initial velocity.
+
+            Values must be positive.'
+          value:
+            x: 0.0
+            y: 0.0
+            z: 0.0
+        airRegist:
+          description: 'Air resistance. This value is used to scale the particle velocity
+            on every frame, and can be used to reduce or increase the particle velocity.
+
+            Value must be positive.'
+          value: 1.0
+      gravity:
+        vector:
+          description: Gravity vector. This value is added to the velocity and can
+            also be thought of as the acceleration vector.
+          value:
+            x: 0.0
+            y: -0.0
+            z: 0.0
+    particle:
+      lifespan:
+        description: 'Child particle lifespan. The duration of the child particle
+          life from emission until expiration, in frames.
+
+          Value must be greater than zero.'
+        value: 60
+      momentumRnd:
+        description: 'Momentum random scale range. Value must be positive.
+
+          Makes individual particle motion appear random:
+
+          A random decimal value picked from the range `(1-momentumRnd, 1+momentumRnd]`
+          is used to scale the particle velocity (as well as the Spin, Convergence
+          and PosAdd fields).'
+        value: 0.0
+      shape:
+        type:
+          description: 'Child particle mesh type. Possible types are:
+
+            Particle:  The particle is a flat sheet.
+
+            Primitive: The particle uses a primitive model.
+
+            (Unlike parent particles, child particles cannot use the `Stripe` type.)'
+          value: Particle
+        primitiveFigure:
+          description: Primitive model to use for the figure of particles
+          filename:
+            description: Filename of primitive to use, relative to the primitive path
+              set in the project YAML file
+            value: null
+        billboardType:
+          description: 'Billboard (particle orientation) type. Possible types are:
+
+            Billboard:          Normal billboard. The particle Y-axis is bound to
+            the camera `up` vector and the Z-axis is always parallel to the camera
+            lens axis.
+
+            YBillboard:         Y-axis billboard. Displays the view after rotating
+            the particle around the Y-axis only, so that its Z-axis is parallel to
+            the camera lens axis.
+
+            PolygonXY:          XY-plane polygon. This type of particle has sides
+            in the X direction and the Y direction.
+
+            PolygonXZ:          XZ-plane polygon. This type of particle has sides
+            in the X direction and the Z direction.
+
+            VelLook:            Directional Y-billboard. As this type of particle
+            moves, it looks at its position in the previous frame and tilts in that
+            direction of movement. It rotates only around the Y-axis to display with
+            the Z-axis facing the camera.
+
+            VelLookPolygon:     Directional polygon. As this type of particle moves,
+            it looks at its position in the previous frame and tilts in that direction
+            of movement.
+
+            (Since it is not possible for the mesh type to be `Stripe`, the `HistoricalStripe`
+            & `ConsolidatedStripe` types cannot be used.)'
+          value: Billboard
+        pivotOffset:
+          description: Sets the offset of the pivot position for particle scaling
+            and rotation, in local coordinates.
+          value:
+            x: 0.0
+            y: 0.0
+      renderState:
+        blendType:
+          description: 'Blend type. Possible types are:
+
+            Normal: Standard Blending, blends the source and destination colors using
+            the source alpha value for smooth transparency effects, where the source
+            partially covers the destination.
+
+            Add:    Additive Blending, adds the source color to the destination color,
+            creating brightening effects such as glows or light flares.
+
+            Sub:    Subtractive Blending, subtracts the source color from the destination
+            color using reverse subtraction, often used for creating inverted or darkening
+            effects.
+
+            Screen: Screen Blending, combines the source and destination colors by
+            inverting, multiplying, and adding them, useful for lightening the image
+            and creating highlights.
+
+            Mult:   Multiplicative Blending, multiplies the source color with the
+            destination color, commonly used for tinting, shading, or creating shadow
+            effects.'
+          value: Normal
+        zBufATestType:
+          description: 'Z-buffer alpha test type. Possible types are:
+
+            Normal:  Translucent Rendering (with depth testing), enables depth testing
+            and sets the depth function to allow writing to fragments that are closer
+            or at the same depth as existing ones, disables depth writing, and enables
+            blending for proper rendering of transparent objects.
+
+            ZIgnore: Translucent Rendering (without depth testing), disables depth
+            testing and depth writing, and enables blending, typically used for rendering
+            effects that do not require depth sorting.
+
+            Entity:  Opaque Rendering (with depth and alpha testing), enables depth
+            testing with depth writing, sets the depth function to allow writing to
+            fragments that are closer or at the same depth as existing ones, uses
+            alpha testing to discard fragments with alpha less than or equal to 0.5,
+            and disables blending, making it suitable for rendering fully opaque objects
+            that need depth sorting.'
+          value: Normal
+        displaySide:
+          description: 'Which side to display. Possible values are:
+
+            Both:  Display both sides of particles.
+
+            Front: Display only front side of particles.
+
+            Back:  Display only back side of particles.'
+          value: Both
+    combiner:
+      mode:
+        description: 'Pixel combiner mode. Possible modes are:
+
+          - Normal:
+
+          In this mode, the new pixel output is calculated as follows:
+
+          PixelColor = TextureColor;
+
+          PixelColor = PtclColorBlendFunc(PixelColor);
+
+          if (MeshTypeIsPrimitive) PixelColor = PrimitiveColorBlendFunc(PixelColor);
+
+          PixelAlpha = TextureAlpha;
+
+          if (MeshTypeIsPrimitive) PixelAlpha = PrimitiveAlphaBlendFunc(PixelAlpha);
+
+          PixelAlpha = PtclAlphaBlendFunc(PixelAlpha);
+
+
+          - Refraction:
+
+          Color Buffer Refraction. Causes distortion of the background of the particle.
+
+          In this mode, the new pixel output is calculated as follows:
+
+          vec2 Offset = vec2(TextureColor.r, TextureAlpha) * offsetScale;
+
+          PixelColor = GetOriginalPixel(Offset);
+
+          PixelColor = PtclColorBlendFunc(PixelColor);
+
+          if (MeshTypeIsPrimitive) PixelColor = PrimitiveColorBlendFunc(PixelColor);
+
+          float AlphaTemp = 1.0;
+
+          if (MeshTypeIsPrimitive) AlphaTemp = PrimitiveAlphaBlendFunc(AlphaTemp);
+
+          PixelAlpha = PtclAlphaBlendFunc(AlphaTemp);
+
+
+          (`Distortion` type is not usable since child emitters only have a single
+          texture.)'
+        value: Normal
+      offsetScale:
+        description: Used to scale the offset in `Refraction` mode. Value must be
+          positive.
+        value:
+          x: 0.0
+          y: 0.0
+      softParticle:
+        description: This effect smooths out the edges of particles when they overlap
+          with other objects in the scene, avoiding harsh intersections with surfaces.
+          By enabling soft particles, you can make the particle system emit particles
+          close to opaque surfaces without causing hard edges. Instead of having a
+          hard, sharp edge, the particles gradually become more transparent near their
+          boundaries, creating a softer transition between the particles and the background.
+          This helps particles look less like flat images and more like volumetric
+          objects.
+        enable:
+          description: Enable soft particles?
+          value: false
+        fadeDistance:
+          description: 'Soft particle fade distance. This parameter sets how far from
+            the point of overlap between the particle and the model the softening
+            effect will start, i.e., the transition from opaque to transparent. A
+            larger distance results in a more gradual fade.
+
+            Value must be positive.'
+          value: 0.0
+        volume:
+          description: 'Adjusts the perceived thickness of the particles. Higher values
+            make the particles appear thicker by influencing how transparency is calculated
+            based on the particle color brightness.
+
+            Value must be positive.'
+          value: 0.0
+      colorCombiner:
+        texture:
+          source:
+            description: '`TextureColor` value source.
+
+              Possible sources are:
+
+              RGB: Color data of child texture.
+
+              One: Constant value (1.0).'
+            value: RGB
+        ptclColor:
+          colorBlendType:
+            description: 'Color calculation formula.
+
+              Possible types are:
+
+              - Color:
+
+              PtclColorBlendFunc(Color) = PtclColor0;
+
+              - Texture:
+
+              PtclColorBlendFunc(Color) = Color * PtclColor0;
+
+              - TextureInterpolate:
+
+              PtclColorBlendFunc(Color) = (Color * PtclColor0) + ((1 - Color) * PtclColor1);
+
+              - TextureAdd:
+
+              PtclColorBlendFunc(Color) = (Color * PtclColor0) + PtclColor1;'
+            value: Texture
+        primitive:
+          source:
+            description: '`PrimitiveColor` value source.
+
+              Possible sources are:
+
+              RGB: Color data of primitive.
+
+              One: Constant value (1.0).'
+            value: RGB
+          colorBlendType:
+            description: 'Type of color blending with `PrimitiveColor`.
+
+              Possible types are:
+
+              - Mod:
+
+              PrimitiveColorBlendFunc(Color) = Color * PrimitiveColor;
+
+              - Add:
+
+              PrimitiveColorBlendFunc(Color) = Color + PrimitiveColor;
+
+              - Sub:
+
+              PrimitiveColorBlendFunc(Color) = Color - PrimitiveColor;'
+            value: Mod
+      alphaCombiner:
+        commonSource:
+          description: 'Common alpha source from child texture and primitive.
+
+            Possible sources are:
+
+            Alpha: Alpha channel of child texture and primitive color data.
+
+            Red:   Red channel of child texture and primitive color data.'
+          value: Alpha
+        texture:
+          source:
+            description: '`TextureAlpha` value source.
+
+              Possible sources are:
+
+              Pass: Select from `commonSource`.
+
+              One:  Constant value (1.0).'
+            value: Pass
+        primitive:
+          source:
+            description: '`PrimitiveAlpha` value source.
+
+              Possible sources are:
+
+              Pass: Select from `commonSource`.
+
+              One:  Constant value (1.0).'
+            value: Pass
+          alphaBlendType:
+            description: 'Type of alpha blending with `PrimitiveAlpha`.
+
+              Possible types are:
+
+              - Mod:
+
+              PrimitiveAlphaBlendFunc(Alpha) = Alpha * PrimitiveAlpha;
+
+              - Add:
+
+              PrimitiveAlphaBlendFunc(Alpha) = Alpha + PrimitiveAlpha;
+
+              - Sub:
+
+              PrimitiveAlphaBlendFunc(Alpha) = Alpha - PrimitiveAlpha;'
+            value: Mod
+        ptclAlpha:
+          alphaBlendType:
+            description: 'Alpha calculation formula.
+
+              Possible types are:
+
+              Mod:
+
+              PtclAlphaBlendFunc(Alpha) = Alpha * PtclAlpha;
+
+              Sub:
+
+              PtclAlphaBlendFunc(Alpha) = (Alpha - (1 - PtclAlpha)) * 2;'
+            value: Mod
+    texture:
+      filename:
+        description: 'Filename of texture to use, relative to the texture path set
+          in the project YAML file.
+
+          (Only GTX and PNG allowed, though GTX specifically is strongly recommended.)'
+        value: null
+      originalDataFormat:
+        description: Hint of the format of the original texture that was used to generate
+          either the GTX or PNG file specified in `filename`. Optional.
+        value: null
+      numTexDivX:
+        description: Number of horizontal divisions. This value divides the texture
+          horizontally into patterns which are used in the texture pattern animation.
+        value: 1
+      numTexDivY:
+        description: Number of vertical divisions. This value divides the texture
+          vertically into patterns which are used in the texture pattern animation.
+        value: 1
+      wrapModeU:
+        description: 'Wrap mode in the U (horizontal) direction. Possible modes are:
+
+          Mirror
+
+          Repeat
+
+          Clamp'
+        value: Mirror
+      wrapModeV:
+        description: Wrap mode in the V (vertical) direction. Same modes as `wrapModeU`.
+        value: Mirror
+      repetitionCount:
+        description: 'Texture repetition count in each axis to use when the texture
+          is divided into the patterns for the texture pattern animation.
+
+          Possible values are:
+
+          U1V1: No repetition in the texture. (1x1)
+
+          U2V1: The texture is repeated once in the U (horizontal) direction. (2x1)
+
+          U1V2: The texture is repeated once in the V (vertical) direction. (1x2)
+
+          U2V2: The texture is repeated once in both the U (horizontal) & V (vertical)
+          directions. (1x2).'
+        value: U1V1
+      filterMode:
+        description: 'Texture filter mode. Possible modes are:
+
+          Linear: Interpolates between texel colors to make textures appear smooth.
+
+          Near:   Displays each texel distinctly.'
+        value: Linear
+      enableMipLevel:
+        description: 'Mip LOD level maximum value.
+
+          For textures with mipmaps, this value can be used to specify the range of
+          mipmap levels that are applied.
+
+          (Valid values are `0.0` to `15.99`.)'
+        value: 15.99
+      mipMapBias:
+        description: 'Mip LOD level bias value.
+
+          For textures with mipmaps, this value can be used to adjust the mipmap levels
+          that are applied.
+
+          (Valid values are `-32.0` to `31.99`.)'
+        value: 0.0
+      texPatAnim:
+        mode:
+          description: 'Animation type. Possible types are:
+
+            Null:    Disables texture pattern animation.
+
+            LifeFit: Fits the texture pattern animation to the particle lifespan such
+            that it plays only once and in full.
+
+            Clamp:   Plays the texture pattern animation once, then the final pattern
+            is shown for the rest of the particle lifespan.
+
+            Loop:    Plays the texture pattern animation once, then keeps looping
+            it repeatedly for the rest of the particle lifespan.
+
+            Random:  Plays a single pattern for the entirety of the particle lifespan,
+            randomly selected (per particle).'
+          value: 'Null'
+        numTexPat:
+          description: 'For the `Random` mode, the number of sequential patterns to
+            consider as candidates for random selection.
+
+            Value must be greater than `1` when the `Random` mode is selected.'
+          value: 1
+        isTexPatAnimRand:
+          description: 'For the `Loop` mode, set animation start position randomly
+            (per particle)?
+
+            In other words, if enabled, instead of the animation starting from the
+            first pattern, the animation will start from a random point with it.'
+          value: false
+        texPatFreq:
+          description: 'For the `Clamp` and `Loop` modes, the period of each pattern,
+            in frames.
+
+            Value must be greater than `0` when the `Clamp` and `Loop` modes are selected.'
+          value: 1
+        texPatTblUse:
+          description: 'For the `LifeFit`, `Clamp` and `Loop` modes, the total number
+            of patterns to use in the animation.
+
+            Value must be in the range `[1, 32)`.'
+          value: 2
+        texPatTbl:
+          description: For the `LifeFit`, `Clamp` and `Loop` modes, the order of patterns
+            in the animation. (Max size = 32)
+          value:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+    ptclColor:
+      colorScale:
+        description: 'Color scale. Used to scale the final color 0 & color 1 values.
+
+          Value must be positive.'
+        value: 1.0
+      color0:
+        inherit:
+          description: Inherit color 0 from parent particle color?
+          value: false
+        constant:
+          description: If not inhertied, set color 0 to this constant value.
+          value:
+            r: 1.0
+            g: 1.0
+            b: 1.0
+      color1:
+        inherit:
+          description: Inherit color 1 from parent particle color?
+          value: false
+        constant:
+          description: If not inhertied, set color 1 to this constant value.
+          value:
+            r: 1.0
+            g: 1.0
+            b: 1.0
+    ptclAlpha:
+      description: The value of the particle alpha attribute is animated using 3 alpha
+        elements in 3 sections that are fitted to the particle lifespan. If `alphaSection1`
+        is set to 0 AND `alphaSection2` is set to 100, the alpha animation is disabled.
+      animationParam:
+        alphaElem[0]:
+          description: 'Alpha animation element 0.
+
+            Value must be in the range `[0, 1]`.'
+          value: 0.0
+        alphaElem[1]:
+          description: 'Alpha animation element 1.
+
+            Value must be in the range `[0, 1]`.'
+          inherit:
+            description: Inherit value from parent particle alpha?
+            value: true
+          value: 1.0
+        alphaElem[2]:
+          description: 'Alpha animation element 2.
+
+            Value must be in the range `[0, 1]`.'
+          value: 0.0
+        alphaSection1:
+          description: 'End of 1st alpha section since emission, in frames.
+
+            Value must be in the range `[0, lifespan]`.
+
+            During this section, the alpha value transitions from `alphaElem[0]` to
+            `alphaElem[1]` (using linear interpolation).'
+          value: 0
+        alphaSection2:
+          description: 'End of 2nd alpha section since emission, in frames.
+
+            Value must be in the range `[0, lifespan]`.
+
+            During this section, the alpha value is fixed to `alphaElem[1]`.
+
+            (In the 3rd alpha section (which is last), the alpha value transitions
+            from `alphaElem[1]` to `alphaElem[2]` (using linear interpolation).)'
+          value: 60
+    ptclScale:
+      description: 'The value of the particle scale attribute is animated by adding
+        a fixed total value over a certain period of the particle lifespan.
+
+        Once a certain number of frames passes, the particle scale is increased on
+        every frame by a fixed rate that is calculated as `((target - 1) / (lifespan
+        - startFrame)) * baseScale`.'
+      baseScale:
+        description: Particle Scale base value. Must be positive.
+        inherit:
+          enable:
+            description: Inherit value from parent particle scale?
+            value: false
+          scale:
+            description: The scale of the inherited value from parent particle scale.
+              Value must be positive.
+            value: 0.0
+        value:
+          x: 1.0
+          y: 1.0
+      baseScaleRand:
+        description: 'Particle Scale base value random percentage range.
+
+          A random decimal value picked from the range `(1-baseScaleRand, 1]` is used
+          to scale the particle scale base value (`baseScale`).
+
+          Value must be in the range `[0, 1]`, where a value of 1 is equivalent to
+          100%.'
+        value: 0.0
+      animationParam:
+        startFrame:
+          description: 'Start frame (since emission) of addition animation. Prior
+            to the specified frame, the particle scale is fixed to `baseScale`.
+
+            Value must be in the range `[0, lifespan]`.'
+          value: 60
+        target:
+          description: 'Animation target. This value is used in calculating the fixed
+            rate that is added to the particle scale on every frame during the animation.
+
+            Value must be positive.'
+          value:
+            x: 0.0
+            y: 0.0
+    ptclRot:
+      type:
+        description: 'Particle rotation type. Possible types are:
+
+          NoWork: Particles do not rotate.
+
+          RotX:   Particles can rotate only around on the X axis.
+
+          RotY:   Particles can rotate only around on the Y axis.
+
+          RotZ:   Particles can rotate only around on the Z axis.
+
+          RotXYZ: Particles can rotate around all axes.'
+        value: NoWork
+      initRot:
+        description: 'Particle initial rotation, in radians.
+
+          Value must be in the range `[0, 6.283185307179586]`.'
+        inherit:
+          description: Inherit value from parent particle rotation?
+          value: true
+        value:
+          x: 0.0
+          y: 0.0
+          z: 0.0
+      initRotRand:
+        description: 'Particle initial rotation random range size, in radians.
+
+          A random decimal value picked from the range `[0, initRotRand)` is added
+          to `initRot`.
+
+          Value must be in the range `[0, 6.283185307179586]`.'
+        value:
+          x: 0.0
+          y: 0.0
+          z: 0.0
+      rotRegist:
+        description: 'Particle rotation air resistance. This value is used to scale
+          the particle angular velocity on every frame, and can be used to reduce
+          or increase the particle angular velocity.
+
+          Value must be positive.'
+        value: 1.0
+      rotVel:
+        description: 'Particle angular velocity, in radians.
+
+          Value must be in the range `[-3.141592653589793, 3.141592653589793]`.'
+        value:
+          x: 0.0
+          y: 0.0
+          z: 0.0
+      rotVelRand:
+        description: 'Particle angular velocity random range size, in radians.
+
+          A random decimal value picked from the range `[0, rotVelRand)` is added
+          to `rotVel`.
+
+          Value must be in the range `[0, 6.283185307179586]`.'
+        value:
+          x: 0.0
+          y: 0.0
+          z: 0.0
+    userShader:
+      shaderType:
+        description: Games and applications are allowed to select a global shader
+          type (ref. `nw::eft::Renderer::SetShaderType` function) that define special
+          environments under which user shaders are allowed to behave differently.
+          Three global types exist (0, 1, 2). Type 0 is the type under which user
+          shaders should behave as normal. Types 1 and 2 are special types that user
+          shaders can react to.
+        macroDef1:
+          description: A macro to be dynamically defined at shader compilation when
+            the global shader type is set to 1. The user shader can detect if the
+            global type is set to 1 by checking if this macro has been defined. Value
+            must be encodeable to less than 16 bytes using Shift JIS.
+          value: null
+        macroDef2:
+          description: A macro to be dynamically defined at shader compilation when
+            the global shader type is set to 2. The user shader can detect if the
+            global type is set to 2 by checking if this macro has been defined. Value
+            must be encodeable to less than 16 bytes using Shift JIS.
+          value: null
+      localType:
+        description: 'Local shader type that can be selected per emitter, in contrast
+          to the global shader type. Nine local types exist (0-8). Type 0 is the type
+          under which user shaders should behave as normal. Types 1 to 8 are special
+          types that user shaders can react to.
+
+          - If the value is set to 0, the macros `USR_SETTING_NONE`, `USR_VERTEX_SETTING_NONE`
+          and `USR_FRAGMENT_SETTING_NONE` are dynamically defined at shader compilation.
+
+          - If the value is set to some number `X` between 1 and 8, the macros `USR_SETTING_X`,
+          `USR_VERTEX_SETTING_X` and `USR_FRAGMENT_SETTING_X` are dynamically defined
+          at shader compilation.'
+        value: 0
+      bitfield:
+        description: 'A 32-bit bitfield specifying 32 flags which are possible to
+          combine.
+
+          For each bit X between 0 and 31 that is set to 1, the macros `USR_FLAG_X`,
+          `USR_VERTEX_FLAG_X` and `USR_FRAGMENT_FLAG_X` are dynamically defined at
+          shader compilation.'
+        value: '0b00000000000000000000000000000000'
+      switchCase:
+        description: 'A 32-bit bitfield specifying 32 switch cases.
+
+          For each bit X between 0 and 31 that is set to 1, the macros `USR_SWITCH_FLAG_X`,
+          `USR_VERTEX_SWITCH_FLAG_X` and `USR_FRAGMENT_SWITCH_FLAG_X` are dynamically
+          defined at shader compilation.'
+        value: '0b00000000000000000000000000000000'
+      param:
+        description: Decimal number array (Size = 32).
+        value:
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+    unused:
+      description: Attributes which are stored in the child emitter data, but not
+        actually used in the code, and therefore they are useless.
+      isWorldField:
+        value: false
+  stripe:
+    calcType:
+      description: 'Stripe calculation method. Possible values are:
+
+        Billboard:     This type of stripe always faces the camera.
+
+        EmitterMatrix: This type of stripe faces the emitter.
+
+        EmitterUpDown: This type of stripe stretches out vertically with respect to
+        the emitter.'
+      value: Billboard
+    followEmitter:
+      description: Should past samples follow the emitter when it is moved?
+      value: false
+    shape:
+      description: 'Stripe shape. Possible values are:
+
+        Normal: A flat polygon.
+
+        Cross:  Two flat polygons crossed together. This option allows for the appearance
+        of extra thickness when viewing the particle from multiple directions.'
+      value: Normal
+    texCoordOpt:
+      description: 'Stripe texturing method. Possible values are:
+
+        Full:     The texture image is applied matching the size of the stripe.
+
+        Division: The texture image is applied to a rendering region of a fixed size.'
+      value: Full
+    divideNum:
+      description: 'Number of divisions. Sets the number of divisions for stripe particles.
+        You can make stripe particles look smoother by increasing the number of divisions.
+
+        Value must be in the range `[0, 10]`.'
+      value: 1
+    startAlpha:
+      description: 'Starting point alpha. Sets the alpha value for the first vertex
+        that is generated.
+
+        Value must be in the range `[0, 1]`.'
+      value: 1.0
+    endAlpha:
+      description: 'Ending point alpha. Sets the alpha value for the last vertex that
+        is generated.
+
+        Value must be in the range `[0, 1]`.'
+      value: 1.0
+    dirInterpolate:
+      description: 'Directional interpolation ratio. Reduces distortions in stripes
+        during sudden directional changes in the emitter by applying an offset to
+        past samples. The smaller this value, the smaller the distortion of the stripes.
+
+        Value must be in the range `[0, 1]`.'
+      value: 1.0
+    historyParam:
+      description: Parameters for when the billboard type is set to `HistoricalStripe`.
+      numHistory:
+        description: 'Number of past samples to capture (i.e, length of stripe).
+
+          Positional information for particles after they have been emitted is recorded
+          on a frame-by-frame basis for the specified number of frames. Stripes are
+          generated from the recorded positional information, so the larger this value
+          the longer the stripes.
+
+          Value must be in the range `[2, 256]`.'
+        value: 60
+      historyStep:
+        description: 'Spacing at which to make past samples into polygons.
+
+          Specifies the number of frames to use as the interval for generating vertices
+          from past samples. The smaller this value, the more smooth and fluid the
+          stripe.
+
+          Value must be in the range `[0, 128]`.'
+        value: 0
+      historyInterpolate:
+        description: 'Slice interpolation ratio. Interpolates between the slices for
+          a smooth connection. The smaller this value, the smoother a curve the particle
+          makes in its rotational motion.
+
+          Only used when `followEmitter` is disabled.
+
+          Value must be in the range `[0, 1]`.'
+        value: 1.0
+    consolidatedParam:
+      description: Parameters for when the billboard type is set to `ConsolidatedStripe`.
+      connectType:
+        description: 'Connection type. Possible types are:
+
+          Normal:  Standard stripe. At least two polygons are required to calculate
+          the stripe.
+
+          Head:    Connects the starting point and end point of the stripe in a ring
+          shape. At least three polygons are required to connect the stripe in a ring
+          shape.
+
+          Emitter: Connects the end point of the stripe to the center of the emitter.
+          At least two polygons are required to calculate the stripe.'
+        value: Normal
+unused:
+  description: Attributes which are stored in the emitter data, but not actually used
+    in the code, and therefore they are useless.
+  isPolygon:
+    description: Is polygon?
+    value: false
+  isFollowAll:
+    value: true
+  isEmitterBillboardMtx:
+    description: Can the billboard matrix be set per emitter?
+    value: false
+  isDirectional:
+    value: false

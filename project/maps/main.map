@@ -1118,6 +1118,9 @@ sInstance__21UnitBgCollisionHolder = 0x101C9650;
 /* CourseSelectTask::Layer2D */
 __vtbl__Q2_16CourseSelectTask7Layer2D = 0x10047018;
 
+/* EffectCreateUtil */
+createEffect__16EffectCreateUtilSFiPCQ2_4sead16Vector3__tm__2_fPC6Angle3T2 = 0x022AB080;
+
 /* PtclMgr */
 getEmitterSetGroupID__7PtclMgrCFiUi = 0x022ACE58;
 sInstance__7PtclMgr = 0x101CD3A8;

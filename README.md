@@ -13,7 +13,7 @@ Old version can be found [here](https://github.com/aboood40091/NSMBU-haxx).
 * Collision Drawer  
 * Custom Profile setup to allow for new sprites  
 * Actor Spawner sprite (Added as sprite 724.)  
-* Flip Block sprite (Added as sprite 725. Currently uses the Snake Block model.)  
+* Flip Block sprite (Added as sprite 725. Currently uses the Snake Block model.), with custom Fire particle effect (Added as emitter set 566 & effect ID 1234. Requires patches in `Resources`.)  
 * Magic Platform sprite (Added as sprite 726.)  
 * Effect Viewer (Added as sprite 727. Check `EffectPlayer.cpp` for controls.)  
 * Fixed Rolling Hill with Pipe (sprite 355) Resource List  

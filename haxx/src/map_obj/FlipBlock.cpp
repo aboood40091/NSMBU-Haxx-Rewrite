@@ -1,5 +1,7 @@
 #include <actor/Profile_Haxx.h>
 #include <collision/ActorBgCollisionMgr.h>
+#include <effect/EffectCreateUtil.h>
+#include <effect/EffectID_Haxx.h>
 #include <graphics/BasicModel.h>
 #include <graphics/ModelG3d.h>
 #include <graphics/Renderer.h>
@@ -94,6 +96,9 @@ s32 FlipBlock::create_()
 
     changeState(StateID_Wait);
     updateModel();
+
+    // Remove this line if you'd like to remove the custom Fire effect
+    EffectCreateUtil::createEffect(Sample_Fire_02, &mPos);
 
     return 1;
 }
