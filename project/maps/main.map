@@ -1159,8 +1159,8 @@ __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__5LayerSFv = 0x101E9E5C;
 typeInfo__L0__getRuntimeTypeInfoStatic__5LayerSFv = 0x101EA070;
 
 /* Renderer */
-setTargetLayer__8RendererFP18RenderObjLayerBaseUi = 0x024FAA50;
-resetTargetLayer__8RendererFv = 0x024FAB4C;
+setLayer__8RendererFPQ3_3agl3lyr5LayerQ2_8Renderer10GatherType = 0x024FAA50;
+resetLayer__8RendererFv = 0x024FAB4C;
 drawModel__8RendererFP5Model = 0x024FAB58;
 drawModel__8RendererFPC10BasicModel = 0x024FAC98;
 drawActorBgUnit__8RendererF6UnitIDRCQ2_4sead16Vector3__tm__2_f5AngleT2 = 0x024FAD28;
@@ -1168,7 +1168,7 @@ sInstance__8Renderer = 0x101D2D88;
 
 /* RenderMgr */
 __ct__9RenderMgrFRCQ2_4sead23SafeStringBase__tm__2_c = 0x024FAF58;
-init__9RenderMgrFUiN31PQ2_4sead4Heap = 0x024FB128;
+initialize__9RenderMgrFiN31PQ2_4sead4Heap = 0x024FB128;
 
 /* RenderObjBase */
 __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__13RenderObjBaseSFv = 0x101E9D00;
@@ -1185,6 +1185,12 @@ typeInfo__L0__getRuntimeTypeInfoStatic__18RenderObjLayerBaseSFv = 0x101EA074;
 
 /* RenderObjLayer */
 __ct__14RenderObjLayerFv = 0x024FCA6C;
+
+/* SeadController */
+calcRemote_URCC___14SeadControllerFPCQ2_4sead10Controller = 0x02512088;
+calcRemote_URCC_Acc___14SeadControllerFPCQ2_4sead10Controller = 0x025121F4;
+calcRemote_Core___14SeadControllerFPCQ2_4sead10Controller = 0x025124D8;
+calcRemote_Nunchuk___14SeadControllerFPCQ2_4sead10Controller = 0x025127F8;
 
 /* SeadControllerWrapper */
 __dt__21SeadControllerWrapperFv = 0x025140E8;
@@ -1366,7 +1372,7 @@ s_number_memo__L0____ct__7StateIDFv = 0x101E9F04;
 cNull__7StateID = 0x1022D390;
 
 /* StateMethod */
-execute__11StateMethodFv = 0x029C4A80;
+executeStateMethod__11StateMethodFv = 0x029C4A80;
 changeStateMethod__11StateMethodFRC7StateID = 0x029C4AF0;
 
 /* new/delete */

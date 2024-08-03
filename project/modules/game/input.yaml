@@ -1,0 +1,29 @@
+---
+Files:
+  C++:
+    - "$HAXX_DIR/src/input/SeadController_Haxx.cpp"
+    - "$HAXX_DIR/src/input/SeadControllerMgr_Haxx.cpp"
+Hooks:
+  # Add support for nunchuk & classic controller
+  ## Patch SeadController::calcImpl_()
+  - type: branch
+    instr: bl
+    addr:
+      - 0x025130AC
+      - 0x025130C0
+    func: calcRemote___18SeadControllerHaxxFRCQ2_4sead20CafeRemoteController
+  ## Patch sead::CafeRemoteController ctor
+  - type: branch
+    instr: b
+    addr: 0x029F459C
+    func: PostCreate_CafeRemoteController__FRQ2_4sead20CafeRemoteController
+  ## Patch SeadControllerMgr::isURCC()
+  - type: branch
+    instr: bl
+    addr: 0x02513A6C
+    func: IsCCorURCC__FPCQ2_4sead20CafeRemoteController
+  - type: nop
+    addr: 0x02513A70
+    count: 9
+  - type: nop
+    addr: 0x02513AA0

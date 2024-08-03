@@ -4,6 +4,7 @@ Pre-built versions can be found in the `build` folder. Stable builds are in the 
 Old version can be found [here](https://github.com/aboood40091/NSMBU-haxx).
 
 ## Current haxx:
+* Support for Classic Controller & Nunchuk.  
 * Dynamic effect ID count (Completely dependent on the contents of the `Eset.param` game file.)  
 * Custom music list (Currently does nothing, but will help with new music slots in the future.)  
 * Space physics as area option (Area data `loopType & 2`.)  
