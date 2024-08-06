@@ -1,8 +1,8 @@
-#include <input/SeadController_Haxx.h>
+#include <input/SysController_Haxx.h>
 
 #include <cafe/pads/wpad/wpad.h>
 
-void SeadControllerHaxx::calcRemote_(const sead::CafeRemoteController& controller)
+void SysControllerHaxx::calcRemote_(const sead::CafeRemoteController& controller)
 {
     switch (controller.getCurrentDeviceType())
     {

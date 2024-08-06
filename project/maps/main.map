@@ -1186,16 +1186,16 @@ typeInfo__L0__getRuntimeTypeInfoStatic__18RenderObjLayerBaseSFv = 0x101EA074;
 /* RenderObjLayer */
 __ct__14RenderObjLayerFv = 0x024FCA6C;
 
-/* SeadController */
-calcRemote_URCC___14SeadControllerFPCQ2_4sead10Controller = 0x02512088;
-calcRemote_URCC_Acc___14SeadControllerFPCQ2_4sead10Controller = 0x025121F4;
-calcRemote_Core___14SeadControllerFPCQ2_4sead10Controller = 0x025124D8;
-calcRemote_Nunchuk___14SeadControllerFPCQ2_4sead10Controller = 0x025127F8;
+/* SysController */
+calcRemote_URCC___13SysControllerFPCQ2_4sead10Controller = 0x02512088;
+calcRemote_URCC_Acc___13SysControllerFPCQ2_4sead10Controller = 0x025121F4;
+calcRemote_Core___13SysControllerFPCQ2_4sead10Controller = 0x025124D8;
+calcRemote_Nunchuk___13SysControllerFPCQ2_4sead10Controller = 0x025127F8;
 
-/* SeadControllerWrapper */
-__dt__21SeadControllerWrapperFv = 0x025140E8;
-__ct__21SeadControllerWrapperFv = 0x02514150;
-registerWith__21SeadControllerWrapperFQ2_14SeadController2Id = 0x025141B0;
+/* SysControllerWrapper */
+__dt__20SysControllerWrapperFv = 0x025140E8;
+__ct__20SysControllerWrapperFv = 0x02514150;
+registerWith__20SysControllerWrapperFQ2_13SysController2Id = 0x025141B0;
 
 /* ChangePlayerNum */
 __ct__15ChangePlayerNumFv = 0x02553AB8;
