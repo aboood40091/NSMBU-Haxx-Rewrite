@@ -1,0 +1,60 @@
+---
+Files:
+  C++:
+    - "$HAXX_DIR/src/layout/ChangePlayerNum_Haxx.cpp"
+  Assembly:
+    - "$HAXX_DIR/src/layout/ChangePlayerNum_Haxx_S.s"
+Hooks:
+  # Make use of global ChangePlayerNum instance
+  - type: branch
+    instr: bl
+    addr: 0x021F87B4
+    func: createInstance___19ChangePlayerNumHaxxSFv
+  - type: branch
+    instr: bl
+    addr: 0x021F8B7C
+    func: deleteInstance__19ChangePlayerNumHaxxSFv
+  - type: branch
+    instr: bl
+    addr:
+      - 0x021F9680
+      - 0x021F9A74
+      - 0x021F9C20
+      - 0x021F9C54
+    func: ChangePlayerNumHaxx_LoadInstToR3
+  - type: branch
+    instr: bl
+    addr: 0x021F98BC
+    func: ChangePlayerNumHaxx_LoadInstToR29
+  - type: branch
+    instr: b
+    addr: 0x02557C74
+    func: ChangePlayerNumHaxx_LoadIsCharacterTakenArrIntoR6
+  - type: branch
+    instr: b
+    addr: 0x02558574
+    func: resetPlayerCharacter___19ChangePlayerNumHaxxSFUiiT2
+  - type: branch
+    instr: bl
+    addr: 0x0255894C
+    func: ChangePlayerNumHaxx_LoadBtnLoopNoConnectFrameInfoF1
+  - type: branch
+    instr: b
+    addr: 0x02558B24
+    func: ChangePlayerNumHaxx_LoadIsCharacterTakenArrIntoR12
+  - type: branch
+    instr: b
+    addr: 0x02559290
+    func: setPlayerCharacter___19ChangePlayerNumHaxxSFUiiT2
+  - type: branch
+    instr: b
+    addr: 0x02559384
+    func: ChangePlayerNumHaxx_LoadPlayerCharacterNoMiiArrIntoR12
+  - type: branch
+    instr: b
+    addr: 0x025A5610
+    func: open___19ChangePlayerNumHaxxSFv
+  - type: branch
+    instr: b
+    addr: 0x025A5634
+    func: ChangePlayerNumHaxx_LoadIsVisibleIntoR0

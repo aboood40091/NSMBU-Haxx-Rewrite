@@ -1197,6 +1197,25 @@ __dt__21SeadControllerWrapperFv = 0x025140E8;
 __ct__21SeadControllerWrapperFv = 0x02514150;
 registerWith__21SeadControllerWrapperFQ2_14SeadController2Id = 0x025141B0;
 
+/* ChangePlayerNum */
+__ct__15ChangePlayerNumFv = 0x02553AB8;
+__dt__15ChangePlayerNumFv = 0x02553D24;
+create__15ChangePlayerNumFv = 0x02553E28;
+execute__15ChangePlayerNumFv = 0x025546B8;
+draw__15ChangePlayerNumCFRCQ3_3agl3lyr10RenderInfo = 0x025548D0;
+drawBtn__15ChangePlayerNumCFRCQ3_3agl3lyr10RenderInfo = 0x0255491C;
+gather__15ChangePlayerNumFv = 0x025549A8;
+setPlayerCharacter__15ChangePlayerNumFiT1 = 0x02554A24;
+resetPlayerCharacter__15ChangePlayerNumFiT1 = 0x02554A70;
+
+/* ChangePlayerNumBtn */
+ChangePlayerNumBtn_HandleTakenCharacter_Continue = 0x02557C78;
+ChangePlayerNumBtn_IsCharacterTaken_Continue = 0x02558B28;
+ChangePlayerNumBtn_InitializeState_PostDecide_Continue = 0x02559388;
+
+/* CourseSelectMenu */
+CourseSelectMenu_ExecuteState_ChangePlayerNum_Continue = 0x025A5638;
+
 /* Bg */
 getUnitCurrentCdFile__2BgSFUsT1UcPi = 0x02685000;
 getBgCheckData__2BgFUsT1Ucb = 0x02685148;

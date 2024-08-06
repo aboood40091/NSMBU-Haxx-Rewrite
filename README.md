@@ -4,7 +4,7 @@ Pre-built versions can be found in the `build` folder. Stable builds are in the 
 Old version can be found [here](https://github.com/aboood40091/NSMBU-haxx).
 
 ## Current haxx:
-* Support for Classic Controller & Nunchuk.  
+* Support for Classic Controller & Nunchuk  
 * Dynamic effect ID count (Completely dependent on the contents of the `Eset.param` game file.)  
 * Custom music list (Currently does nothing, but will help with new music slots in the future.)  
 * Space physics as area option (Area data `loopType & 2`.)  
@@ -18,6 +18,7 @@ Old version can be found [here](https://github.com/aboood40091/NSMBU-haxx).
 * Magic Platform sprite (Added as sprite 726.)  
 * Effect Viewer (Added as sprite 727. Check `EffectPlayer.cpp` for controls.)  
 * Fixed Rolling Hill with Pipe (sprite 355) Resource List  
+* Transform `ChangePlayerNum` into a global instance instead of being an attribute of `CourseSelectMap`  
 
 ## Libraries:
 * [SEAD](https://github.com/aboood40091/sead) - Nintendo EAD Standard Library (sead), agl, NintendoWareForCafe (NW4F) Eft.  
