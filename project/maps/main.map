@@ -1118,15 +1118,27 @@ sInstance__21UnitBgCollisionHolder = 0x101C9650;
 /* CourseSelectTask::Layer2D */
 __vtbl__Q2_16CourseSelectTask7Layer2D = 0x10047018;
 
+/* CourseSelectMap */
+createInstance__15CourseSelectMapSFPQ2_4sead4Heap = 0x021F8A40;
+sInstance__15CourseSelectMap = 0x101CBE14;
+
 /* EffectCreateUtil */
 createEffect__16EffectCreateUtilSFiPCQ2_4sead16Vector3__tm__2_fPC6Angle3T2 = 0x022AB080;
 
 /* PtclMgr */
+cleanUp__7PtclMgrFv = 0x022AC7B8;
 getEmitterSetGroupID__7PtclMgrCFiUi = 0x022ACE58;
+setUserDataCallbacks__7PtclMgrFv = 0x022ACE84;
+resetUserDataCallbacks__7PtclMgrFv = 0x022AD468;
 sInstance__7PtclMgr = 0x101CD3A8;
 
 /* AreaTask */
 drawLayer3D__8AreaTaskFRCQ3_3agl3lyr10RenderInfo = 0x024B84A8;
+
+/* SelectCursor */
+createInstance__12SelectCursorSFPQ2_4sead4Heap = 0x024C635C;
+create__12SelectCursorFv = 0x024C63E0;
+sInstance__12SelectCursor = 0x101D17A8;
 
 /* Info */
 sInstance__4Info = 0x101D18EC;
@@ -1136,6 +1148,10 @@ __ct__10BasicModelFP8ModelG3dUiN42 = 0x024D4798;
 __CPR93__init__10BasicModelFP13ModelResourcePCQ2_4sead32PtrArray__tm__16_J20JPQ2_J40J4Heap = 0x024D49A0;
 playAnmFrameCtrl__10BasicModelFv = 0x024D4D20;
 calcMdl__10BasicModelFv = 0x024D4E84;
+
+/* LightMapMgr */
+initialize__11LightMapMgrFPQ2_4sead4Heap = 0x024E4318;
+sInstance__11LightMapMgr = 0x101D2C60;
 
 /* Model */
 __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__5ModelSFv = 0x101E9D08;
@@ -1155,6 +1171,9 @@ sInstance__16ModelResourceMgr = 0x101D2D50;
 
 /* Layer */
 __ct__5LayerFv = 0x024F9290;
+__dt__5LayerFv = 0x024F92EC;
+preDraw__5LayerCFRCQ3_3agl3lyr10RenderInfo = 0x024F9340;
+postDraw__5LayerCFRCQ3_3agl3lyr10RenderInfo = 0x024F9344;
 __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__5LayerSFv = 0x101E9E5C;
 typeInfo__L0__getRuntimeTypeInfoStatic__5LayerSFv = 0x101EA070;
 
@@ -1369,6 +1388,13 @@ isOnlyDownHeld__9PlayerKeyCFv = 0x0291644C;
 /* PlayerMgr */
 sInstance__9PlayerMgr = 0x101E6994;
 
+/* E3CourseSelectScene */
+E3CourseSelectScene_SwitchToTitleScene__FPQ2_4sead8TaskBase = 0x02982780;
+
+/* Scene */
+isFadein__5SceneCFv = 0x029945B8;
+sInstance__5Scene = 0x101E7B28;
+
 /* BgScrollMgr */
 sInstance__11BgScrollMgr = 0x101E7C54;
 
@@ -1391,8 +1417,12 @@ s_number_memo__L0____ct__7StateIDFv = 0x101E9F04;
 cNull__7StateID = 0x1022D390;
 
 /* StateMethod */
+__ct__11StateMethodFR13IStateFactoryRC7StateID = 0x029C4A08;
 executeStateMethod__11StateMethodFv = 0x029C4A80;
 changeStateMethod__11StateMethodFRC7StateID = 0x029C4AF0;
+
+/* MainGame */
+sInstance__8MainGame = 0x101E7D7C;
 
 /* new/delete */
 __nw__FUi = 0x029F1594;
@@ -1440,6 +1470,7 @@ getCorrespondingMethodTreeMgrTypeInfo__Q2_4sead13CalculateTaskCFv = __deleted_vi
 
 /* sead::TaskBase */
 enterCommon__Q2_4sead8TaskBaseFv = 0x029FF818;
+adjustHeapAll__Q2_4sead8TaskBaseFv = 0x029FF9DC;
 onEvent__Q2_4sead8TaskBaseFRCQ2_4sead9TaskEvent = 0x029FFF78;
 __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead8TaskBaseSFv = 0x101E9A98;
 typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead8TaskBaseSFv = 0x101EA768;
@@ -1458,6 +1489,11 @@ typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead6CameraSFv = 0x101EBC10;
 __dt__Q2_4sead12LookAtCameraFv = 0x02A04B94;
 doUpdateMatrix__Q2_4sead12LookAtCameraCFPQ2_4sead17Matrix34__tm__2_f = 0x02A04BE8;
 __vtbl__Q2_4sead12LookAtCamera = 0x1019084C;
+
+/* sead::OrthoCamera */
+__ct__Q2_4sead11OrthoCameraFv = 0x02A04D54;
+__dt__Q2_4sead11OrthoCameraFv = 0x02A04DE8;
+setByOrthoProjection__Q2_4sead11OrthoCameraFRCQ2_4sead15OrthoProjection = 0x02A04E3C;
 
 /* sead::Color4f */
 cElementMax__Q2_4sead7Color4f = 0x101908E4;
@@ -1490,6 +1526,11 @@ typeInfo__L0__getRuntimeTypeInfoStatic__Q2_4sead10ProjectionSFv = 0x101EA808;
 __ct__Q2_4sead21PerspectiveProjectionFv = 0x02A06108;
 __dt__Q2_4sead21PerspectiveProjectionFv = 0x02A06298;
 set__Q2_4sead21PerspectiveProjectionFfN31 = 0x02A062EC;
+
+/* sead::OrthoProjection */
+__ct__Q2_4sead15OrthoProjectionFv = 0x02A06518;
+__dt__Q2_4sead15OrthoProjectionFv = 0x02A067C4;
+setTBLR__Q2_4sead15OrthoProjectionFfN31 = 0x02A06818;
 
 /* sead::Viewport */
 __ct__Q2_4sead8ViewportFfN31 = 0x02A072FC;
