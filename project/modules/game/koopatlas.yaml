@@ -1,0 +1,13 @@
+---
+Files:
+  C++:
+    - "$HAXX_DIR/src/koopatlas/KoopatlasLayerMgr.cpp"
+    - "$HAXX_DIR/src/koopatlas/KoopatlasTask.cpp"
+Hooks:
+  # Note: Koopatlas requires the ChangePlayerNum patches in layout.yaml
+
+  - type: branch
+    instr: b
+    addr: 0x0202B86C
+    func: TTaskFactory__tm__16_13KoopatlasTask__4seadFRCQ2_4sead16TaskConstructArg_PQ2_4sead8TaskBase
+

@@ -36,6 +36,7 @@ Modules:
   - "$GAME_MODULES_DIR/effect"
   - "$GAME_MODULES_DIR/game"
   - "$GAME_MODULES_DIR/input"
+  - "$GAME_MODULES_DIR/koopatlas"
   - "$GAME_MODULES_DIR/layout"
   - "$GAME_MODULES_DIR/map_obj"
   - "$GAME_MODULES_DIR/sound"
