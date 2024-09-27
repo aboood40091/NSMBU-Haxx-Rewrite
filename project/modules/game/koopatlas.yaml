@@ -10,4 +10,3 @@ Hooks:
     instr: b
     addr: 0x0202B86C
     func: TTaskFactory__tm__16_13KoopatlasTask__4seadFRCQ2_4sead16TaskConstructArg_PQ2_4sead8TaskBase
-
