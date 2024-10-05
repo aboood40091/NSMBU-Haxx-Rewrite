@@ -101,15 +101,15 @@ s32 EffectPlayer::create_()
     nw::math::VEC3 ef_rotat;
     if (mParam0 & 1)
     {
-        ef_rotat.x = sead::Mathf::idx2rad(mAngle.x + 0x20000000);
-        ef_rotat.y = sead::Mathf::idx2rad(mAngle.y + 0x20000000);
+        ef_rotat.x = sead::Mathf::idx2rad(mAngle.x() + 0x20000000);
+        ef_rotat.y = sead::Mathf::idx2rad(mAngle.y() + 0x20000000);
     }
     else
     {
-        ef_rotat.x = sead::Mathf::idx2rad(mAngle.x);
-        ef_rotat.y = sead::Mathf::idx2rad(mAngle.y);
+        ef_rotat.x = sead::Mathf::idx2rad(mAngle.x());
+        ef_rotat.y = sead::Mathf::idx2rad(mAngle.y());
     }
-    ef_rotat.z = sead::Mathf::idx2rad(mAngle.z);
+    ef_rotat.z = sead::Mathf::idx2rad(mAngle.z());
 
     nw::math::VEC3 ef_trans;
     ef_trans.x = (mPos.x += 8.0f);

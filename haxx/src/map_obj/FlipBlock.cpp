@@ -184,12 +184,12 @@ void FlipBlock::initializeState_Flipping()
 void FlipBlock::executeState_Flipping()
 {
     if (mSpawnDirection == 3) // Down
-        mAngle.x += 0x8000000;
+        mAngle.x() += 0x8000000;
 
     else
-        mAngle.x -= 0x8000000;
+        mAngle.x() -= 0x8000000;
 
-    if (mAngle.x == 0 && --mFlipsRemaining <= 0 && !playerOverlaps())
+    if (mAngle.x() == 0 && --mFlipsRemaining <= 0 && !playerOverlaps())
         changeState(StateID_Wait);
 }
 
@@ -199,7 +199,7 @@ void FlipBlock::finalizeState_Flipping()
     init(true, true);
 
     _1aae = 0;
-    mAngle.x = 0;
+    mAngle.x() = 0;
 }
 
 void FlipBlock::updateModel()

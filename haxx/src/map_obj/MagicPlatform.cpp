@@ -155,16 +155,16 @@ s32 MagicPlatform::execute_()
 {
     mParentMovementMgr.execute();
     mPos = mParentMovementMgr.getPosition();
-    mAngle.z = mParentMovementMgr.getAngle();
+    mAngle.z() = mParentMovementMgr.getAngle();
 
     switch (mCollisionType)
     {
     case cCollisionType_Box:
-        mBoxBgCollision.setAngle(mAngle.z);
+        mBoxBgCollision.setAngle(mAngle.z());
         mBoxBgCollision.execute();
         break;
     case cCollisionType_Line:
-        mLineBgCollision.setAngle(mAngle.z);
+        mLineBgCollision.setAngle(mAngle.z());
         mLineBgCollision.execute();
         break;
     }
@@ -175,7 +175,7 @@ s32 MagicPlatform::execute_()
 s32 MagicPlatform::draw_()
 {
     f32 sin_v, cos_v;
-    sead::Mathf::sinCosIdx(&sin_v, &cos_v, mAngle.z);
+    sead::Mathf::sinCosIdx(&sin_v, &cos_v, mAngle.z());
 
     for (s32 y = 0; y < mTileH; y++)
     {
@@ -189,7 +189,7 @@ s32 MagicPlatform::draw_()
             f32 rotated_y = -offset_x * sin_v + offset_y * cos_v;
             sead::Vector3f draw_pos(mPos.x + rotated_x, mPos.y - rotated_y, mPos.z);
 
-            Renderer::instance()->drawActorBgUnit(UnitID(mTileData[y * mTileW + x]), draw_pos, mAngle.z, mScale);
+            Renderer::instance()->drawActorBgUnit(UnitID(mTileData[y * mTileW + x]), draw_pos, mAngle.z(), mScale);
         }
     }
 

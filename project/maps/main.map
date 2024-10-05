@@ -1132,6 +1132,10 @@ setUserDataCallbacks__7PtclMgrFv = 0x022ACE84;
 resetUserDataCallbacks__7PtclMgrFv = 0x022AD468;
 sInstance__7PtclMgr = 0x101CD3A8;
 
+/* Enemy */
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__5EnemySFv = 0x101E9EEC;
+typeInfo__L0__getRuntimeTypeInfoStatic__5EnemySFv = 0x101E9EF0;
+
 /* AreaTask */
 drawLayer3D__8AreaTaskFRCQ3_3agl3lyr10RenderInfo = 0x024B84A8;
 
