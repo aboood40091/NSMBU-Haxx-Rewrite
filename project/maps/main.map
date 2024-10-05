@@ -20,7 +20,6 @@ checkDerivedRuntimeTypeInfo__5ActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x0
 killAtGoal__5ActorFv = 0x02002AD8;
 splashWater__5ActorFPQ2_4sead16Vector3__tm__2_f = 0x02002ADC;
 splashLava__5ActorFPQ2_4sead16Vector3__tm__2_f = 0x02002AE0;
-splashLavaWave__5ActorFPQ2_4sead16Vector3__tm__2_f = 0x02000960;
 splashPoison__5ActorFPQ2_4sead16Vector3__tm__2_f = 0x02002AE4;
 directionToActorH__5ActorFRC5Actor = 0x0200C800;
 __vtbl__5Actor = 0x10000268;
