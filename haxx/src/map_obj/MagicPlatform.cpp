@@ -52,7 +52,7 @@ private:
     };
     CollisionType           mCollisionType;
     ActorBoxBgCollision     mBoxBgCollision;
-    MagicPlatformCB         mCollisionCallback;
+    MagicPlatformCB         mCollisionHitCallback;
     ActorLineBgCollision    mLineBgCollision;
 };
 
@@ -115,7 +115,7 @@ s32 MagicPlatform::create_()
 
             // More Ugh
             // Callback table, useful for squishing the player
-            mBoxBgCollision.setCollisionCallback(&mCollisionCallback);
+            mBoxBgCollision.setActorHitCallback(&mCollisionHitCallback);
             mBoxBgCollision.setCheckRev(
                 &PairObjChild::checkRevFoot,
                 &PairObjChild::checkRevHead,

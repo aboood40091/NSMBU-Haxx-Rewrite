@@ -1024,7 +1024,7 @@ typeInfo__L0__getRuntimeTypeInfoStatic__22ActorCircleBgCollisionSFv = 0x101EA398
 /* ActorCollisionCheck */
 __ct__19ActorCollisionCheckFv = 0x0219A960;
 __dt__19ActorCollisionCheckFv = 0x0219AB90;
-__CPR85__set__19ActorCollisionCheckFP5ActorRCQ2_J5J4InfoP17CollisionCallback = 0x0219AF1C;
+__CPR93__set__19ActorCollisionCheckFP5ActorRCQ2_J5J4InfoP25ActorCollisionHitCallback = 0x0219AF1C;
 getTopPos__19ActorCollisionCheckCFv = 0x0219B434;
 getUnderPos__19ActorCollisionCheckCFv = 0x0219B450;
 getCenterPosY__19ActorCollisionCheckCFv = 0x0219B46C;
@@ -1036,10 +1036,10 @@ cDefault__Q2_19ActorCollisionCheck4Info = 0x10041BC0;
 /* ActorCollisionCheckMgr */
 sInstance__22ActorCollisionCheckMgr = 0x101C95D8;
 
-/* CollisionCallback */
-ccCallback0__17CollisionCallbackFP19ActorCollisionCheckRCQ2_4sead16Vector2__tm__2_f = 0x0219E7E8;
-ccCallback2__17CollisionCallbackFP19ActorCollisionCheckRCQ2_4sead16Vector2__tm__2_f = 0x0219E8A4;
-bcCallback0__17CollisionCallbackFP11BgCollisionRCQ2_4sead16Vector2__tm__2_f = 0x0219E8B8;
+/* ActorCollisionHitCallback */
+ccCallback0__25ActorCollisionHitCallbackFP19ActorCollisionCheckRCQ2_4sead16Vector2__tm__2_f = 0x0219E7E8;
+ccCallback2__25ActorCollisionHitCallbackFP19ActorCollisionCheckRCQ2_4sead16Vector2__tm__2_f = 0x0219E8A4;
+bcCallback0__25ActorCollisionHitCallbackFP11BgCollisionRCQ2_4sead16Vector2__tm__2_f = 0x0219E8B8;
 
 /* ActorEllipseBgCollision */
 __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__23ActorEllipseBgCollisionSFv = 0x101EA39C;

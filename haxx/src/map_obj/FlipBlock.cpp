@@ -155,7 +155,7 @@ void FlipBlock::finalizeState_DownMove_DiffEnd()
         &BlockCoinBase::callbackHead,
         &BlockCoinBase::callBackWall
     );
-    mBoxBgCollision.setCollisionCallback(&mCollisionCallback);
+    mBoxBgCollision.setActorHitCallback(&mCollisionHitCallback);
 }
 
 bool FlipBlock::isActive()

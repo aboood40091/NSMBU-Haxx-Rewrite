@@ -733,7 +733,7 @@ void CollisionRenderer::draw(const agl::lyr::RenderInfo& render_info)
             if (!p_cc->isInactive() && p_cc->isCollidable())
                 continue;   // Already rendered this in the previous loop
 
-        if (p_cc->getCollisionCallback() == nullptr)
+        if (p_cc->getActorHitCallback() == nullptr)
             continue;
 
         drawActorCollisionCheck(*p_cc);
