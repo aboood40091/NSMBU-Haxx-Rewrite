@@ -1595,7 +1595,7 @@ __CPR133__makeSRT__Q2_4sead27Matrix34CalcCommon__tm__2_fSFRQ3_J12J19Policies__tm
 unit__S__Q2_4sead13Quat__tm__2_f = 0x105EA598;
 
 /* sead::QuatCalcCommon<f32> */
-__CPR138__makeVectorRotation__Q2_4sead23QuatCalcCommon__tm__2_fSFRQ3_J23J19Policies__tm__4_Z1Z8QuatBaseRCQ3_J23JJ64J8Vec3BaseT2_b = 0x0205A660;
+/* __CPR138__makeVectorRotation__Q2_4sead23QuatCalcCommon__tm__2_fSFRQ3_J23J19Policies__tm__4_Z1Z8QuatBaseRCQ3_J23JJ64J8Vec3BaseT2_b = 0x0205A660; */
 
 /* sead::Vector2<f32> */
 zero__S__Q2_4sead16Vector2__tm__2_f = 0x105EA740;
@@ -1609,7 +1609,7 @@ ones__S__Q2_4sead16Vector3__tm__2_f = 0x105EA790;
 zero__S__Q2_4sead16Vector4__tm__2_f = 0x105EA79C;
 
 /* sead::Vector3CalcCommon<f32> */
-normalize__Q2_4sead26Vector3CalcCommon__tm__2_fSFRQ3_4sead19Policies__tm__4_Z1Z8Vec3Base_Z1Z = 0x0205A5F4;
+/* normalize__Q2_4sead26Vector3CalcCommon__tm__2_fSFRQ3_4sead19Policies__tm__4_Z1Z8Vec3Base_Z1Z = 0x0205A5F4; */
 
 /* sead::Endian */
 cConvFuncTable__Q2_4sead6Endian = 0x101929A8;
