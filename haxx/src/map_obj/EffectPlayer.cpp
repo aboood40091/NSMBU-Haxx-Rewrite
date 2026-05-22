@@ -1,12 +1,11 @@
 #include <actor/Profile_Haxx.h>
 #include <effect/PtclMgr.h>
-#include <graphics/BasicModel.h>
+#include <graphics/AnimModel.h>
+#include <map_obj/EffectPlayer.h>
 #include <player/PlayerMgr.h>
 #include <player/PlayerObject.h>
 
 #include <log.h>
-
-#include <ptcl/seadPtclSystem.h>
 
 /*
     TODO:
@@ -20,51 +19,6 @@
     * Up: Previous effect (emitter set)
 */
 
-class EffectPlayer : public Actor
-{
-public:
-    EffectPlayer(const ActorCreateParam& param);
-
-private:
-    s32 create_()  override;
-    s32 execute_() override;
-    s32 draw_()    override;
-
-private:
-    bool nextEffect_(const PlayerKey& player1_input);
-    bool prevEffect_(const PlayerKey& player1_input);
-    void killEffect_();
-
-private:
-    nw::eft::Handle mEffectHandle;
-    s32             mCurrentEmitterSetID;
-    nw::math::MTX34 mMtx;
-    bool            mIsDownHeld;
-    bool            mIsUpHeld;
-    s32             mDownHeldCnt;
-    s32             mUpHeldCnt;
-
-    static const s32 cDigitNumMax = 4;
-    static const s32 cDigitLineNumMax = 7;
-
-    sead::UnsafeArray<
-        sead::UnsafeArray<
-            BasicModel*,
-            cDigitLineNumMax
-        >,
-        cDigitNumMax
-    > mModel;
-
-    static const sead::Vector2f s_p1;
-    static const sead::Vector2f s_p2;
-    static const sead::Vector2f s_p3;
-    static const sead::Vector2f s_p4;
-    static const sead::Vector2f s_p5;
-    static const sead::Vector2f s_p6;
-
-    static const s32 cHoldRegisterDuration = 15; // 0.25 sec
-};
-
 const sead::Vector2f EffectPlayer::s_p1(-8.0f,  16.0f);
 const sead::Vector2f EffectPlayer::s_p2( 8.0f,  16.0f);
 const sead::Vector2f EffectPlayer::s_p3( 8.0f,   0.0f);
@@ -72,7 +26,7 @@ const sead::Vector2f EffectPlayer::s_p4( 8.0f, -16.0f);
 const sead::Vector2f EffectPlayer::s_p5(-8.0f, -16.0f);
 const sead::Vector2f EffectPlayer::s_p6(-8.0f,   0.0f);
 
-static const Profile EffectPlayer_Profile(&TActorFactory<EffectPlayer>, ProfileID::cEffectPlayer, "EffectPlayer", nullptr, 0);
+static const Profile EffectPlayer_Profile(&TActorFactory<EffectPlayer>, ProfileInfo::cProfileID_EffectPlayer, "EffectPlayer");
 
 EffectPlayer::EffectPlayer(const ActorCreateParam& param)
     : Actor(param)
@@ -86,9 +40,9 @@ EffectPlayer::EffectPlayer(const ActorCreateParam& param)
 {
 }
 
-s32 EffectPlayer::create_()
+ActorBase::Result EffectPlayer::create_()
 {
-    LOG("EffectPlayer: create start")
+    LOG("EffectPlayer: create start");
 
     mCurrentEmitterSetID    = -1;
     mIsDownHeld             = false;
@@ -122,23 +76,23 @@ s32 EffectPlayer::create_()
 
     for (u32 i = 0; i < cDigitNumMax; i++)
         for (u32 j = 0; j < cDigitLineNumMax; j++)
-            mModel[i][j] = BasicModel::create("block_snake", "block_snake", 0, 0, 0, 0, 0);
+            mModel[i][j] = AnimModel::create("block_snake", "block_snake", 0, 0, 0, 0, 0);
 
-    LOG("EffectPlayer: create end")
+    LOG("EffectPlayer: create end");
 
-    return 1;
+    return cResult_Success;
 }
 
-s32 EffectPlayer::execute_()
+bool EffectPlayer::execute_()
 {
     s32 set_num = PtclMgr::instance()->getPtclSystem()->GetResource(0)->GetNumEmitterSet();
     if (set_num < 1 || mCurrentEmitterSetID >= set_num)
     {
 failure:
-        LOG("EffectPlayer: Failure")
+        LOG("EffectPlayer: Failure");
         killEffect_();
-        requestDelete();
-        return 1;
+        deleteRequest();
+        return true;
     }
 
     const PlayerObject* player1 = nullptr;
@@ -148,19 +102,19 @@ failure:
     if (player1 != nullptr && nextEffect_(player1->getPlayerKey()))
     {
         mCurrentEmitterSetID = (mCurrentEmitterSetID + 1) % set_num;
-        LOG("EffectPlayer: Proceeding to next: %d", mCurrentEmitterSetID)
+        LOG("EffectPlayer: Proceeding to next: %d", mCurrentEmitterSetID);
     }
     else if (player1 != nullptr && prevEffect_(player1->getPlayerKey()))
     {
         mCurrentEmitterSetID = (mCurrentEmitterSetID - 1) % set_num;
         if (mCurrentEmitterSetID < 0)
             mCurrentEmitterSetID += set_num;
-        LOG("EffectPlayer: Going to previous: %d", mCurrentEmitterSetID)
+        LOG("EffectPlayer: Going to previous: %d", mCurrentEmitterSetID);
     }
     else
     {
         if (mCurrentEmitterSetID == -1)
-            return 1;
+            return true;
         else
             goto update;
     }
@@ -170,7 +124,7 @@ failure:
     if (!PtclMgr::instance()->getPtclSystem()->CreateEmitterSetID(&mEffectHandle, nw::math::MTX34::Identity(), mCurrentEmitterSetID, 0, PtclMgr::instance()->getEmitterSetGroupID(mCurrentEmitterSetID)))
         goto failure;
 
-    LOG("EffectPlayer: Create succeeded")
+    LOG("EffectPlayer: Create succeeded");
 
 update:
     if (!mEffectHandle.IsValid())
@@ -178,19 +132,29 @@ update:
 
     mEffectHandle.GetEmitterSet()->SetMtx(mMtx);
 
-    return 1;
+    return true;
 }
 
-s32 EffectPlayer::draw_()
+bool EffectPlayer::draw_()
 {
-    return 1;
+    return true;
+}
+
+static inline bool PlayerKey_IsOnlyDownHeld(const PlayerKey& key)
+{
+    return key.buttonHipAttack();
+}
+
+static inline bool PlayerKey_IsOnlyUpHeld(const PlayerKey& key)
+{
+    return key.buttonUp() && !key.buttonRight() && !key.buttonLeft() && !key.buttonDown();
 }
 
 bool EffectPlayer::nextEffect_(const PlayerKey& player1_input)
 {
     if (!mIsDownHeld)
     {
-        if (player1_input.isDownPressed())
+        if (player1_input.triggerDown())
         {
             mIsDownHeld = true;
             mDownHeldCnt = 0;
@@ -198,9 +162,9 @@ bool EffectPlayer::nextEffect_(const PlayerKey& player1_input)
     }
     else
     {
-        if (player1_input.isDownHeld())
+        if (player1_input.buttonDown())
         {
-            if (player1_input.isOnlyDownHeld() && ++mDownHeldCnt >= cHoldRegisterDuration)
+            if (PlayerKey_IsOnlyDownHeld(player1_input) && ++mDownHeldCnt >= cHoldRegisterDuration)
             {
                 mDownHeldCnt = 0;
                 return true;
@@ -221,7 +185,7 @@ bool EffectPlayer::prevEffect_(const PlayerKey& player1_input)
 {
     if (!mIsUpHeld)
     {
-        if (player1_input.isUpPressed())
+        if (player1_input.triggerUp())
         {
             mIsUpHeld = true;
             mUpHeldCnt = 0;
@@ -229,9 +193,9 @@ bool EffectPlayer::prevEffect_(const PlayerKey& player1_input)
     }
     else
     {
-        if (player1_input.isUpHeld())
+        if (player1_input.buttonUp())
         {
-            if (player1_input.isOnlyUpHeld() && ++mUpHeldCnt >= cHoldRegisterDuration)
+            if (PlayerKey_IsOnlyUpHeld(player1_input) && ++mUpHeldCnt >= cHoldRegisterDuration)
             {
                 mUpHeldCnt = 0;
                 return true;

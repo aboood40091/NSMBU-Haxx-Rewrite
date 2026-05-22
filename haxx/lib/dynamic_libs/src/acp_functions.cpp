@@ -21,8 +21,8 @@
  * 3. This notice may not be removed or altered from any source
  * distribution.
  ***************************************************************************/
-#include "dynamic_libs/os_functions.h"
-#include "dynamic_libs/acp_functions.h"
+#include <dynamic_libs/os_functions.h>
+#include <dynamic_libs/acp_functions.h>
 
 u32 acp_handle = 0;
 

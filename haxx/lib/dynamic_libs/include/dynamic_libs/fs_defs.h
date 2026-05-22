@@ -98,6 +98,7 @@ typedef s32 FSFileHandle;
 typedef s32 FSDirHandle;
 typedef s32 FSStatus;
 typedef u32 FSRetFlag;
+typedef u32 FSFilePosition;
 
 #ifdef __cplusplus
 }

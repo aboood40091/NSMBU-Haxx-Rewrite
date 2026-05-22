@@ -1,9 +1,18 @@
+[submodule "game/lib/nw/Sys"]
+	path = game/lib/nw/Sys
+	url = https://github.com/nw4f/Sys
 [submodule "game/lib/nw/G3d"]
 	path = game/lib/nw/G3d
 	url = https://github.com/nw4f/G3d
 [submodule "game/lib/sead"]
 	path = game/lib/sead
 	url = https://github.com/aboood40091/sead
+[submodule "game/lib/nw/Lyt"]
+	path = game/lib/nw/Lyt
+	url = https://github.com/nw4f/Lyt
+[submodule "game/lib/nw/Snd"]
+	path = game/lib/nw/Snd
+	url = https://github.com/nw4f/Snd
 [submodule "game/include"]
 	path = game/include
 	url = https://github.com/aboood40091/NSMBU-Headers

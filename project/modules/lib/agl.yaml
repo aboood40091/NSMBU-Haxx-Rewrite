@@ -5,7 +5,7 @@ Files:
   Assembly:
     - "$HAXX_LIB_DIR/sead/packages/agl/src/layer/aglRenderer_S.s"
 Hooks:
-  # agl::lyr::Renderer::draw hack (Clear framebuffer to black)
+  # agl::lyr::Renderer::draw hack (Clear framebuffer to red)
   ## TV
   - type: branch
     instr: bl

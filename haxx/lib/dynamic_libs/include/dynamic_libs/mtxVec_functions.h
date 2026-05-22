@@ -13,6 +13,7 @@ void ASM_MTXCopy(MTX n, MTX o);
 void ASM_MTXIdentity(MTX o);
 u32  ASM_MTXInverse(MTX n, MTX o);
 void ASM_MTXScale(MTX o, f32 x, f32 y, f32 z);
+void ASM_MTXScaleApply(MTX n, MTX o, f32 x, f32 y, f32 z);
 void ASM_MTXTrans(MTX o, f32 x, f32 y, f32 z);
 void ASM_MTXTransApply(MTX n, MTX o, f32 x, f32 y, f32 z);
 void ASM_MTXTranspose(MTX n, MTX o);

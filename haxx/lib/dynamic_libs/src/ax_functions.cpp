@@ -21,8 +21,8 @@
  * 3. This notice may not be removed or altered from any source
  * distribution.
  ***************************************************************************/
-#include "dynamic_libs/os_functions.h"
-#include "dynamic_libs/ax_functions.h"
+#include <dynamic_libs/os_functions.h>
+#include <dynamic_libs/ax_functions.h>
 
 u32 sound_handle = 0;
 u32 sound_handle_old = 0;

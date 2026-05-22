@@ -21,8 +21,8 @@
  * 3. This notice may not be removed or altered from any source
  * distribution.
  ***************************************************************************/
-#include "dynamic_libs/os_functions.h"
-#include "dynamic_libs/nn_act_functions.h"
+#include <dynamic_libs/os_functions.h>
+#include <dynamic_libs/nn_act_functions.h>
 
 u32 nn_act_handle = 0;
 

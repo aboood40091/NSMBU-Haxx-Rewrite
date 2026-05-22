@@ -21,8 +21,8 @@
  * 3. This notice may not be removed or altered from any source
  * distribution.
  ***************************************************************************/
-#include "dynamic_libs/os_functions.h"
-#include "dynamic_libs/padscore_functions.h"
+#include <dynamic_libs/os_functions.h>
+#include <dynamic_libs/padscore_functions.h>
 
 u32 padscore_handle = 0;
 

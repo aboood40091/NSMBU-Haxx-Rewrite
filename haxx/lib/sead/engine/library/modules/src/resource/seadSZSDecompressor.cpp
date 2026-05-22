@@ -6,7 +6,6 @@
 #include <resource/seadSZSDecompressor.h>
 
 #include <dynamic_libs/zlib_functions.h>
-#include <log.h>
 
 namespace sead {
 

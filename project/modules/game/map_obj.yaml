@@ -5,4 +5,13 @@ Files:
     - "$HAXX_DIR/src/map_obj/EffectPlayer.cpp"
     - "$HAXX_DIR/src/map_obj/FlipBlock.cpp"
     - "$HAXX_DIR/src/map_obj/MagicPlatform.cpp"
-Hooks: ~
+Hooks:
+  # Enable NSLU fix for BlockLightLift despawning in NSMBU as well
+  - type: nop
+    addr:
+      - 0x0270A668
+      - 0x0270A66C
+      - 0x0270A674
+      - 0x0270A91C
+      - 0x0270A920
+      - 0x0270A924

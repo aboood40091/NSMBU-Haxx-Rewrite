@@ -21,8 +21,8 @@
  * 3. This notice may not be removed or altered from any source
  * distribution.
  ***************************************************************************/
-#include "dynamic_libs/os_functions.h"
-#include "dynamic_libs/proc_ui_functions.h"
+#include <dynamic_libs/os_functions.h>
+#include <dynamic_libs/proc_ui_functions.h>
 
 u32 proc_ui_handle = 0;
 

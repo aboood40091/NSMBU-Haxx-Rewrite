@@ -1,0 +1,7 @@
+---
+Files: ~
+Hooks:
+  # Enforce the ability to always Save in CourseSelectMenu (i.e., disable Quick Save)
+  - type: nop
+    addr: 0x025A4820
+    count: 3

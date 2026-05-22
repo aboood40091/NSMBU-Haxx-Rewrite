@@ -304,13 +304,10 @@ static inline void drawActorCollisionCheck_Box(const ActorCollisionCheck& cc)
 
 static inline void drawActorCollisionCheck_Circle(const ActorCollisionCheck& cc)
 {
-    const sead::Vector2f center(
-        cc.getCenterPosX(),
-        cc.getCenterPosY()
-    );
+    const sead::Vector2f& center = cc.getCenterPos();
     const f32 z = cc.getOwner()->getPos().z;
-    const f32 r_x = cc.getInfo().half_size.x;
-    const f32 r_y = cc.getInfo().half_size.y;
+    const f32 r_x = cc.getHalfSizeX();
+    const f32 r_y = cc.getHalfSizeY();
 
     drawEllipse(center, z, r_x, r_y, sead::Color4f::cRed, 1.0f);
 }
@@ -387,44 +384,44 @@ static inline void drawActorCollisionCheck_DaikeiLR(const ActorCollisionCheck& c
 
 static inline void drawActorCollisionCheck(const ActorCollisionCheck& cc)
 {
-    switch (cc.getInfo().shape)
+    switch (cc.getShapeType())
     {
-    case ActorCollisionCheck::cShape_Box:
+    case ActorCollisionCheck::cShapeType_Box:
         drawActorCollisionCheck_Box(cc);
         break;
-    case ActorCollisionCheck::cShape_Circle:
+    case ActorCollisionCheck::cShapeType_Circle:
         drawActorCollisionCheck_Circle(cc);
         break;
-    case ActorCollisionCheck::cShape_DaikeiUD:
+    case ActorCollisionCheck::cShapeType_DaikeiUD:
         drawActorCollisionCheck_DaikeiUD(cc);
         break;
-    case ActorCollisionCheck::cShape_DaikeiLR:
+    case ActorCollisionCheck::cShapeType_DaikeiLR:
         drawActorCollisionCheck_DaikeiLR(cc);
         break;
     }
 }
 
-static inline const sead::Color4f& getBgCollisionColor(const BgCheckUnitInfo& bc_data)
+static inline const sead::Color4f& getBgCollisionColor(const u64& bc_data)
 {
-    switch (bc_data.getUnitSolidType())
+    switch (BgUnitCode::getHitType(bc_data))
     {
-    case BgCheckUnitInfo::cSolidType_None:
+    case BgUnitCode::cHitType_None:
     default:
         return sead::Color4f::cBlack;
-    case BgCheckUnitInfo::cSolidType_Fill:
+    case BgUnitCode::cHitType_Full:
         return sead::Color4f::cBlue;
-    case BgCheckUnitInfo::cSolidType_Outer:
+    case BgUnitCode::cHitType_Half:
         return sead::Color4f::cMagenta;
-    case BgCheckUnitInfo::cSolidType_Inner:
+    case BgUnitCode::cHitType_HalfCeiling:
         return sead::Color4f::cGreen;
-    case BgCheckUnitInfo::cSolidType_OuterAndInner:
+    case BgUnitCode::cHitType_HalfBoth:
         return sead::Color4f::cGray;
     }
 }
 
 static inline void drawBgCollision_Circle(const ActorCircleBgCollision& bg_collision, const sead::Color4f& color)
 {
-    const sead::Vector2f center(bg_collision.getCenterPosX(), bg_collision.getCenterPosY());
+    const sead::Vector2f& center = bg_collision.getCenterPos();
     const f32 z = bg_collision.getFollowArg().p_position->z;
     const f32 radius = bg_collision.getRadius();
     const u32 arc_start = bg_collision.getArcStart();
@@ -435,7 +432,7 @@ static inline void drawBgCollision_Circle(const ActorCircleBgCollision& bg_colli
 
 static inline void drawBgCollision_Ellipse(const ActorEllipseBgCollision& bg_collision, const sead::Color4f& color)
 {
-    const sead::Vector2f center(bg_collision.getCenterPosX(), bg_collision.getCenterPosY());
+    const sead::Vector2f& center = bg_collision.getCenterPos();
     const f32 z = bg_collision.getFollowArg().p_position->z;
     const sead::Vector2f& radii = bg_collision.getHalfSize();
     const u32 angle = bg_collision.getAngle();
@@ -450,12 +447,12 @@ inline bool drawBgCollision_RideLine(const T& bg_collision, const sead::Color4f&
     if (ride_line.size() < 1)
         return false;
 
-    const sead::Vector2f pos(bg_collision.getPosX(), bg_collision.getPosY());
+    const sead::Vector2f& pos = bg_collision.getPos();
     const f32 z = bg_collision.getFollowArg().p_position->z;
 
     for (sead::Buffer<BasicRideLine>::constIterator itr_ride_line = ride_line.begin(), itr_ride_line_end = ride_line.end(); itr_ride_line != itr_ride_line_end; ++itr_ride_line)
     {
-        const sead::Segment2f& segment = itr_ride_line->getRide2Point().getSegment();
+        const sead::Segment2f& segment = itr_ride_line->getSegment().getSegment();
         drawLine(pos + segment.getPos0(), pos + segment.getPos1(), z, color, 1.0f);
     }
 
@@ -478,11 +475,11 @@ static inline void drawBgCollision_Polygon(const LoopRideLineBgCollision& bg_col
     if (ride_line.size() < 4 || (ride_line.size() & 1))
         return;
 
-    const sead::Vector2f pos(bg_collision.getPosX(), bg_collision.getPosY());
+    const sead::Vector2f& pos = bg_collision.getPos();
     const f32 z = bg_collision.getFollowArg().p_position->z;
 
-    const sead::Segment2f& segment1 = ride_line[0]                       .getRide2Point().getSegment();
-    const sead::Segment2f& segment2 = ride_line[ride_line.size() / 2 - 1].getRide2Point().getSegment();
+    const sead::Segment2f& segment1 = ride_line[0]                       .getSegment().getSegment();
+    const sead::Segment2f& segment2 = ride_line[ride_line.size() / 2 - 1].getSegment().getSegment();
     drawLine(pos + segment1.getPos0(), pos + segment2.getPos1(), z, color, 1.0f);
 #endif // COLLISION_DRAW_DIAGONAL
 }
@@ -497,7 +494,7 @@ static inline void drawBgCollision_PoleRope(const PoleRopeBgCollision& bg_collis
 
     const sead::Vector2f* point_buf = points.getBufferPtr();
 
-    const sead::Vector2f pos(bg_collision.getPosX(), bg_collision.getPosY());
+    const sead::Vector2f& pos = bg_collision.getPos();
     const f32 z = bg_collision.getFollowArg().p_position->z;
     const f32 radius = bg_collision.getRange();
 
@@ -515,8 +512,8 @@ static inline void drawBgCollision_PoleRope(const PoleRopeBgCollision& bg_collis
 
 static inline void drawBgCollision(const BgCollision& bg_collision, const agl::lyr::RenderInfo& render_info)
 {
-    const BgCheckUnitInfo& bc_data = bg_collision.getBgCheckData();
-    if (bc_data.getUnitKind() == BgCheckUnitInfo::cKind_Normal && bc_data.getUnitSolidType() == BgCheckUnitInfo::cSolidType_None)
+    const u64& bc_data = bg_collision.getBgCheckData();
+    if (BgUnitCode::getType(bc_data) == BgUnitCode::cType_None && BgUnitCode::getHitType(bc_data) == BgUnitCode::cHitType_None)
         return;
 
     const BgScrollMgr& bg_scroll_mgr = *BgScrollMgr::instance();
@@ -570,7 +567,7 @@ static inline void drawBgCollision(const BgCollision& bg_collision, const agl::l
         sead::Graphics::instance()->setScissorRealPosition(real_pos.x, real_pos.y, real_size.x, real_size.y);
     }
 
-    const sead::Color4f& color = getBgCollisionColor(bg_collision.getBgCheckData());
+    const sead::Color4f& color = getBgCollisionColor(bc_data);
 
     if (sead::IsDerivedTypes<ActorCircleBgCollision>(&bg_collision))
         drawBgCollision_Circle(static_cast<const ActorCircleBgCollision&>(bg_collision), color);
@@ -710,30 +707,30 @@ void CollisionRenderer::draw(const agl::lyr::RenderInfo& render_info)
             continue;
 
         Actor* p_actor = p_cc->getOwner();
-        if (p_actor == nullptr || !p_actor->isActive() || p_actor->isDeleted())
+        if (p_actor == nullptr || !p_actor->isActive() || p_actor->isRequestedDelete())
             continue;
 
-        if (p_cc->isInactive() || !p_cc->isCollidable())
+        if (p_cc->isDisableCallback() || !p_cc->isCollidable())
             continue;
 
         drawActorCollisionCheck(*p_cc);
     }
 
-    for (LineNodeMgr<ActorCollisionCheck>::Node* node = ActorCollisionCheckMgr::instance()->getList4().front(); node != nullptr; node = node->next)
+    for (LineNodeMgr<ActorCollisionCheck>::Node* node = ActorCollisionCheckMgr::instance()->getTouchDrcCheckList().front(); node != nullptr; node = node->next)
     {
         ActorCollisionCheck* p_cc = node->obj;
         if (p_cc == nullptr)
             continue;
 
         Actor* p_actor = p_cc->getOwner();
-        if (p_actor == nullptr || !p_actor->isActive() || p_actor->isDeleted())
+        if (p_actor == nullptr || !p_actor->isActive() || p_actor->isRequestedDelete())
             continue;
 
-        if (p_cc->getInfo()._14 != 12)
-            if (!p_cc->isInactive() && p_cc->isCollidable())
+        if (p_cc->getKind() != ActorCollisionCheck::cKind_Unk12)
+            if (!p_cc->isDisableCallback() && p_cc->isCollidable())
                 continue;   // Already rendered this in the previous loop
 
-        if (p_cc->getActorHitCallback() == nullptr)
+        if (p_cc->getDrcTouchCallback() == nullptr)
             continue;
 
         drawActorCollisionCheck(*p_cc);

@@ -21,8 +21,8 @@
  * 3. This notice may not be removed or altered from any source
  * distribution.
  ***************************************************************************/
-#include "dynamic_libs/os_functions.h"
-#include "dynamic_libs/nfp_functions.h"
+#include <dynamic_libs/os_functions.h>
+#include <dynamic_libs/nfp_functions.h>
 
 u32 nfp_handle = 0;
 

@@ -1,5 +1,5 @@
-#include "dynamic_libs/os_functions.h"
-#include "zlib.h"
+#include <dynamic_libs/os_functions.h>
+#include <zlib.h>
 
 u32 zlib_handle = 0;
 

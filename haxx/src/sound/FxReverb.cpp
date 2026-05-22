@@ -4,8 +4,8 @@
 
 extern "C" {
 
-extern nw::snd::internal::FxReverbHiParam DefaultReverbHiParam;
-extern nw::snd::internal::FxDelayParam    DefaultDelayParam;
+extern nw::snd::FxReverbHi::ReverbHiParam DefaultReverbHiParam;
+extern nw::snd::FxDelay::DelayParam       DefaultDelayParam;
 
 extern f32 SFXReverb_0;
 extern f32 SFXReverb_1;
@@ -14,8 +14,8 @@ extern f32 SFXReverbPlyJump_1;
 
 void SetFxReverbHiAndDelay(void*, SndSceneMgr::EffectType sfx_mode)
 {
-    nw::snd::internal::FxReverbHiParam& reverbHiParam = SndAudioMgr::instance()->getFxSocket()->getReverbHiParam();
-    nw::snd::internal::FxDelayParam&    delayParam    = SndAudioMgr::instance()->getFxSocket()->getDelayParam();
+    nw::snd::FxReverbHi::ReverbHiParam& reverbHiParam = SndAudioMgr::instance()->getFxSocket()->getReverbHiParam();
+    nw::snd::FxDelay::DelayParam&       delayParam    = SndAudioMgr::instance()->getFxSocket()->getDelayParam();
 
     reverbHiParam.preDelayTime = 0.02f;
     reverbHiParam.fusedTime = 3.0f;
@@ -23,9 +23,9 @@ void SetFxReverbHiAndDelay(void*, SndSceneMgr::EffectType sfx_mode)
     reverbHiParam.damping = 0.4f;
     reverbHiParam.crosstalk = 0.1f;
     reverbHiParam.outGain = 1.0f;
-    reverbHiParam.earlyMode = 5;
+    reverbHiParam.earlyMode = nw::snd::FX_REVERB_EARLY_REFLECTION_30MS;
     reverbHiParam.preDelayTimeMax = 0.02f;
-    reverbHiParam.fusedMode = 0;
+    reverbHiParam.fusedMode = nw::snd::FX_REVERB_FUSED_OLD_AXFX;;
     reverbHiParam.earlyGain = 0.0f;
     reverbHiParam.fusedGain = 1.0f;
     DefaultReverbHiParam = reverbHiParam;
@@ -44,7 +44,7 @@ void SetFxReverbHiAndDelay(void*, SndSceneMgr::EffectType sfx_mode)
     default:
         reverbHiParam.fusedTime = 4.0f;
         reverbHiParam.damping = 0.0f;
-        reverbHiParam.fusedMode = 5;
+        reverbHiParam.fusedMode = nw::snd::FX_REVERB_FUSED_CAVERNOUS;
 
         delayParam.delay = 120.0f;
         delayParam.feedback = 0.1f;
@@ -58,7 +58,7 @@ void SetFxReverbHiAndDelay(void*, SndSceneMgr::EffectType sfx_mode)
     case SndSceneMgr::cEffect_Chika:
     case SndSceneMgr::cEffect_Chika_Sa:
         reverbHiParam.fusedTime = 5.0f;
-        reverbHiParam.fusedMode = 5;
+        reverbHiParam.fusedMode = nw::snd::FX_REVERB_FUSED_CAVERNOUS;
 
         delayParam.delay = 180.0f;
         delayParam.feedback = 0.5f;
@@ -72,7 +72,7 @@ void SetFxReverbHiAndDelay(void*, SndSceneMgr::EffectType sfx_mode)
     case SndSceneMgr::cEffect_Chika_S:
         reverbHiParam.fusedTime = 1.2f;
         reverbHiParam.damping = 0.9f;
-        reverbHiParam.fusedMode = 2;
+        reverbHiParam.fusedMode = nw::snd::FX_REVERB_FUSED_SMALL_ROOM;
 
         delayParam.delay = 100.0f;
         delayParam.feedback = 0.1f;
@@ -85,7 +85,7 @@ void SetFxReverbHiAndDelay(void*, SndSceneMgr::EffectType sfx_mode)
         return;
     case SndSceneMgr::cEffect_Water:
         reverbHiParam.fusedTime = 3.0f;
-        reverbHiParam.fusedMode = 2;
+        reverbHiParam.fusedMode = nw::snd::FX_REVERB_FUSED_SMALL_ROOM;
 
         delayParam.delay = 180.0f;
         delayParam.feedback = 0.3f;
@@ -98,7 +98,7 @@ void SetFxReverbHiAndDelay(void*, SndSceneMgr::EffectType sfx_mode)
         return;
     case SndSceneMgr::cEffect_Boss:
         reverbHiParam.damping = 0.2f;
-        reverbHiParam.fusedMode = 3;
+        reverbHiParam.fusedMode = nw::snd::FX_REVERB_FUSED_LARGE_ROOM;
 
         delayParam.delay = 200.0f;
         delayParam.feedback = 0.38f;
@@ -111,7 +111,7 @@ void SetFxReverbHiAndDelay(void*, SndSceneMgr::EffectType sfx_mode)
         return;
     case SndSceneMgr::cEffect_Toride:
         reverbHiParam.damping = 0.9f;
-        reverbHiParam.fusedMode = 3;
+        reverbHiParam.fusedMode = nw::snd::FX_REVERB_FUSED_LARGE_ROOM;
 
         delayParam.delay = 190.0f;
         delayParam.feedback = 0.4f;
@@ -124,7 +124,7 @@ void SetFxReverbHiAndDelay(void*, SndSceneMgr::EffectType sfx_mode)
         return;
     case SndSceneMgr::cEffect_Shiro:
         reverbHiParam.damping = 0.1f;
-        reverbHiParam.fusedMode = 4;
+        reverbHiParam.fusedMode = nw::snd::FX_REVERB_FUSED_HALL;
 
         delayParam.delay = 190.0f;
         delayParam.feedback = 0.3f;
@@ -137,7 +137,7 @@ void SetFxReverbHiAndDelay(void*, SndSceneMgr::EffectType sfx_mode)
         return;
     case SndSceneMgr::cEffect_Obake:
         reverbHiParam.fusedTime = 2.5f;
-        reverbHiParam.fusedMode = 2;
+        reverbHiParam.fusedMode = nw::snd::FX_REVERB_FUSED_SMALL_ROOM;
 
         delayParam.delay = 94.0f;
         delayParam.feedback = 0.13f;
@@ -151,7 +151,7 @@ void SetFxReverbHiAndDelay(void*, SndSceneMgr::EffectType sfx_mode)
     case SndSceneMgr::cEffect_Dokan:
         reverbHiParam.fusedTime = 1.8f;
         reverbHiParam.coloration = 0.4f;
-        reverbHiParam.fusedMode = 1;
+        reverbHiParam.fusedMode = nw::snd::FX_REVERB_FUSED_METAL_TANK;
 
         delayParam.delay = 32.0f;
         delayParam.feedback = 0.83f;
@@ -164,7 +164,7 @@ void SetFxReverbHiAndDelay(void*, SndSceneMgr::EffectType sfx_mode)
         return;
     case SndSceneMgr::cEffect_Gake:
         reverbHiParam.fusedTime = 1.0f;
-        reverbHiParam.fusedMode = 5;
+        reverbHiParam.fusedMode = nw::snd::FX_REVERB_FUSED_CAVERNOUS;
 
         delayParam.delay = 350.0f;
         delayParam.feedback = 0.1f;
@@ -177,7 +177,7 @@ void SetFxReverbHiAndDelay(void*, SndSceneMgr::EffectType sfx_mode)
         return;
     case SndSceneMgr::cEffect_House:
         reverbHiParam.fusedTime = 0.3f;
-        reverbHiParam.fusedMode = 2;
+        reverbHiParam.fusedMode = nw::snd::FX_REVERB_FUSED_SMALL_ROOM;
 
         delayParam.delay = 22.0f;
         delayParam.feedback = 0.4f;
@@ -190,7 +190,7 @@ void SetFxReverbHiAndDelay(void*, SndSceneMgr::EffectType sfx_mode)
         return;
     case SndSceneMgr::cEffect_Boss_Jr:
         reverbHiParam.fusedTime = 0.8f;
-        reverbHiParam.fusedMode = 2;
+        reverbHiParam.fusedMode = nw::snd::FX_REVERB_FUSED_SMALL_ROOM;
 
         delayParam.delay = 39.0f;
         delayParam.feedback = 0.3f;
@@ -203,7 +203,7 @@ void SetFxReverbHiAndDelay(void*, SndSceneMgr::EffectType sfx_mode)
         return;
     case SndSceneMgr::cEffect_Kurayami:
         reverbHiParam.fusedTime = 3.5f;
-        reverbHiParam.fusedMode = 5;
+        reverbHiParam.fusedMode = nw::snd::FX_REVERB_FUSED_CAVERNOUS;
 
         delayParam.delay = 180.0f;
         delayParam.feedback = 0.4f;
@@ -216,7 +216,7 @@ void SetFxReverbHiAndDelay(void*, SndSceneMgr::EffectType sfx_mode)
         return;
     case SndSceneMgr::cEffect_Chika_Ka:
         reverbHiParam.fusedTime = 5.0f;
-        reverbHiParam.fusedMode = 5;
+        reverbHiParam.fusedMode = nw::snd::FX_REVERB_FUSED_CAVERNOUS;
 
         delayParam.delay = 180.0f;
         delayParam.feedback = 0.5f;

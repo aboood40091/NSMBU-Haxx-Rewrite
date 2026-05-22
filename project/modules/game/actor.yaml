@@ -3,14 +3,14 @@ Files:
   C++:
     - "$HAXX_DIR/src/actor/MapActor.cpp"
     - "$HAXX_DIR/src/actor/Profile.cpp"
-    - "$HAXX_DIR/src/actor/ProfileEx.cpp"
+    - "$HAXX_DIR/src/actor/ProfileInfo.cpp"
   Assembly:
     - "$HAXX_DIR/src/actor/Profile_S.s"
 Hooks:
   - type: branch
     instr: b
     addr: 0x02019554
-    func: __ct__7ProfileFPFRC16ActorCreateParam_P9ActorBaseiRCQ2_4sead23SafeStringBase__tm__2_cPC15ActorCreateInfoUi
+    func: __ct__7ProfileFPFRC16ActorCreateParam_P9ActorBaseiRCQ2_4sead23SafeStringBase__tm__2_cPC15ActorCreateInfoQ2_7Profile4Flag
 
   - type: branch
     instr: b
@@ -20,22 +20,22 @@ Hooks:
   - type: branch
     instr: b
     addr: 0x02019988
-    func: getDrawPriority__7ProfileSFi
+    func: getDrawPriority__11ProfileInfoFi
 
   - type: branch
     instr: b
     addr: 0x020199A8
-    func: getResType__7ProfileSFi
+    func: getResType__11ProfileInfoFi
 
   - type: branch
     instr: b
     addr: 0x020199CC
-    func: getResNum__7ProfileSFi
+    func: getResNum__11ProfileInfoFi
 
   - type: branch
     instr: b
     addr: 0x020199EC
-    func: getResList__7ProfileSFi
+    func: getResList__11ProfileInfoFi
 
   - type: patch
     addr:
@@ -103,3 +103,10 @@ Hooks:
     instr: bl
     addr: 0x02008678
     func: SpriteToProfileList_r31
+
+  - type: branch
+    instr: bl
+    addr:
+      - 0x02009428
+      - 0x0200945C
+    func: getExecutePriority__11ProfileInfoFRC9ActorBase

@@ -7,12 +7,13 @@
 #include <log.h>
 
 typedef void (*InitFunc)();
-extern "C" InitFunc _ctors[];
-
-OsSpecifics osSpecifics;
 
 extern "C"
 {
+
+extern InitFunc _ctors[];
+
+OsSpecifics osSpecifics;
 
 extern u32 BLOSDynLoad_Acquire;
 extern u32 BOSDynLoad_FindExport;

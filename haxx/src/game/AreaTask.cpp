@@ -1,6 +1,6 @@
 #include <collision/CollisionRenderer.h>
 #include <game/AreaTask.h>
-#include <game/Info.h>
+#include <game_info/CourseInfo.h>
 #include <map/CourseData.h>
 
 extern f32 PlayerJumpArc;
@@ -12,7 +12,7 @@ void AreaTask::setLoopType()
 {
     mLoopType = 0;
 
-    CourseDataFile* file = CourseData::instance()->getFile(Info::instance()->getFileNo());
+    CourseDataFile* file = CourseData::instance()->getFile(CourseInfo::instance()->getFileNo());
     const Options* options = reinterpret_cast<const Options*>(file->getBlock(CourseDataFile::cBlock_Options));
 
     if (options->loop & 1)

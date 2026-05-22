@@ -57,7 +57,7 @@ bool RendererHaxx::drawTV_(DisplayType display_type) const
 
             p_render_buffer->clear(
                 clr_flag,
-                sead::Color4f::cBlack,
+                sead::Color4f::cRed,
                 1.0f,
                 0
             );
@@ -92,7 +92,7 @@ bool RendererHaxx::drawDRC_(DisplayType display_type) const
 
             p_render_buffer->clear(
                 clr_flag,
-                sead::Color4f::cBlack,
+                sead::Color4f::cRed,
                 1.0f,
                 0
             );

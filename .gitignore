@@ -52,6 +52,8 @@ Mkfile.old
 dkms.conf
 
 # Other files
+.vs
+.vscode
 project/out
 project/rpxs
 project/temp

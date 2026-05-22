@@ -28,14 +28,16 @@ IncludeDirs:
   - "$HAXX_LIB_DIR/cafe_sdk/include"
   - "$HAXX_LIB_DIR/dynamic_libs/include"
 Modules:
-  - "$GAME_MODULES_DIR/aa"
+  # - "$GAME_MODULES_DIR/aa"  # Enable this if you want to disable Fast Approximate Anti-Aliasing (FXAA)
   - "$GAME_MODULES_DIR/actor"
   - "$GAME_MODULES_DIR/collision_stub"
+  # - "$GAME_MODULES_DIR/course_select"  # Enable this if you want to disable Quick Save and always enforce normal Save on the world map
   - "$GAME_MODULES_DIR/ctors"
   - "$GAME_MODULES_DIR/distant_view"
   - "$GAME_MODULES_DIR/effect"
   - "$GAME_MODULES_DIR/game"
   - "$GAME_MODULES_DIR/input"
+  - "$GAME_MODULES_DIR/item"
   - "$GAME_MODULES_DIR/layout"
   - "$GAME_MODULES_DIR/map_obj"
   - "$GAME_MODULES_DIR/sound"
@@ -48,6 +50,9 @@ BuildOptions:
   - "--diag_suppress 381"
   - "-DEPPC"
   - "-DNW_RELEASE"
+  - "-DPROFILE_INFO_AS_NAMESPACE"
+  - "-DSEAD_MATH_CAFE_RSQRT_USE_INTRINSICS"
+  - "-DRDASH_FORCE_MARIO_COURSES"
 MinAlign:
   .text: 0x20
   .rodata: 0x100

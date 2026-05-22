@@ -1,0 +1,12 @@
+---
+Files:
+  C++:
+    - "$HAXX_DIR/src/item/Propeller_Haxx.cpp"
+  Assembly:
+    - "$HAXX_DIR/src/item/Propeller_Haxx_S.s"
+Hooks:
+  # Fix missing propeller glide sound
+  - type: branch
+    instr: bl
+    addr: 0x02524F48
+    func: PropellerHaxx__startGlideSound_Hook

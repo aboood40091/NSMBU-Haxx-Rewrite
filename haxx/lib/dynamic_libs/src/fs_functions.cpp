@@ -21,8 +21,8 @@
  * 3. This notice may not be removed or altered from any source
  * distribution.
  ***************************************************************************/
-#include "dynamic_libs/fs_functions.h"
-#include "dynamic_libs/os_functions.h"
+#include <dynamic_libs/fs_functions.h>
+#include <dynamic_libs/os_functions.h>
 
 EXPORT_DECL(s32, FSInit, void);
 EXPORT_DECL(s32, FSShutdown, void);

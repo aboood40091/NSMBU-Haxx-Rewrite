@@ -1,4 +1,4 @@
-TextAddr = 0x0F800000;
+TextAddr = 0x0FFB0000;
 DataAddr = 0x10400000;
 
 .platform Console=CafeLoader

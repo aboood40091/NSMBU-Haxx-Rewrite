@@ -1,79 +1,26 @@
-#include <actor/Actor.h>
 #include <actor/Profile_Haxx.h>
 #include <collision/ActorBgCollisionMgr.h>
-#include <collision/ActorBoxBgCollision.h>
-#include <collision/ActorLineBgCollision.h>
-#include <game/Info.h>
-#include <graphics/BasicModel.h>
+#include <game_info/CourseInfo.h>
 #include <graphics/Renderer.h>
 #include <map/Bg.h>
 #include <map/CourseData.h>
 #include <map/UnitID.h>
-#include <map_obj/PairObjChild.h>
-#include <map_obj/ParentMovementMgr.h>
+#include <map_obj/MagicPlatform.h>
 
 /*
     TODO:
     * Add other solidity types.
 */
 
-// Callback table, useful for squishing the player
-class MagicPlatformCB : public PairObjChildBaseCB
+static const ActorCreateInfo MagicPlatform_ActorCreateInfo = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ActorCreateInfo::cFlag_IgnoreSpawnRange | ActorCreateInfo::cFlag_MapObj };
+static const Profile MagicPlatform_Profile(&TActorFactory<MagicPlatform>, ProfileInfo::cProfileID_MagicPlatform, "MagicPlatform", &MagicPlatform_ActorCreateInfo);
+
+ActorBase::Result MagicPlatform::create_()
 {
-public:
-    bool bcCallback1(BgCollision*, const sead::Vector2f&) override { return false; }
-};
-static_assert(sizeof(MagicPlatformCB) == sizeof(PairObjChildBaseCB));
-
-class MagicPlatform : public Actor
-{
-public:
-    MagicPlatform(const ActorCreateParam& param);
-    virtual ~MagicPlatform() { }
-
-private:
-    s32 create_()   override;
-    s32 execute_()  override;
-    s32 draw_()     override;
-    s32 doDelete_() override;
-
-private:
-    u16*                    mTileData;
-    u32                     mTileW;
-    u32                     mTileH;
-
-    ParentMovementMgr       mParentMovementMgr;
-
-    enum CollisionType
-    {
-        cCollisionType_Box,
-        cCollisionType_Line,
-        cCollisionType_None
-    };
-    CollisionType           mCollisionType;
-    ActorBoxBgCollision     mBoxBgCollision;
-    MagicPlatformCB         mCollisionHitCallback;
-    ActorLineBgCollision    mLineBgCollision;
-};
-
-static const ActorCreateInfo MagicPlatform_ActorCreateInfo = { sead::Vector2i(0, 0), sead::Vector2i(0, 0), sead::Vector2i(0, 0), 0, 0, 0, 0, ActorCreateInfo::cFlag_IgnoreSpawnRange | ActorCreateInfo::cFlag_MapObj };
-static const Profile MagicPlatform_Profile(&TActorFactory<MagicPlatform>, ProfileID::cMagicPlatform, "MagicPlatform", &MagicPlatform_ActorCreateInfo, 0);
-
-MagicPlatform::MagicPlatform(const ActorCreateParam& param)
-    : Actor(param)
-    , mTileData(nullptr)
-    , mParentMovementMgr()
-    , mBoxBgCollision()
-    , mLineBgCollision()
-{
-}
-
-s32 MagicPlatform::create_()
-{
-    CourseDataFile* file = CourseData::instance()->getFile(Info::instance()->getFileNo());
+    CourseDataFile* file = CourseData::instance()->getFile(CourseInfo::instance()->getFileNo());
     const Location* location = file->getLocation(nullptr, mParam0 & 0xFF);
     if (location == nullptr)
-        return 2;
+        return cResult_Failed;
 
     u32 loc_x = location->offset.x & ~0xF;
     u32 loc_y = location->offset.y & ~0xF;
@@ -81,7 +28,7 @@ s32 MagicPlatform::create_()
     mTileH = (location->size.y + (location->size.y & 0xF) + 0xF) / 16;
 
     if (!mTileW || !mTileH)
-        return 2;
+        return cResult_Failed;
 
     mTileData = new u16[mTileW * mTileH];
 
@@ -96,15 +43,21 @@ s32 MagicPlatform::create_()
 
     mCollisionType = CollisionType((mParam0 >> 8) & 0xF);
     if (mCollisionType > cCollisionType_None)
-        return 2;
+        return cResult_Failed;
 
     const BgCollision::Type bg_collision_type = BgCollision::Type((mParam0 >> 16) & 0xFF);
     if (bg_collision_type > BgCollision::cType_InvisibleBlock)
-        return 2;
+        return cResult_Failed;
 
-    BgCheckUnitInfo::SurfaceType bg_collision_surface_type = BgCheckUnitInfo::SurfaceType((mParam0 >> 12) & 0xF);
-    if (bg_collision_surface_type > BgCheckUnitInfo::cSurfaceType_Manta)
-        bg_collision_surface_type = BgCheckUnitInfo::cSurfaceType_Rock;
+    BgUnitCode::Attr bg_collision_attr = BgUnitCode::Attr((mParam0 >> 12) & 0xF);
+    if (bg_collision_attr > BgUnitCode::cCarpet)
+        bg_collision_attr = BgUnitCode::cNone;
+
+    mParentMovementMgr.link(
+        mPos,
+        mParentMovementMgr.getTypeMask(ParentMovementType(mParam1 & 0xF)),
+        mParamEx.course.movement_id
+    );
 
     switch (mCollisionType)
     {
@@ -113,9 +66,8 @@ s32 MagicPlatform::create_()
             BgCollision::BoxInitArg arg = { sead::Vector2f(0.0f, 0.0f), sead::Vector2f(0.0f, 0.0f), sead::Vector2f(mTileW * -8.0f, mTileH * 8.0f), sead::Vector2f(mTileW * 8.0f, mTileH * -8.0f), 0 };
             mBoxBgCollision.set(this, arg);
 
-            // More Ugh
-            // Callback table, useful for squishing the player
-            mBoxBgCollision.setActorHitCallback(&mCollisionHitCallback);
+            mBoxBgCollision.setDrcTouchCallback(&mDrcTouchCallback);
+            // Callbacks for squishing the player
             mBoxBgCollision.setCheckRev(
                 &PairObjChild::checkRevFoot,
                 &PairObjChild::checkRevHead,
@@ -124,7 +76,7 @@ s32 MagicPlatform::create_()
 
             mBoxBgCollision.setType(bg_collision_type);
             if ((mParam0 >> 24) & 1)
-                mBoxBgCollision.setSurfaceType(bg_collision_surface_type);
+                mBoxBgCollision.setAttr(bg_collision_attr);
 
             ActorBgCollisionMgr::instance()->entry(mBoxBgCollision);
         }
@@ -135,23 +87,20 @@ s32 MagicPlatform::create_()
 
             mLineBgCollision.setType(bg_collision_type);
             if ((mParam0 >> 24) & 1)
-                mLineBgCollision.setSurfaceType(bg_collision_surface_type);
+                mLineBgCollision.setAttr(bg_collision_attr);
 
             ActorBgCollisionMgr::instance()->entry(mLineBgCollision);
         }
         break;
     }
 
-    mParentMovementMgr.link(
-        mPos,
-        mParentMovementMgr.getTypeMask(ParentMovementType(mParam1 & 0xFF)),
-        mParamEx.course.movement_id
-    );
+    if (!execute_())
+        return cResult_Failed;
 
-    return execute_();
+    return cResult_Success;
 }
 
-s32 MagicPlatform::execute_()
+bool MagicPlatform::execute_()
 {
     mParentMovementMgr.execute();
     mPos = mParentMovementMgr.getPosition();
@@ -169,10 +118,10 @@ s32 MagicPlatform::execute_()
         break;
     }
 
-    return 1;
+    return true;
 }
 
-s32 MagicPlatform::draw_()
+bool MagicPlatform::draw_()
 {
     f32 sin_v, cos_v;
     sead::Mathf::sinCosIdx(&sin_v, &cos_v, mAngle.z());
@@ -193,10 +142,10 @@ s32 MagicPlatform::draw_()
         }
     }
 
-    return 1;
+    return true;
 }
 
-s32 MagicPlatform::doDelete_()
+ActorBase::Result MagicPlatform::doDelete_()
 {
     if (mTileData != nullptr)
     {
@@ -204,5 +153,5 @@ s32 MagicPlatform::doDelete_()
         mTileData = nullptr;
     }
 
-    return 1;
+    return cResult_Success;
 }
